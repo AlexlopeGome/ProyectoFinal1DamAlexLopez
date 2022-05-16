@@ -1,6 +1,6 @@
 package enums;
 
-public enum TipoActividadDesenpeñada {
+public enum TipoActividadDesenpeniada {
 PROFESOR,
 ASISTENCIA,
 COCINERO,
