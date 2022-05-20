@@ -10,10 +10,11 @@ public class Usuario extends EntidadConNombre {
 	private String direccion;
 	private String correo;
 	private byte numehijos;
+	private String nick;
 	
 
 	public Usuario(String nombre, String apellidos, Date fechaNacimiento, int contrenia, String direccion,
-			String correo, byte numehijos) {
+			String correo, byte numehijos,String nick) {
 		super(nombre);
 		this.apellidos = apellidos;
 		this.fechaNacimiento = fechaNacimiento;
@@ -21,6 +22,7 @@ public class Usuario extends EntidadConNombre {
 		this.direccion = direccion;
 		this.correo = correo;
 		this.numehijos = numehijos;
+		this.nick=nick;
 	}
 
 	public String getApellidos() {
@@ -58,11 +60,22 @@ public class Usuario extends EntidadConNombre {
 	}
 	public void setNumehijos(byte numehijos) {
 		this.numehijos = numehijos;
+		
 	}
+	
+
+	public String getNick() {
+		return nick;
+	}
+
+	public void setNick(String nick) {
+		this.nick = nick;
+	}
+
 	@Override
 	public String toString() {
 		return "Usuario [apellidos=" + apellidos + ", fechaNacimiento=" + fechaNacimiento + ", contrenia=" + contrenia
-				+ ", direccion=" + direccion + ", correo=" + correo + ", numehijos=" + numehijos + "]";
+				+ ", direccion=" + direccion + ", correo=" + correo + ", numehijos=" + numehijos + ",nick= "+nick +"]";
 	}
 	
 	
