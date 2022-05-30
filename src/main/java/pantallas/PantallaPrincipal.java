@@ -31,11 +31,11 @@ import java.awt.event.MouseEvent;
 
 public class PantallaPrincipal extends JPanel {
 	
-	private Ventana2 ventanaPrincipal;
+	private Ventana ventanaPrincipal;
 	private final JLabel label = new JLabel("");
 	private JTextField txtNumber;
 
-	public PantallaPrincipal(Ventana2 v) {
+	public PantallaPrincipal(Ventana v) {
 		setToolTipText("");
 		setBorder(new EmptyBorder(1, 1, 1, 1));
 		setBackground(Color.WHITE);

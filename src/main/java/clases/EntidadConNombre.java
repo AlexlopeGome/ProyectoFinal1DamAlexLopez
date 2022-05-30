@@ -2,7 +2,7 @@ package clases;
 
 public class EntidadConNombre {
 	
-private String nombre;	
+protected static String nombre;	
 	
 	public EntidadConNombre(String nombre) {
 		super();

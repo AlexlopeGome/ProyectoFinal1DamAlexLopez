@@ -18,11 +18,11 @@ import elementosVisuales.BotonVerde;
 
 public class PantallaInicio extends JPanel {
 	
-	private Ventana1 ventanaPrincipal;
+	private Ventana ventanaPrincipal;
 	private final JLabel label = new JLabel("");
 	private JTextField txtNumber;
 
-	public PantallaInicio(Ventana1 v) {
+	public PantallaInicio(Ventana v) {
 		setToolTipText("");
 		setBorder(new EmptyBorder(1, 1, 1, 1));
 		setBackground(Color.WHITE);
