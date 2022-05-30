@@ -86,10 +86,9 @@ public class PantallaPrincipal extends JPanel {
 		btnbtnbotonVerde_2.setBounds(260, 152, 224, 37);
 		add(btnbtnbotonVerde_2);
 		
-		
-		JLabel lblNewLabel = new JLabel("");
+		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setIcon(new ImageIcon("B:\\Xamp\\htdocs\\REPOSITOS\\ProyectoFinal1DamAlexLopez\\fondos\\General_VentanasApi.jpg"));
-		lblNewLabel.setBounds(-15, -62, 846, 493);
+		lblNewLabel.setBounds(0, -18, 670, 440);
 		add(lblNewLabel);
 		
 		

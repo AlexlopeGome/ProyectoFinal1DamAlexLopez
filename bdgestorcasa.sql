@@ -36,10 +36,11 @@ nombre varchar(200)primary Key,
 importeFijo boolean,
 importe numeric(7,3),
 fecha date,
-codigoTrabajador numeric(3),
+nombreProfesor varchar(200),
 asignaturas varchar(100),
 diaSemana varchar(100),
 codigoMovimento numeric(3),
+foreign key (nombreProfesor) references trabajador(nombe),
 foreign key (diasSemana) references diasSemana(diaSemana)
 
 );
@@ -76,12 +77,12 @@ codigoMovimento numeric(3),
 foreign key (nombreDiaSemana) references nombre(diasSemana),
 foreign key (nombreTrabajador) references nombre(Trabajador)
 );
-create table Ingreso(
+create table Ingresos(
 codigoMovimento numeric(3)primary key,
 foreign key (codigoMovimiento) references tipoIngreso(codigoMovimiento)
 
 );
-create table Gasto(
+create table Gastos(
 codigoMovimento numeric(3)primary key,
 foreign key (codigoMovimiento) references Claseparticular(codigoMovimiento),
 foreign key (codigoMovimiento) references Compra(codigoMovimiento),
