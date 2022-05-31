@@ -6,10 +6,11 @@ use bdgestorcasa;
 create table usuario(
     nombre varchar(200) ,
     apellidos varchar(400) ,
-    correo varchar(400) primary key,
+    correo varchar(400) unique,
     contrasenia varchar(10),
     fechaNacimiento date,
-    numeroHijos numeric(1)
+    numeroHijos numeric(1),
+    nick varchar(200) primary key
 );
 
 create table Trabajador (
@@ -24,7 +25,7 @@ importe numeric(7,3),
 fecha date,
 porcentaje numeric(2),
 fechafin date,
-codigoMovimento numeric(3)
+codigoMovimiento numeric(3)
 
 );
 create table diasSemana(
@@ -32,53 +33,55 @@ diaSemana varchar(100) primary key
 
 );
 create table Extraescolar(
-nombre varchar(200)primary Key,
+nombre varchar(200),
 importeFijo boolean,
 importe numeric(7,3),
 fecha date,
 nombreProfesor varchar(200),
 asignaturas varchar(100),
 diaSemana varchar(100),
-codigoMovimento numeric(3),
-foreign key (nombreProfesor) references trabajador(nombe),
-foreign key (diasSemana) references diasSemana(diaSemana)
+codigoMovimiento numeric(3)primary Key,
+foreign key (nombreProfesor) references Trabajador(nombre),
+foreign key (diaSemana) references diasSemana(diaSemana)
 
 );
 
 create table tipoCompras(
 tipoCompra varchar(200) primary key
 );
+
+create table tipoIngreso(
+tipoIngreso varchar(200) ,
+codigoMovimiento numeric(3),
+constraint pk_codigo primary key(tipoIngreso,codigoMovimiento)
+);
+
 create table Compra(
-codigo numeric(3) primary Key,
 nombre varchar(200),
 importeFijo boolean,
 importe numeric(7,3),
 fecha date,
 comentario varchar(200),
 tipoCompras varchar(200),
-codigoMovimento numeric(3),
+codigoMovimiento numeric(3)primary key,
 foreign key (tipoCompras) references tipoCompras(tipoCompra)
 );
-create table tipoIngreso(
-tipoIngreso varchar(200) primary key,
-codigoMovimento numeric(3)
-);
+
 
 create table ClaseParticular(
-
-nombre varchar(200) primary key,
+nombre varchar(200),
 importeFijo boolean,
 importe numeric(7,3),
 fecha date,
 asignatatura varchar(200),
 nombreTrabajador varchar(200),
-nobreDiaSemana  varchar(100),
-codigoMovimento numeric(3),
-foreign key (nombreDiaSemana) references nombre(diasSemana),
-foreign key (nombreTrabajador) references nombre(Trabajador)
+nombreDiaSemana  varchar(100),
+codigoMovimiento numeric(3) primary key,
+foreign key (nombreDiaSemana) references diasSemana(diaSemana),
+foreign key (nombreTrabajador) references Trabajador(nombre)
 );
 create table Ingresos(
-codigoMovimento numeric(3)primary key,
+codigoMovimiento numeric(3)primary key,
 foreign key (codigoMovimiento) references tipoIngreso(codigoMovimiento)
 
 );
