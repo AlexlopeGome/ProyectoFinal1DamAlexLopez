@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -21,8 +22,8 @@ public class Usuario extends EntidadConNombre {
 	private String contrasenia;
 	private String direccion;
 	private String correo;
-	private byte numehijos;
-	private String nick;
+	private String numehijos;
+	private static String nick;
 	
 	private boolean contraseniaValida(String pass) {
 		return !pass.isBlank();
@@ -31,8 +32,8 @@ public class Usuario extends EntidadConNombre {
 		return email.contains("@");
 	}
 	
-	public Usuario(String nombre, String apellidos, LocalDate fechaNacimiento, int contrenia, String direccion,
-			String correo, byte numehijos,String nick) throws ContraseniaVaciaException, CorreoInvalidoException, SQLException {
+	public Usuario(String nombre, String apellidos, LocalDate fechaNacimiento, String contrasenia, String direccion,
+			String correo, String numehijos,String nick) throws ContraseniaVaciaException, CorreoInvalidoException, SQLException {
 		super(nombre);
 		
 	
@@ -93,7 +94,7 @@ public class Usuario extends EntidadConNombre {
 			this.contrasenia=datosDevueltos.getString("contrasena");
 			this.direccion = datosDevueltos.getString("direccion");
 			this.correo = datosDevueltos.getString("correo");
-			this.numehijos = datosDevueltos.getByte("numehijos"); 
+			this.numehijos = datosDevueltos.getString("numehijos"); 
 			this.nick= datosDevueltos.getString("nick");
 			
 			
@@ -134,7 +135,7 @@ public class Usuario extends EntidadConNombre {
 	    			this.contrasenia=datosDevueltos.getString("contrasena");
 	    			this.direccion = datosDevueltos.getString("direccion");
 	    			this.correo = datosDevueltos.getString("correo");
-	    			this.numehijos = datosDevueltos.getByte("numehijos"); 
+	    			this.numehijos = datosDevueltos.getString("numehijos"); 
 	    			this.nick= datosDevueltos.getString("nick");
 	        }else {
 
@@ -211,10 +212,10 @@ public class Usuario extends EntidadConNombre {
 
 		
 	
-	public byte getNumehijos() {
+	public String getNumehijos() {
 		return numehijos;
 	}
-	public void setNumehijos(byte numehijos) {
+	public void setNumehijos(String numehijos) {
 		this.numehijos = numehijos;
 		
 	}
@@ -247,7 +248,73 @@ public class Usuario extends EntidadConNombre {
 		
 		
 	}
-
+	
+	public boolean eliminar() {
+        Statement smt = UtilsDB.conectarBD();
+        boolean ret;
+        // El borrado lo hacemos con la PK para no equivocarnos y borrar lo que no es
+        try {
+            ret = smt.executeUpdate("delete from usuario where nombre='" + this.nombre + "'") > 0;
+            // no nos queda más remedio que borrar todas las variables internas
+            // porque aqui el objeto no se puede poner a null, no tendría efecto en el main
+            
+            this.nombre=null;
+			this.apellidos = null;
+			this.fechaNacimiento = null;
+			this.contrasenia=null;
+			this.direccion = null;
+			this.correo = null;
+			this.numehijos = null; 
+			this.nick= null;
+            
+            
+            
+        } catch (SQLException e) {
+            // e.printStackTrace();
+            UtilsDB.desconectarBD();
+            return false;
+        }
+        UtilsDB.desconectarBD();
+        return ret;
+    }
+	
+	
+	public static ArrayList<Usuario> getTodos(){
+		Statement smt=UtilsDB.conectarBD();
+	//Inicializamos un ArrayList para devolver
+			ArrayList<Usuario> ret=new ArrayList<Usuario>();
+			
+			try {
+				
+				ResultSet cursor=smt.executeQuery("select * from usuario");
+				while(cursor.next()) {
+			
+	                
+	                Usuario actual=new Usuario(nick);
+	            	actual.nombre=cursor.getString("nombre");
+	            	actual.apellidos = cursor.getString("apellidos");
+	            	actual.fechaNacimiento = cursor.getDate("fechaNacimiento").toLocalDate();
+	            	actual.contrasenia=cursor.getString("contrasena");
+	            	actual.direccion = cursor.getString("direccion");
+	            	actual.correo = cursor.getString("correo");
+	            	actual.numehijos = cursor.getString("numehijos"); 
+	            	actual.nick= cursor.getString("nick");
+	                
+					
+					ret.add(actual);
+				}
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return null;
+			}
+			
+			UtilsDB.desconectarBD();
+			//Si no hay usuarios en la tabla, va a devolver un arraylist vacío
+			//Si la consulta fué erronea, se devuelve un ArrayList null, que son cosas distintas
+			return ret;
+		}
 	@Override
 	public String toString() {
 		return "Usuario [apellidos=" + apellidos + ", fechaNacimiento=" + fechaNacimiento + ", contrenia=" + contrasenia

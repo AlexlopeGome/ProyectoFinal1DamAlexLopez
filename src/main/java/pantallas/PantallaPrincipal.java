@@ -13,6 +13,7 @@ import java.awt.Color;
 import javax.swing.border.EmptyBorder;
 
 import elementosVisuales.BotonAzul;
+import elementosVisuales.BotonRojo;
 import elementosVisuales.BotonVerde;
 
 import javax.swing.JTextPane;
@@ -62,7 +63,8 @@ public class PantallaPrincipal extends JPanel {
 		lblIniciarSesion.setFont(new Font("Tahoma", Font.BOLD, 30));
 		add(lblIniciarSesion);
 		
-		JButton btnbtnbotonVerde = new BotonVerde("Salir");
+		JButton btnbtnbotonVerde = new BotonRojo("Salir");
+		btnbtnbotonVerde.setBackground(new Color(255, 0, 0));
 		btnbtnbotonVerde.setFont(new Font("Dialog", Font.PLAIN, 26));
 		btnbtnbotonVerde.setText("Salir");
 		btnbtnbotonVerde.setForeground(Color.BLACK);
@@ -70,21 +72,22 @@ public class PantallaPrincipal extends JPanel {
 		btnbtnbotonVerde.setBounds(260, 284, 224, 37);
 		add(btnbtnbotonVerde);
 		
-		BotonVerde btnbtnbotonVerde_1 = new BotonVerde("Iniciar Sesion");
-		btnbtnbotonVerde_1.setToolTipText("Iniciar Sesion");
-		btnbtnbotonVerde_1.setText("Iniciar Sesion");
-		btnbtnbotonVerde_1.setForeground(Color.BLACK);
-		btnbtnbotonVerde_1.setFont(new Font("Dialog", Font.PLAIN, 26));
-		btnbtnbotonVerde_1.setBounds(260, 214, 224, 37);
-		add(btnbtnbotonVerde_1);
+		BotonVerde botonInicioSesion = new BotonVerde("Iniciar Sesion");
+		botonInicioSesion.setToolTipText("Iniciar Sesion");
+		botonInicioSesion.setText("Iniciar Sesion");
+		botonInicioSesion.setForeground(Color.BLACK);
+		botonInicioSesion.setFont(new Font("Dialog", Font.PLAIN, 26));
+		botonInicioSesion.setBounds(260, 214, 224, 37);
+		add(botonInicioSesion);
 		
-		BotonVerde btnbtnbotonVerde_2 = new BotonVerde("Registro");
-		btnbtnbotonVerde_2.setToolTipText("Registro");
-		btnbtnbotonVerde_2.setText("Registro");
-		btnbtnbotonVerde_2.setForeground(Color.BLACK);
-		btnbtnbotonVerde_2.setFont(new Font("Dialog", Font.PLAIN, 26));
-		btnbtnbotonVerde_2.setBounds(260, 152, 224, 37);
-		add(btnbtnbotonVerde_2);
+		BotonVerde botonRegistro = new BotonVerde("Registro");
+		botonRegistro.setBackground(Color.BLUE);
+		botonRegistro.setToolTipText("Registro");
+		botonRegistro.setText("Registro");
+		botonRegistro.setForeground(Color.BLACK);
+		botonRegistro.setFont(new Font("Dialog", Font.PLAIN, 26));
+		botonRegistro.setBounds(260, 152, 224, 37);
+		add(botonRegistro);
 		
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setIcon(new ImageIcon("B:\\Xamp\\htdocs\\REPOSITOS\\ProyectoFinal1DamAlexLopez\\fondos\\General_VentanasApi.jpg"));
