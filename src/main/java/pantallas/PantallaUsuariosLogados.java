@@ -12,10 +12,10 @@ import javax.swing.JScrollPane;
 import clases.Usuario;
 import elementosVisuales.ElementoListaUsuarios;
 
-public class PantallaListaV2 extends JPanel {
+public class PantallaUsuariosLogados extends JPanel {
 
     private Ventana ventana;
-    public PantallaListaV2(Ventana v) {
+    public PantallaUsuariosLogados(Ventana v) {
         this.ventana=v;
         setLayout(new BorderLayout(0, 0));
 
