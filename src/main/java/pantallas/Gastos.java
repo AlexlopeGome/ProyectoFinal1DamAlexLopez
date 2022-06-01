@@ -39,53 +39,40 @@ public class Gastos extends JPanel {
 		this.ventana=v;
 		setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("\u00BFQue Haceos?");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 29));
-		lblNewLabel.setBounds(236, 21, 201, 51);
-		add(lblNewLabel);
+		JButton btnNewButton = new BotonRojo("Compra");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnNewButton.setBounds(69, 228, 121, 33);
+		add(btnNewButton);
 		
-		JButton botonIngresos = new BotonVerde("Ingresos");
-		botonIngresos.setFont(new Font("Dialog", Font.PLAIN, 20));
-		botonIngresos.setBounds(275, 317, 114, 37);
-		add(botonIngresos);
+		JButton btnNewButton_1 = new BotonRojo("Extraescolar");
+		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnNewButton_1.setBounds(234, 336, 149, 33);
+		add(btnNewButton_1);
 		
-		JButton BotonEditar = new BotonAzul("editarPerfil");
-		BotonEditar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				ventana.cambiarPantalla("editar");
+		JButton btnNewButton_2 = new BotonRojo("Prestamo");
+		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnNewButton_2.setBounds(417, 228, 117, 33);
+		add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new BotonRojo("Otros Gastos");
+		btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		BotonEditar.setFont(new Font("Dialog", Font.PLAIN, 20));
-		BotonEditar.setBounds(422, 317, 138, 37);
-		add(BotonEditar);
+		btnNewButton_3.setBounds(245, 161, 149, 33);
+		add(btnNewButton_3);
 		
 		
-		JButton BotonGastos = new BotonRojo("Gastos");
-		BotonGastos.setFont(new Font("Dialog", Font.PLAIN, 20));
-		BotonGastos.setBounds(115, 317, 114, 37);
-		add(BotonGastos);
-		
-		
-		JButton BotonAtras = new JButton("Atras");
-		BotonAtras.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				ventana.cambiarPantalla("principal");
-			}
-		});
-		BotonAtras.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		BotonAtras.setBackground(Color.YELLOW);
-		BotonAtras.setForeground(Color.BLACK);
-		BotonAtras.setBounds(74, 119, 104, 37);
-		add(BotonAtras);
+		JLabel fondo = new JLabel("");
+		fondo.setIcon(new ImageIcon("B:\\Xamp\\htdocs\\REPOSITOS\\ProyectoFinal1DamAlexLopez\\fondos\\VentanaGastos_de_casa_API.jpg"));
+		fondo.setBounds(0, 0, 640, 422);
+		add(fondo);
 		
 		
 		
-		JLabel Fondo = new JLabel("");
-		Fondo.setIcon(new ImageIcon("B:\\Xamp\\htdocs\\REPOSITOS\\ProyectoFinal1DamAlexLopez\\fondos\\Ventana_UsusarioAPI.jpg"));
-		Fondo.setBounds(0, 0, 658, 439);
-		add(Fondo);
+		
+		
 		
 	
 		
