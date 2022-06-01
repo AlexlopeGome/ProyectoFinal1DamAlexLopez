@@ -30,12 +30,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 
-public class QueHacer extends JPanel {
+public class Gastos extends JPanel {
 	;
 	private Ventana ventana;
 	private final JLabel label = new JLabel("");
 
-	public QueHacer(Ventana v) {
+	public Gastos(Ventana v) {
 		this.ventana=v;
 		setLayout(null);
 		

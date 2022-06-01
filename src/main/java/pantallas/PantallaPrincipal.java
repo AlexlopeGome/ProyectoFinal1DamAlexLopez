@@ -66,6 +66,12 @@ public class PantallaPrincipal extends JPanel {
 		add(lblIniciarSesion);
 		
 		JButton botonSalir = new BotonRojo("Salir");
+		botonSalir.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.exit(ABORT);
+			}
+		});
 		botonSalir.setBackground(new Color(255, 0, 0));
 		botonSalir.setFont(new Font("Dialog", Font.PLAIN, 26));
 		botonSalir.setText("Salir");

@@ -77,7 +77,7 @@ public class PantallaLogin extends JPanel {
 		lblIniciarSesion.setFont(new Font("Tahoma", Font.BOLD, 30));
 		add(lblIniciarSesion);
 		
-		JButton botonLogin = new BotonVerde("Login");
+		JButton botonLogin = new BotonVerde("Aceptar");
 		botonLogin.addMouseListener(new MouseAdapter() {
 	
 			
