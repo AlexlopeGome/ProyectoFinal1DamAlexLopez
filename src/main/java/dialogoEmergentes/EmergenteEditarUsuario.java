@@ -20,8 +20,7 @@ import elementosVisuales.BotonRojo;
 import elementosVisuales.BotonVerde;
 import exepciones.ContraseniaVaciaException;
 import exepciones.CorreoInvalidoException;
-import exepciones.NombreInvalidoExceptions;
-
+import exepciones.NickInvalidoExceptions;
 import pantallas.Ventana;
 
 public class EmergenteEditarUsuario extends JDialog {
@@ -78,10 +77,10 @@ public class EmergenteEditarUsuario extends JDialog {
 					usuarioAEditar.setDireccion(nuevaDireccion);
 					usuarioAEditar.setNumehijos(nuevoHijos);
 					usuarioAEditar.setNick(nuevoNick);
-					usuarioAEditar.setContresnia(nuevaContraseña);
+					usuarioAEditar.setContrasenia(nuevaContraseña);
 
 					dispose();
-				} catch (SQLException | CorreoInvalidoException | ContraseniaVaciaException e3) {
+				} catch (SQLException | CorreoInvalidoException | ContraseniaVaciaException | NickInvalidoExceptions e3) {
 					// TODO Auto-generated catch block
 					JOptionPane.showMessageDialog(thisRef, e3.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 
@@ -148,7 +147,7 @@ public class EmergenteEditarUsuario extends JDialog {
 		gbc_lblEmail.gridy = 6;
 		getContentPane().add(lblEmail, gbc_lblEmail);
 
-		campoCorreo = new JTextField(this.usuarioAEditar.getContrenia());
+		campoCorreo = new JTextField(this.usuarioAEditar.getCorreo());
 		GridBagConstraints gbc_campoCorreo = new GridBagConstraints();
 		gbc_campoCorreo.insets = new Insets(0, 0, 5, 5);
 		gbc_campoCorreo.fill = GridBagConstraints.HORIZONTAL;
@@ -198,7 +197,7 @@ public class EmergenteEditarUsuario extends JDialog {
 				gbc_lblContraseña.gridy = 9;
 				getContentPane().add(lblContraseña, gbc_lblContraseña);
 		
-				campoContraseña = new JPasswordField(this.usuarioAEditar.getContrenia().toString());
+				campoContraseña = new JPasswordField(this.usuarioAEditar.getContrasenia().toString());
 				GridBagConstraints gbc_campoContraseña = new GridBagConstraints();
 				gbc_campoContraseña.insets = new Insets(0, 0, 5, 5);
 				gbc_campoContraseña.fill = GridBagConstraints.HORIZONTAL;

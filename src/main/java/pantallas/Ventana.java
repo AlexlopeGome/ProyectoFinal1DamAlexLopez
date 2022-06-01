@@ -1,33 +1,70 @@
 package pantallas;
 
+import java.util.HashMap;
+import java.util.Iterator;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
-import jdk.internal.org.jline.terminal.Cursor;
+import clases.Usuario;
+import elementosVisuales.ElementoListaUsuarios;
 
 public class Ventana extends JFrame{
+	//private HashMap<String, JPanel> pantallas;
+	private JPanel pantallaActual;
+	protected Object PantayaloginV2 ;
+
+
+	public Ventana() {
+
+		
+		this.setSize(700,550);  
+		this.setLocationRelativeTo(null); 
+		
+		this.setIconImage(new ImageIcon("./icono/cenec.png").getImage());
+		this.setTitle("Home Manager");
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	
+		this.pantallaActual=new PantallaInicio(this);
+		this.setContentPane(pantallaActual);
 	
-	
-public Ventana() {
-	this.setSize(790, 450);
-    this.setLocationRelativeTo(null);//Te pone la ventana en el centro
-this.setIconImage(new ImageIcon("./iconos/miLogo.png").getImage());
+        this.setResizable(false);
+        this.setVisible(true);
+  
 
-this.setTitle("Proyecto pruebas de Interfaces 1");
-    //this.setAlwaysOnTop(true);
-    //this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-    this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-    //this.setExtendedState(JFrame.MAXIMIZED_BOTH);//Esta y
-    //this.setUndecorated(true); // esta hace que este en pantalla completa siempre qye setVisible este debajo del todo.
-    this.setContentPane(new PantallaInicio(this));
+    }
+    public  void cambiarPantalla(String nombrePantalla) {
+        this.pantallaActual.setVisible(false);
+        this.pantallaActual=null;
+        switch(nombrePantalla){
 
-    this.setResizable(false);//No deja cambiar el tamaño si esta en false.
-    this.setVisible(true);
-    //this.setBounds(100, 300, 800, 500);
-
-}
-
+        case "inicio":
+            this.pantallaActual=new PantallaInicio(this);
+            break;
+        case "principal":
+            this.pantallaActual=new PantallaPrincipal(this);
+            break;
+        case"usuario":
+            this.pantallaActual=new PantallaUsuario(this);
+            break;
+            
+        case "editar":
+        	this.pantallaActual=new ListaUsuarios(this);
+            break;
+            
+        case "login":
+        	this.pantallaActual=new PantallaLogin(this);
+            break;    
+        
+        
+    	case "queHacer":
+    	this.pantallaActual=new QueHacer(this);
+        break;    
+    	}
+        this.pantallaActual.setVisible(true);
+        this.setContentPane(pantallaActual);
+    }
 }
 
 

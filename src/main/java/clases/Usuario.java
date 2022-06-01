@@ -5,41 +5,41 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
+
 
 
 import exepciones.ContraseniaIncorrectaException;
 import exepciones.ContraseniaVaciaException;
 import exepciones.CorreoInvalidoException;
 import exepciones.FechaInvalidoNacimientoException;
+import exepciones.NickInvalidoExceptions;
 import exepciones.UsuarioNoExisteException;
 import utils.UtilsDB;
 
 public class Usuario extends EntidadConNombre {
 	
 	private String apellidos;
-	private LocalDate fechaNacimiento;
-	private String contrasenia;
-	private String direccion;
 	private String correo;
-	private String numehijos;
-	private static String nick;
-	
-	private boolean contraseniaValida(String pass) {
-		return !pass.isBlank();
+	private String contrasenia;
+	private LocalDate fechaNacimiento;
+	private String numeroHijos;
+	private String direccion;
+	private String nick;
+
+	public Usuario() {
+	super(nombre);
 	}
-	private boolean correoValido(String email) {
-		return email.contains("@");
+	private boolean contraseniaValida(String contrasenia) {
+		return !contrasenia.isBlank();
+	}
+	private boolean correoValido(String correo) {
+		return correo.contains("@");
 	}
 	
-	public Usuario(String nombre, String apellidos, LocalDate fechaNacimiento, String contrasenia, String direccion,
-			String correo, String numehijos,String nick) throws ContraseniaVaciaException, CorreoInvalidoException, SQLException {
+	public Usuario(String nombre, String apellidos,String correo,String contrasenia, LocalDate fechaNacimiento,String numeroHijos,String direccion,
+			String nick) throws ContraseniaVaciaException, CorreoInvalidoException, SQLException {
 		super(nombre);
-		
 	
-		
-		
-		
 		
 		if(!this.contraseniaValida(contrasenia)) {
 			throw new ContraseniaVaciaException("La contraseña no puede estar vacía");
@@ -52,29 +52,24 @@ public class Usuario extends EntidadConNombre {
 		
 
 		if(query.executeUpdate(
-		"insert into usuario values('"+  
-		nombre+"','"+apellidos+"'"+fechaNacimiento+"','"+
-		contrasenia+"',"+ direccion + ",'"+correo+"','"+numehijos+"','"+nick+"')") > 0) {
+		"insert into usuario values('"+nombre+"','"+apellidos+"','"+correo+"','"+
+		contrasenia+"','"+ fechaNacimiento + "','"+numeroHijos+"','"+direccion+"','"+nick+"')") > 0) {
 			System.out.println("Usuario inserado con exito");
 			//Si la inserciÃ³n en BD ha colado, ya podemos modificar las
 			//Variables internas con la tranquilidad de que en BD
 			//TambiÃ©n existen.
+			this.nombre=nombre;
 			this.apellidos = apellidos;
+			this.numeroHijos = numeroHijos;
 			this.fechaNacimiento = fechaNacimiento;
 			this.contrasenia = contrasenia;
 			this.direccion = direccion;
 			this.correo = correo;
-			this.numehijos = numehijos;
 			this.nick=nick;
 		}else {
 			throw new SQLException("No se ha podido insertar el usuario");
 		}
 	UtilsDB.desconectarBD();
-		
-	
-		
-		
-		
 		
 		
 	}
@@ -84,17 +79,17 @@ public class Usuario extends EntidadConNombre {
 		
 		
 		Statement query=UtilsDB.conectarBD();
-		ResultSet datosDevueltos=query.executeQuery("select * from usuario where nombre='"+nick+"'");
+		ResultSet datosDevueltos=query.executeQuery("select * from usuario where nick='"+nick+"'");
 		if(datosDevueltos.next()) {
 			
 			
 			this.nombre=datosDevueltos.getString("nombre");
 			this.apellidos = datosDevueltos.getString("apellidos");
 			this.fechaNacimiento = datosDevueltos.getDate("fechaNacimiento").toLocalDate();
-			this.contrasenia=datosDevueltos.getString("contrasena");
+			this.contrasenia=datosDevueltos.getString("contrasenia");
 			this.direccion = datosDevueltos.getString("direccion");
 			this.correo = datosDevueltos.getString("correo");
-			this.numehijos = datosDevueltos.getString("numehijos"); 
+			this.numeroHijos = datosDevueltos.getString("numehijos"); 
 			this.nick= datosDevueltos.getString("nick");
 			
 			
@@ -103,22 +98,19 @@ public class Usuario extends EntidadConNombre {
 		}
 	}
 	public Usuario(String nick, String contrasenia) throws ContraseniaIncorrectaException, UsuarioNoExisteException, SQLException {
-		super(nombre);
-		this.contrasenia = contrasenia;
+		super(nick);
 		
 		  Statement smt=UtilsDB.conectarBD();
 
-	        ResultSet datosDevueltos=smt.executeQuery("select * from usuario where nick='"+
-
-	        nick+"'");
+	        ResultSet cursor=smt.executeQuery("select * from usuario where nick='"+nick+"'");
 
 	        //AquÃ­ podemos usar if en vez de while porque si el nombre estÃ¡, solo va a estar
 
 	        //una vez, porque es la PK
 
-	        if(datosDevueltos.next()) {
+	        if(cursor.next()) {
 
-	                this.contrasenia=datosDevueltos.getString("contrasena");
+	                this.contrasenia=cursor.getString("contrasenia");
 
 	                if(!this.contrasenia.equals(contrasenia)) {
 
@@ -128,18 +120,18 @@ public class Usuario extends EntidadConNombre {
 
 	                }
 
-	            	
-	            	this.nombre=datosDevueltos.getString("nombre");
-	    			this.apellidos = datosDevueltos.getString("apellidos");
-	    			this.fechaNacimiento = datosDevueltos.getDate("fechaNacimiento").toLocalDate();
-	    			this.contrasenia=datosDevueltos.getString("contrasena");
-	    			this.direccion = datosDevueltos.getString("direccion");
-	    			this.correo = datosDevueltos.getString("correo");
-	    			this.numehijos = datosDevueltos.getString("numehijos"); 
-	    			this.nick= datosDevueltos.getString("nick");
+	            	this.nombre=cursor.getString("nombre");
+	    			this.apellidos = cursor.getString("apellidos");
+	    			this.correo = cursor.getString("correo");
+	    			this.contrasenia=cursor.getString("contrasenia");
+	    			this.fechaNacimiento = cursor.getDate("fechaNacimiento").toLocalDate();
+	    			this.contrasenia=cursor.getString("contrasenia");
+	    			this.numeroHijos = cursor.getString("numerohijos"); 
+	    			this.direccion = cursor.getString("direccion");
+	    			this.nick= cursor.getString("nick");
 	        }else {
 
-	                UtilsDB.desconectarBD();
+	        	  UtilsDB.desconectarBD();
 
 	                throw new UsuarioNoExisteException("El usuario no existe");
 
@@ -161,23 +153,23 @@ public class Usuario extends EntidadConNombre {
 	public void setFechaNacimiento(LocalDate fechaNacimiento) throws FechaInvalidoNacimientoException, SQLException {
 		Statement smt=UtilsDB.conectarBD();
 		if(smt.executeUpdate(
-                "update usuario set nombre='" + fechaNacimiento + "' where nombre='" + this.nombre + "'") > 0) {
+                "update usuario set fechaNacimiento='" + fechaNacimiento + "' where nick='" + nick + "'") > 0) {
             this.fechaNacimiento = fechaNacimiento;
         }
 		UtilsDB.desconectarBD();
 		
 	}
-	public String getContrenia() {
+	public String getContrasenia() {
 		return contrasenia;
 	}
-	public void setContresnia(String contrenia) throws ContraseniaVaciaException, SQLException {
+	public void setContrasenia(String contrasenia) throws ContraseniaVaciaException, SQLException {
 			if(!this.contraseniaValida(contrasenia)) {
 				throw new ContraseniaVaciaException("La contraseña no puede estar vacía");
 			}
 			Statement smt2=UtilsDB.conectarBD();
 			if(smt2.executeUpdate("update usuario set contrasenia='"+contrasenia+
 				"' where nick='"+this.nick+"'")>0){
-				this.contrasenia = contrenia;
+				this.contrasenia = contrasenia;
 			}
 			UtilsDB.desconectarBD();
 			
@@ -190,7 +182,8 @@ public class Usuario extends EntidadConNombre {
 		return direccion;
 	}
 	public void setDireccion(String direccion) {
-		this.direccion = direccion;
+	this.direccion = direccion;
+
 	}
 	public String getCorreo() {
 		return correo;
@@ -202,7 +195,7 @@ public class Usuario extends EntidadConNombre {
 		}
 			Statement smt1=UtilsDB.conectarBD();
 			
-		if(	smt1.executeUpdate("update usuario set email='"+correo+
+		if(	smt1.executeUpdate("update usuario set correo='"+correo+
 				"' where nick='"+this.nick+"'")>0){
 			this.correo = correo;
 				}
@@ -213,13 +206,13 @@ public class Usuario extends EntidadConNombre {
 		
 	
 	public String getNumehijos() {
-		return numehijos;
+		return numeroHijos;
 	}
-	public void setNumehijos(String numehijos) {
-		this.numehijos = numehijos;
-		
+	public void setNumehijos(String numehijos) throws SQLException {
+
+			this.numeroHijos = numehijos;
+	  
 	}
-	
 
 	public String getNick() {
 		
@@ -227,7 +220,7 @@ public class Usuario extends EntidadConNombre {
 		return nick;
 	}
 
-	public void setNick(String nick) throws SQLException {
+	public void setNick(String nick) throws SQLException,NickInvalidoExceptions {
 		
 		
 			
@@ -264,7 +257,7 @@ public class Usuario extends EntidadConNombre {
 			this.contrasenia=null;
 			this.direccion = null;
 			this.correo = null;
-			this.numehijos = null; 
+			this.numeroHijos = null; 
 			this.nick= null;
             
             
@@ -289,16 +282,16 @@ public class Usuario extends EntidadConNombre {
 				ResultSet cursor=smt.executeQuery("select * from usuario");
 				while(cursor.next()) {
 			
-	                
-	                Usuario actual=new Usuario(nick);
-	            	actual.nombre=cursor.getString("nombre");
-	            	actual.apellidos = cursor.getString("apellidos");
-	            	actual.fechaNacimiento = cursor.getDate("fechaNacimiento").toLocalDate();
-	            	actual.contrasenia=cursor.getString("contrasena");
-	            	actual.direccion = cursor.getString("direccion");
-	            	actual.correo = cursor.getString("correo");
-	            	actual.numehijos = cursor.getString("numehijos"); 
-	            	actual.nick= cursor.getString("nick");
+					Usuario actual=new Usuario();
+					
+					actual.nombre=cursor.getString("nombre");
+	    			actual.apellidos = cursor.getString("apellidos");
+	    			actual.correo = cursor.getString("correo");
+	    			actual.contrasenia=cursor.getString("contrasenia");
+	    			actual.fechaNacimiento = cursor.getDate("fechaNacimiento").toLocalDate();
+	    			actual.contrasenia=cursor.getString("contrasenia");
+	    			actual.numeroHijos = cursor.getString("direccion");
+	    			actual.nick= cursor.getString("nick");
 	                
 					
 					ret.add(actual);
@@ -317,9 +310,11 @@ public class Usuario extends EntidadConNombre {
 		}
 	@Override
 	public String toString() {
-		return "Usuario [apellidos=" + apellidos + ", fechaNacimiento=" + fechaNacimiento + ", contrenia=" + contrasenia
-				+ ", direccion=" + direccion + ", correo=" + correo + ", numehijos=" + numehijos + ",nick= "+nick +"]";
+		return "Usuario [apellidos=" + apellidos + ", correo=" + correo + ", contrasenia=" + contrasenia
+				+ ", fechaNacimiento=" + fechaNacimiento + ", numeroHijos=" + numeroHijos + ", direccion=" + direccion
+				+ "]";
 	}
+	
 	
 	
 	

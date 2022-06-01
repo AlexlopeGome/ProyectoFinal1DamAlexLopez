@@ -1,15 +1,15 @@
 package clases;
 
 public class EntidadConNombre {
-	
-protected static String nombre;	
-	
+
+	protected static String nombre;
+
+
+
 	public EntidadConNombre(String nombre) {
 		super();
 		this.nombre = nombre;
 	}
-
-
 
 	public String getNombre() {
 		return nombre;

@@ -10,23 +10,23 @@ public class BotonRojo extends BotonVerde {
 	
 	public BotonRojo(String m) {
 		super(m);
-		estiloPorDefecto();
+		estiloPorDefectoRojo();
 		addMouseListener(new MouseAdapter() {
 	
 
 	public void mouseEntered(MouseEvent e) {
-		setBackground(new Color(0,0,255));
+		setBackground(new Color(240,255,240));
 		setFont(new Font("Rockwell",Font.BOLD, 18));
 		
 	}
 	
 	public void mouseExited(MouseEvent e) {
-		estiloPorDefecto();
+		estiloPorDefectoRojo();
 	}
 	});
 }
 	
-private void estiloPorDefecto() {
+private void estiloPorDefectoRojo() {
 this.setForeground(new Color(0, 0, 0));
 this.setBackground(Color.RED);
 this.setFont(new Font("Rockwell", Font.PLAIN, 14));

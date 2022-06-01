@@ -10,7 +10,7 @@ public class BotonAzul extends BotonVerde {
 	
 	public BotonAzul(String m) {
 		super(m);
-		estiloPorDefecto();
+		estiloPorDefectoAzul();
 		addMouseListener(new MouseAdapter() {
 	
 
@@ -21,14 +21,14 @@ public class BotonAzul extends BotonVerde {
 	}
 	
 	public void mouseExited(MouseEvent e) {
-		estiloPorDefecto();
+		estiloPorDefectoAzul();
 	}
 	});
 }
 
-private void estiloPorDefecto() {
+private void estiloPorDefectoAzul() {
 this.setForeground(new Color(0, 0, 0));
-this.setBackground(new Color(0, 0, 255));
+this.setBackground(Color.BLUE);
 this.setFont(new Font("Rockwell", Font.PLAIN, 14));
 this.setCursor(new Cursor (Cursor.HAND_CURSOR)); //A�ADIDO A MANO, PONE LA MANO EN VEZ DE LA FLECHA
 }

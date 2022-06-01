@@ -35,15 +35,17 @@ public class PantallaPrincipal extends JPanel {
 	private Ventana ventanaPrincipal;
 	private final JLabel label = new JLabel("");
 	private JTextField txtNumber;
+	private Ventana ventana;
 
 	public PantallaPrincipal(Ventana v) {
+		this.ventana=v;
 		setToolTipText("");
 		setBorder(new EmptyBorder(1, 1, 1, 1));
 		setBackground(Color.WHITE);
 		setLayout(null);
 		
 		
-	 JButton btnbotonVerde = new BotonVerde("Vamos....");
+	 JButton btnbotonVerde = new BotonVerde("");
 	 btnbotonVerde.addActionListener(new ActionListener() {
 	 	public void actionPerformed(ActionEvent e) {
 	 		
@@ -63,36 +65,48 @@ public class PantallaPrincipal extends JPanel {
 		lblIniciarSesion.setFont(new Font("Tahoma", Font.BOLD, 30));
 		add(lblIniciarSesion);
 		
-		JButton btnbtnbotonVerde = new BotonRojo("Salir");
-		btnbtnbotonVerde.setBackground(new Color(255, 0, 0));
-		btnbtnbotonVerde.setFont(new Font("Dialog", Font.PLAIN, 26));
-		btnbtnbotonVerde.setText("Salir");
-		btnbtnbotonVerde.setForeground(Color.BLACK);
-		btnbtnbotonVerde.setToolTipText("Salir");
-		btnbtnbotonVerde.setBounds(260, 284, 224, 37);
-		add(btnbtnbotonVerde);
+		JButton botonSalir = new BotonRojo("Salir");
+		botonSalir.setBackground(new Color(255, 0, 0));
+		botonSalir.setFont(new Font("Dialog", Font.PLAIN, 26));
+		botonSalir.setText("Salir");
+		botonSalir.setForeground(Color.BLACK);
+		botonSalir.setToolTipText("Salir");
+		botonSalir.setBounds(260, 284, 224, 37);
+		add(botonSalir);
 		
 		BotonVerde botonInicioSesion = new BotonVerde("Iniciar Sesion");
+		botonInicioSesion.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarPantalla("login");
+			}
+		});
 		botonInicioSesion.setToolTipText("Iniciar Sesion");
 		botonInicioSesion.setText("Iniciar Sesion");
 		botonInicioSesion.setForeground(Color.BLACK);
 		botonInicioSesion.setFont(new Font("Dialog", Font.PLAIN, 26));
-		botonInicioSesion.setBounds(260, 214, 224, 37);
+		botonInicioSesion.setBounds(260, 223, 224, 37);
 		add(botonInicioSesion);
 		
-		BotonVerde botonRegistro = new BotonVerde("Registro");
-		botonRegistro.setBackground(Color.BLUE);
-		botonRegistro.setToolTipText("Registro");
-		botonRegistro.setText("Registro");
-		botonRegistro.setForeground(Color.BLACK);
+		
+		JButton botonRegistro = new BotonAzul("Registro");
+		botonRegistro.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarPantalla("usuario");
+			}
+		});
+		botonRegistro.setBackground(new Color(0, 0, 255));
+		botonRegistro.setForeground(new Color(0, 0, 0));
 		botonRegistro.setFont(new Font("Dialog", Font.PLAIN, 26));
-		botonRegistro.setBounds(260, 152, 224, 37);
+		botonRegistro.setBounds(260, 166, 224, 37);
 		add(botonRegistro);
 		
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setIcon(new ImageIcon("B:\\Xamp\\htdocs\\REPOSITOS\\ProyectoFinal1DamAlexLopez\\fondos\\General_VentanasApi.jpg"));
 		lblNewLabel.setBounds(0, -18, 670, 440);
 		add(lblNewLabel);
+		
 		
 		
 		

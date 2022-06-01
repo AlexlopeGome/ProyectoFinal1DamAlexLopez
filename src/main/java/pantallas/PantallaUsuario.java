@@ -6,15 +6,19 @@ import java.awt.BorderLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.Color;
 import javax.swing.border.EmptyBorder;
 
+import clases.Usuario;
 import elementosVisuales.BotonAzul;
 import elementosVisuales.BotonRojo;
 import elementosVisuales.BotonVerde;
+import exepciones.ContraseniaVaciaException;
+import exepciones.CorreoInvalidoException;
 
 import javax.swing.JTextPane;
 import javax.swing.JEditorPane;
@@ -29,13 +33,15 @@ import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.GridLayout;
 
 public class PantallaUsuario extends JPanel {
-	
+	private Ventana ventana;
 	private Ventana ventanaPrincipal;
 	private JTextField txtNumber;
 	private JLabel labelNombre;
@@ -52,12 +58,13 @@ public class PantallaUsuario extends JPanel {
 	private JTextField campoDireccion;
 	private JTextField campoFechaNacimiento;
 	private JTextField campoCorreo;
-	private JTextField campoApellidos;
 	private JPasswordField compoContrasenia;
+	private JTextField campoHijos;
+	private JTextField campoApellidos;
 
 	public PantallaUsuario(Ventana v) {
 		setLayout(null);
-		
+		this.ventana=v;
 		
 		JLabel labelNombre = new JLabel("Nombre:");
 		labelNombre.setFont(new Font("Tahoma", Font.BOLD, 23));
@@ -67,11 +74,13 @@ public class PantallaUsuario extends JPanel {
 		labelNombre.setBounds(111, 82, 232, 33);
 		add(labelNombre);
 		
-		campoNick = new JTextField();
-		campoNick.setBackground(Color.WHITE);
-		campoNick.setBounds(460, 315, 105, 33);
-		add(campoNick);
-		campoNick.setColumns(10);
+		campoNombre = new JTextField();
+		campoNombre.setBackground(Color.WHITE);
+		campoNombre.setBounds(460, 82, 105, 33);
+		add(campoNombre);
+		campoNombre.setColumns(10);
+		
+		
 		
 		JLabel labelApellidos = new JLabel("Apellidos:");
 		labelApellidos.setToolTipText("");
@@ -81,12 +90,10 @@ public class PantallaUsuario extends JPanel {
 		labelApellidos.setBounds(111, 119, 232, 33);
 		add(labelApellidos);
 		
-		campohijos = new JTextField();
-		campohijos.setBackground(Color.WHITE);
-		campohijos.setBounds(460, 279, 105, 31);
-		add(campohijos);
-		campohijos.setColumns(10);
-		
+		campoApellidos = new JTextField();
+		campoApellidos.setBounds(460, 126, 105, 33);
+		add(campoApellidos);
+		campoApellidos.setColumns(10);
 		
 		JLabel labelCorreo;
 		labelCorreo = new JLabel("Correo:");
@@ -97,12 +104,13 @@ public class PantallaUsuario extends JPanel {
 		labelCorreo.setBounds(111, 163, 232, 33);
 		add(labelCorreo);
 		
+		campoCorreo = new JTextField();
+		campoCorreo.setBackground(Color.WHITE);
+		campoCorreo.setBounds(460, 163, 105, 33);
+		add(campoCorreo);
+		campoCorreo.setColumns(10);
 		
-		campoDireccion = new JTextField();
-		campoDireccion.setBackground(Color.WHITE);
-		campoDireccion.setBounds(460, 240, 105, 33);
-		add(campoDireccion);
-		campoDireccion.setColumns(10);
+	
 		
 		JLabel labelFechaNacimento  = new JLabel("Fecha Nacimento:");
 		labelFechaNacimento.setToolTipText("");
@@ -127,11 +135,13 @@ public class PantallaUsuario extends JPanel {
 		labelDireccion.setBounds(111, 247, 232, 33);
 		add(labelDireccion);
 		
-		campoCorreo = new JTextField();
-		campoCorreo.setBackground(Color.WHITE);
-		campoCorreo.setBounds(460, 163, 105, 33);
-		add(campoCorreo);
-		campoCorreo.setColumns(10);
+		campoDireccion = new JTextField();
+		campoDireccion.setBackground(Color.WHITE);
+		campoDireccion.setBounds(460, 240, 105, 33);
+		add(campoDireccion);
+		campoDireccion.setColumns(10);
+		
+	
 		
 		
 		JLabel labelHijos = new JLabel("Hijos:");
@@ -142,11 +152,15 @@ public class PantallaUsuario extends JPanel {
 		labelHijos.setBounds(111, 279, 232, 33);
 		add(labelHijos);
 		
-		campoApellidos = new JTextField();
-		campoApellidos.setBackground(Color.WHITE);
-		campoApellidos.setBounds(460, 119, 105, 33);
-		add(campoApellidos);
-		campoApellidos.setColumns(10);
+		
+		campoHijos = new JTextField();
+		campoHijos.setColumns(10);
+		campoHijos.setBackground(Color.WHITE);
+		campoHijos.setBounds(460, 279, 105, 33);
+		add(campoHijos);
+		
+		
+	
 		
 		JLabel labelNick = new JLabel("Nick:");
 		labelNick.setToolTipText("");
@@ -156,11 +170,11 @@ public class PantallaUsuario extends JPanel {
 		labelNick.setBounds(111, 315, 232, 33);
 		add(labelNick);
 		
-		campoNombre = new JTextField();
-		campoNombre.setBackground(Color.WHITE);
-		campoNombre.setBounds(460, 82, 105, 33);
-		add(campoNombre);
-		campoNombre.setColumns(10);
+		campoNick = new JTextField();
+		campoNick.setBackground(Color.WHITE);
+		campoNick.setBounds(460, 315, 105, 33);
+		add(campoNick);
+		campoNick.setColumns(10);
 		
 		JLabel labelContrasenia = new JLabel("Contrase\u00F1a");
 		labelContrasenia.setToolTipText("");
@@ -180,14 +194,15 @@ public class PantallaUsuario extends JPanel {
 		botonCancelar.setFont(new Font("Dialog", Font.PLAIN, 26));
 		botonCancelar.setForeground(Color.BLACK);
 		botonCancelar.setToolTipText("Cancelar");
-		botonCancelar.setBounds(420, 397, 224, 37);
+		botonCancelar.setBounds(399, 397, 224, 37);
 		add(botonCancelar);
 		
 		BotonVerde botonAceptar = new BotonVerde("Aceptar");
+		
 		botonAceptar.setToolTipText("Aceptar");
 		botonAceptar.setForeground(Color.BLACK);
 		botonAceptar.setFont(new Font("Dialog", Font.PLAIN, 26));
-		botonAceptar.setBounds(53, 399, 224, 37);
+		botonAceptar.setBounds(32, 399, 224, 37);
 		add(botonAceptar);
 		
 		JLabel labelRegistro = new JLabel("Registro");
@@ -195,21 +210,64 @@ public class PantallaUsuario extends JPanel {
 		labelRegistro.setBounds(295, 27, 134, 31);
 		add(labelRegistro);
 		
-		JButton botonEditar = new JButton("Editar Usuario");
-		botonEditar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		botonEditar.setForeground(Color.BLACK);
-		botonEditar.setBackground(Color.CYAN);
-		botonEditar.setBounds(287, 410, 123, 23);
-		add(botonEditar);
 		
+
 		
 		JLabel Fondo = new JLabel("");
-		Fondo.setBounds(0, -16, 654, 483);
+		Fondo.setBounds(-23, 0, 654, 478);
 		Fondo.setIcon(new ImageIcon("B:\\Xamp\\htdocs\\REPOSITOS\\ProyectoFinal1DamAlexLopez\\fondos\\Ventana_UsusarioAPI.jpg"));
 		add(Fondo);
 		
+	
 		
 		
+		
+		botonAceptar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			
+				try {
+					
+			String nombre = campoNombre.getText();
+			String apellidos=campoApellidos.getText();
+			String correo= campoCorreo.getText();
+			String contrasenia = new String (compoContrasenia.getPassword());
+			String direccion=campoDireccion.getText();
+			String fechaEnTexto=campoFechaNacimiento.getText();
+			String[] fechaNaciPartida=fechaEnTexto.split("/");
+			LocalDate fechaNacimiento=
+	                LocalDate.of(Integer.parseInt(fechaNaciPartida[2]),
+	                                Integer.parseInt(fechaNaciPartida[1]),
+	                                Integer.parseInt(fechaNaciPartida[0]));
+			String numeroHijos=campoHijos.getText();
+			String nick=campoNick.getText();
+		
+	
+		
+				new Usuario( nombre, apellidos,correo,contrasenia,  fechaNacimiento,numeroHijos,direccion,
+						nick);
+
+                JOptionPane.showMessageDialog(ventana,"Registro ok","Resgitro completado",JOptionPane.PLAIN_MESSAGE);
+                ventana.cambiarPantalla("login");
+				
+				
+			} catch (ContraseniaVaciaException | CorreoInvalidoException | SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				
+				JOptionPane.showMessageDialog(
+		                ventana,e1.getMessage(),"Error",
+		                JOptionPane.ERROR_MESSAGE);
+
+		                //TODO METER EL ERROR DEL SPLIT DE LA CONTRASEÑA
+		            } catch (ArrayIndexOutOfBoundsException e1) {
+		                JOptionPane.showMessageDialog(ventana, "Formato erroneo, debe ser dd/mm/yyyy","error",JOptionPane.ERROR_MESSAGE);
+		            }
+				
+			}
+			
+			
+		});
 		
 		
 		

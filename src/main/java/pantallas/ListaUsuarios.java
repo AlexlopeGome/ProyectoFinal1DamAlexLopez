@@ -12,14 +12,14 @@ import javax.swing.JScrollPane;
 import clases.Usuario;
 import elementosVisuales.ElementoListaUsuarios;
 
-public class PantallaUsuariosLogados extends JPanel {
+public class ListaUsuarios extends JPanel {
 
     private Ventana ventana;
-    public PantallaUsuariosLogados(Ventana v) {
+    public ListaUsuarios(Ventana v) {
         this.ventana=v;
         setLayout(new BorderLayout(0, 0));
 
-        JLabel lblTitulo = new JLabel("Lista De Usuarios");
+        JLabel lblTitulo = new JLabel("Usuarios Logeados");
         lblTitulo.setFont(new Font("Tahoma", Font.PLAIN, 30));
         add(lblTitulo, BorderLayout.NORTH);
 
@@ -37,3 +37,4 @@ public class PantallaUsuariosLogados extends JPanel {
         }
 
     }}
+

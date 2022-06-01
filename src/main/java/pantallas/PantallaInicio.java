@@ -15,14 +15,17 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import elementosVisuales.BotonVerde;
+import java.awt.event.MouseEvent;
 
 public class PantallaInicio extends JPanel {
-	
+	private Ventana ventana;
 	private Ventana ventanaPrincipal;
 	private final JLabel label = new JLabel("");
 	private JTextField txtNumber;
 
+
 	public PantallaInicio(Ventana v) {
+		this.ventana=v;
 		setToolTipText("");
 		setBorder(new EmptyBorder(1, 1, 1, 1));
 		setBackground(Color.WHITE);
@@ -50,6 +53,11 @@ public class PantallaInicio extends JPanel {
 		add(lblIniciarSesion);
 		
 		JButton btnbtnbotonVerde = new BotonVerde("Vamoss....");
+		btnbtnbotonVerde.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarPantalla("principal");
+			}
+		});
 		btnbtnbotonVerde.setFont(new Font("Dialog", Font.PLAIN, 26));
 		btnbtnbotonVerde.setText("Lets GO....");
 		btnbtnbotonVerde.setForeground(Color.BLACK);
@@ -59,7 +67,7 @@ public class PantallaInicio extends JPanel {
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon("B:\\Xamp\\htdocs\\REPOSITOS\\ProyectoFinal1DamAlexLopez\\fondos\\inicioApi.jpg"));
-		lblNewLabel.setBounds(-13, -17, 846, 493);
+		lblNewLabel.setBounds(-23, 11, 891, 499);
 		add(lblNewLabel);
 		
 		

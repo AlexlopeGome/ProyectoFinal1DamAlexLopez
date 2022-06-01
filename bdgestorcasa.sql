@@ -9,7 +9,8 @@ create table usuario(
     correo varchar(400) unique,
     contrasenia varchar(10),
     fechaNacimiento date,
-    numeroHijos numeric(1),
+    numeroHijos varchar(2),
+    direccion varchar(400),
     nick varchar(200) primary key
 );
 
@@ -19,13 +20,13 @@ actividadDesempeñada varchar(200)
 
 );
 create table Prestamo(
-nombre varchar(200)primary Key,
+nombre varchar(200),
 importeFijo boolean,
 importe numeric(7,3),
 fecha date,
 porcentaje numeric(2),
 fechafin date,
-codigoMovimiento numeric(3)
+codigoMovimiento numeric(3)primary Key
 
 );
 create table diasSemana(
@@ -52,8 +53,8 @@ tipoCompra varchar(200) primary key
 
 create table tipoIngreso(
 tipoIngreso varchar(200) ,
-codigoMovimiento numeric(3),
-constraint pk_codigo primary key(tipoIngreso,codigoMovimiento)
+codigoMovimiento numeric(3)primary key
+
 );
 
 create table Compra(
@@ -86,7 +87,7 @@ foreign key (codigoMovimiento) references tipoIngreso(codigoMovimiento)
 
 );
 create table Gastos(
-codigoMovimento numeric(3)primary key,
+codigoMovimiento numeric(3)primary key,
 foreign key (codigoMovimiento) references Claseparticular(codigoMovimiento),
 foreign key (codigoMovimiento) references Compra(codigoMovimiento),
 foreign key (codigoMovimiento) references Extraescolar(codigoMovimiento),
