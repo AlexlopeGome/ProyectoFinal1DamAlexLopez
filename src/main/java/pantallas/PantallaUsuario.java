@@ -190,6 +190,13 @@ public class PantallaUsuario extends JPanel {
 		add(compoContrasenia);
 		
 		JButton botonCancelar = new BotonRojo("Cancelar");
+		botonCancelar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				ventana.cambiarPantalla("principal");
+			}
+		});
 		botonCancelar.setBackground(new Color(255, 0, 0));
 		botonCancelar.setFont(new Font("Dialog", Font.PLAIN, 26));
 		botonCancelar.setForeground(Color.BLACK);

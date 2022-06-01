@@ -61,6 +61,11 @@ public class Ventana extends JFrame{
     	case "queHacer":
     	this.pantallaActual=new QueHacer(this);
         break;    
+    	
+        
+    	case "gastos":
+    	this.pantallaActual=new Gastos(this);
+        break;    
     	}
         this.pantallaActual.setVisible(true);
         this.setContentPane(pantallaActual);

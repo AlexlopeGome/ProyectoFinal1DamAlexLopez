@@ -8,7 +8,7 @@ public class EntidadConNombre {
 
 	public EntidadConNombre(String nombre) {
 		super();
-		this.nombre = nombre;
+		EntidadConNombre.nombre = nombre;
 	}
 
 	public String getNombre() {
@@ -16,7 +16,7 @@ public class EntidadConNombre {
 	}
 
 	public void setNombre(String nombre) {
-		this.nombre = nombre;
+		EntidadConNombre.nombre = nombre;
 	}
 
 	@Override

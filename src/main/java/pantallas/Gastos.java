@@ -63,11 +63,42 @@ public class Gastos extends JPanel {
 		btnNewButton_3.setBounds(245, 161, 149, 33);
 		add(btnNewButton_3);
 		
+		JButton botonAtras = new BotonAzul("Atras");
+		botonAtras.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				ventana.cambiarPantalla("queHacer");
+				
+			}
+			
+		
+		});
+		botonAtras.setBounds(506, 374, 89, 23);
+		add(botonAtras);
+		
+		JButton botonSalir = new BotonRojo("Salir");
+		botonSalir.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.exit(ABORT);
+			}
+		});
+		botonSalir.setBackground(new Color(255, 0, 0));
+		botonSalir.setFont(new Font("Dialog", Font.PLAIN, 26));
+		botonSalir.setText("Salir");
+		botonSalir.setForeground(Color.BLACK);
+		botonSalir.setToolTipText("Salir");
+		botonSalir.setBounds(0, 365, 99, 32);
+		add(botonSalir);
+		
 		
 		JLabel fondo = new JLabel("");
 		fondo.setIcon(new ImageIcon("B:\\Xamp\\htdocs\\REPOSITOS\\ProyectoFinal1DamAlexLopez\\fondos\\VentanaGastos_de_casa_API.jpg"));
 		fondo.setBounds(0, 0, 640, 422);
 		add(fondo);
+		
+	;
 		
 		
 		

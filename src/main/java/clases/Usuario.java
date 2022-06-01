@@ -58,7 +58,7 @@ public class Usuario extends EntidadConNombre {
 			//Si la inserción en BD ha colado, ya podemos modificar las
 			//Variables internas con la tranquilidad de que en BD
 			//También existen.
-			this.nombre=nombre;
+			EntidadConNombre.nombre=nombre;
 			this.apellidos = apellidos;
 			this.numeroHijos = numeroHijos;
 			this.fechaNacimiento = fechaNacimiento;
@@ -83,7 +83,7 @@ public class Usuario extends EntidadConNombre {
 		if(datosDevueltos.next()) {
 			
 			
-			this.nombre=datosDevueltos.getString("nombre");
+			EntidadConNombre.nombre=datosDevueltos.getString("nombre");
 			this.apellidos = datosDevueltos.getString("apellidos");
 			this.fechaNacimiento = datosDevueltos.getDate("fechaNacimiento").toLocalDate();
 			this.contrasenia=datosDevueltos.getString("contrasenia");
@@ -120,7 +120,7 @@ public class Usuario extends EntidadConNombre {
 
 	                }
 
-	            	this.nombre=cursor.getString("nombre");
+	            	EntidadConNombre.nombre=cursor.getString("nombre");
 	    			this.apellidos = cursor.getString("apellidos");
 	    			this.correo = cursor.getString("correo");
 	    			this.contrasenia=cursor.getString("contrasenia");
@@ -247,11 +247,11 @@ public class Usuario extends EntidadConNombre {
         boolean ret;
         // El borrado lo hacemos con la PK para no equivocarnos y borrar lo que no es
         try {
-            ret = smt.executeUpdate("delete from usuario where nombre='" + this.nombre + "'") > 0;
+            ret = smt.executeUpdate("delete from usuario where nombre='" + EntidadConNombre.nombre + "'") > 0;
             // no nos queda más remedio que borrar todas las variables internas
             // porque aqui el objeto no se puede poner a null, no tendría efecto en el main
             
-            this.nombre=null;
+            EntidadConNombre.nombre=null;
 			this.apellidos = null;
 			this.fechaNacimiento = null;
 			this.contrasenia=null;
@@ -284,7 +284,7 @@ public class Usuario extends EntidadConNombre {
 			
 					Usuario actual=new Usuario();
 					
-					actual.nombre=cursor.getString("nombre");
+					EntidadConNombre.nombre=cursor.getString("nombre");
 	    			actual.apellidos = cursor.getString("apellidos");
 	    			actual.correo = cursor.getString("correo");
 	    			actual.contrasenia=cursor.getString("contrasenia");

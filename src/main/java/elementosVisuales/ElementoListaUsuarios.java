@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 
+import clases.EntidadConNombre;
 import clases.Usuario;
 import dialogoEmergentes.EmergenteEditarUsuario;
 import pantallas.Ventana;
@@ -145,6 +146,7 @@ public class ElementoListaUsuarios extends JPanel{
                 add(btnEditarUsuario, gbc_btnEditarUsuario);
     }
 
+	
 }
 
 

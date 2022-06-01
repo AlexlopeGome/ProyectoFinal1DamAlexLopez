@@ -89,8 +89,6 @@ public class PantallaLogin extends JPanel {
 					ventana.PantayaloginV2= new Usuario(nick,contrasenia);
 					JOptionPane.showMessageDialog(ventana, "Bienvenido, "+ventana.PantayaloginV2, "Login correcto", JOptionPane.PLAIN_MESSAGE);
 					ventana.cambiarPantalla("queHacer");
-					System.out.println(nick);
-					System.out.println(contrasenia);
 				
 							new Usuario(nick,contrasenia );
 						} catch (SQLException e1) {

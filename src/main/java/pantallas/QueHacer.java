@@ -39,9 +39,9 @@ public class QueHacer extends JPanel {
 		this.ventana=v;
 		setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("\u00BFQue Haceos?");
+		JLabel lblNewLabel = new JLabel("¿Que Hacemos?");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 29));
-		lblNewLabel.setBounds(236, 21, 201, 51);
+		lblNewLabel.setBounds(236, 21, 213, 50);
 		add(lblNewLabel);
 		
 		JButton botonIngresos = new BotonVerde("Ingresos");
@@ -62,6 +62,14 @@ public class QueHacer extends JPanel {
 		
 		
 		JButton BotonGastos = new BotonRojo("Gastos");
+		BotonGastos.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				ventana.cambiarPantalla("gastos");
+			}
+			
+		});
 		BotonGastos.setFont(new Font("Dialog", Font.PLAIN, 20));
 		BotonGastos.setBounds(115, 317, 114, 37);
 		add(BotonGastos);
@@ -80,6 +88,20 @@ public class QueHacer extends JPanel {
 		BotonAtras.setBounds(74, 119, 104, 37);
 		add(BotonAtras);
 		
+		JButton botonSalir = new BotonRojo("Salir");
+		botonSalir.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.exit(ABORT);
+			}
+		});
+		botonSalir.setBackground(new Color(255, 0, 0));
+		botonSalir.setFont(new Font("Dialog", Font.PLAIN, 26));
+		botonSalir.setText("Salir");
+		botonSalir.setForeground(Color.BLACK);
+		botonSalir.setToolTipText("Salir");
+		botonSalir.setBounds(548, 30, 85, 37);
+		add(botonSalir);
 		
 		
 		JLabel Fondo = new JLabel("");
