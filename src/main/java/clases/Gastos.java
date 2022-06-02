@@ -9,4 +9,8 @@ public class Gastos extends Movimiento  {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Gastos() {
+		// TODO Auto-generated constructor stub
+	}
+
 }

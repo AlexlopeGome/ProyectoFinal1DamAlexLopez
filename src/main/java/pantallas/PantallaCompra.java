@@ -31,22 +31,17 @@ import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import javax.swing.JRadioButton;
 
-public class Compra extends JPanel {
+public class PantallaCompra extends JPanel {
 	;
 	private Ventana ventana;
 	private final JLabel label = new JLabel("");
 	private JTextField campoNombre;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
 	private JTextField campoImporte;
 	private JTextField campoFecha;
 	private JTextField campoComentario;
 	private JTextField campoTipo;
 
-	public Compra(Ventana v) {
+	public PantallaCompra(Ventana v) {
 		this.ventana=v;
 		setLayout(null);
 		

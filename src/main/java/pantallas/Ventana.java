@@ -64,11 +64,11 @@ public class Ventana extends JFrame{
     	
         
     	case "gastos":
-    	this.pantallaActual=new Gastos(this);
+    	this.pantallaActual=new PantallaGastos(this);
         break;  
         
     	case "compra":
-        	this.pantallaActual=new Compra(this);
+        	this.pantallaActual=new PantallaCompra(this);
             break;    
     	}
         this.pantallaActual.setVisible(true);

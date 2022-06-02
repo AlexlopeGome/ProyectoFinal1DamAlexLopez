@@ -4,9 +4,9 @@ import java.time.LocalDate;
 
 public class Movimiento extends EntidadConNombre {
 	
-	private boolean importeFijo;
-	private float importe;
-	private LocalDate fecha;
+	protected boolean importeFijo;
+	protected float importe;
+	protected LocalDate fecha;
 	
 	public Movimiento(String nombre, boolean importeFijo, float importe, LocalDate fecha) {
 		super(nombre);
@@ -15,6 +15,10 @@ public class Movimiento extends EntidadConNombre {
 		this.fecha = fecha;
 	}
 
+	public Movimiento() {
+		
+	}
+	
 	public boolean isImporteFijo() {
 		return importeFijo;
 	}
