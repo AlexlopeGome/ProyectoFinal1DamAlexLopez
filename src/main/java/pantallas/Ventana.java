@@ -19,7 +19,7 @@ public class Ventana extends JFrame{
 	public Ventana() {
 
 		
-		this.setSize(700,550);  
+		this.setSize(800,550);  
 		this.setLocationRelativeTo(null); 
 		
 		this.setIconImage(new ImageIcon("./icono/cenec.png").getImage());
@@ -65,7 +65,11 @@ public class Ventana extends JFrame{
         
     	case "gastos":
     	this.pantallaActual=new Gastos(this);
-        break;    
+        break;  
+        
+    	case "compra":
+        	this.pantallaActual=new Compra(this);
+            break;    
     	}
         this.pantallaActual.setVisible(true);
         this.setContentPane(pantallaActual);

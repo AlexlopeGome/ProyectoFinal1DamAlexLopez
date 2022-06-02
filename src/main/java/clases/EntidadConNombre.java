@@ -2,13 +2,15 @@ package clases;
 
 public class EntidadConNombre {
 
-	protected static String nombre;
-
-
+protected String nombre;
 
 	public EntidadConNombre(String nombre) {
-		super();
-		EntidadConNombre.nombre = nombre;
+		
+		this.nombre = nombre;
+	}
+
+	public EntidadConNombre() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public String getNombre() {
@@ -16,7 +18,7 @@ public class EntidadConNombre {
 	}
 
 	public void setNombre(String nombre) {
-		EntidadConNombre.nombre = nombre;
+		this.nombre = nombre;
 	}
 
 	@Override

@@ -26,9 +26,6 @@ public class Usuario extends EntidadConNombre {
 	private String direccion;
 	private String nick;
 
-	public Usuario() {
-	super(nombre);
-	}
 	private boolean contraseniaValida(String contrasenia) {
 		return !contrasenia.isBlank();
 	}
@@ -58,7 +55,7 @@ public class Usuario extends EntidadConNombre {
 			//Si la inserción en BD ha colado, ya podemos modificar las
 			//Variables internas con la tranquilidad de que en BD
 			//También existen.
-			EntidadConNombre.nombre=nombre;
+			this.nombre=nombre;
 			this.apellidos = apellidos;
 			this.numeroHijos = numeroHijos;
 			this.fechaNacimiento = fechaNacimiento;
@@ -75,7 +72,7 @@ public class Usuario extends EntidadConNombre {
 	}
 
 	public Usuario(String nick) throws SQLException {
-		super(nombre);
+		super(nick);
 		
 		
 		Statement query=UtilsDB.conectarBD();
@@ -83,7 +80,7 @@ public class Usuario extends EntidadConNombre {
 		if(datosDevueltos.next()) {
 			
 			
-			EntidadConNombre.nombre=datosDevueltos.getString("nombre");
+			nombre=datosDevueltos.getString("nombre");
 			this.apellidos = datosDevueltos.getString("apellidos");
 			this.fechaNacimiento = datosDevueltos.getDate("fechaNacimiento").toLocalDate();
 			this.contrasenia=datosDevueltos.getString("contrasenia");
@@ -120,7 +117,7 @@ public class Usuario extends EntidadConNombre {
 
 	                }
 
-	            	EntidadConNombre.nombre=cursor.getString("nombre");
+	            	nombre=cursor.getString("nombre");
 	    			this.apellidos = cursor.getString("apellidos");
 	    			this.correo = cursor.getString("correo");
 	    			this.contrasenia=cursor.getString("contrasenia");
@@ -141,6 +138,10 @@ public class Usuario extends EntidadConNombre {
 	}
 	
 	
+
+	public Usuario() {
+		super();
+	}
 	public String getApellidos() {
 		return apellidos;
 	}
@@ -247,11 +248,11 @@ public class Usuario extends EntidadConNombre {
         boolean ret;
         // El borrado lo hacemos con la PK para no equivocarnos y borrar lo que no es
         try {
-            ret = smt.executeUpdate("delete from usuario where nombre='" + EntidadConNombre.nombre + "'") > 0;
+            ret = smt.executeUpdate("delete from usuario where nombre='" + nombre + "'") > 0;
             // no nos queda más remedio que borrar todas las variables internas
             // porque aqui el objeto no se puede poner a null, no tendría efecto en el main
             
-            EntidadConNombre.nombre=null;
+            nombre=null;
 			this.apellidos = null;
 			this.fechaNacimiento = null;
 			this.contrasenia=null;
@@ -284,7 +285,7 @@ public class Usuario extends EntidadConNombre {
 			
 					Usuario actual=new Usuario();
 					
-					EntidadConNombre.nombre=cursor.getString("nombre");
+					actual.nombre=cursor.getString("nombre");
 	    			actual.apellidos = cursor.getString("apellidos");
 	    			actual.correo = cursor.getString("correo");
 	    			actual.contrasenia=cursor.getString("contrasenia");
@@ -310,9 +311,8 @@ public class Usuario extends EntidadConNombre {
 		}
 	@Override
 	public String toString() {
-		return "Usuario [apellidos=" + apellidos + ", correo=" + correo + ", contrasenia=" + contrasenia
-				+ ", fechaNacimiento=" + fechaNacimiento + ", numeroHijos=" + numeroHijos + ", direccion=" + direccion
-				+ "]";
+		return " "+ nombre +"" + apellidos + ", con correo:" + correo + " con fechaNacimiento:" + fechaNacimiento + " numeroHijos: " + numeroHijos + ", con direccion :" + direccion
+				+ ".";
 	}
 	
 	

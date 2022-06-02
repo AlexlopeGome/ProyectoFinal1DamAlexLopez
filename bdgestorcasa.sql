@@ -24,9 +24,9 @@ nombre varchar(200),
 importeFijo boolean,
 importe numeric(7,3),
 fecha date,
-porcentaje numeric(2),
+porcentaje int(2),
 fechafin date,
-codigoMovimiento numeric(3)primary Key
+codigoMovimiento int(3) auto_increment primary Key
 
 );
 create table diasSemana(
@@ -36,7 +36,7 @@ diaSemana varchar(100) primary key
 create table Extraescolar(
 nombre varchar(200),
 importeFijo boolean,
-importe numeric(7,3),
+importe float(7,2),
 fecha date,
 nombreProfesor varchar(200),
 asignaturas varchar(100),
@@ -86,11 +86,20 @@ codigoMovimiento numeric(3)primary key,
 foreign key (codigoMovimiento) references tipoIngreso(codigoMovimiento)
 
 );
+create table GastoExtra(
+nombre varchar (200),
+importeFijo boolean,
+importe float,
+fecha date,
+codigoMovimiento numeric(3) primary key
+);
+
+
 create table Gastos(
 codigoMovimiento numeric(3)primary key,
 foreign key (codigoMovimiento) references Claseparticular(codigoMovimiento),
 foreign key (codigoMovimiento) references Compra(codigoMovimiento),
 foreign key (codigoMovimiento) references Extraescolar(codigoMovimiento),
-foreign key (codigoMovimiento) references Prestamo(codigoMovimiento)
-
+foreign key (codigoMovimiento) references Prestamo(codigoMovimiento),
+foreign key (codigoMovimiento) references GastoExtra(codigoMovimiento)
 );

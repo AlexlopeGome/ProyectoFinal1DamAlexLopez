@@ -48,7 +48,7 @@ public class PantallaInicio extends JPanel {
 		label.setVerticalAlignment(SwingConstants.TOP);
 		JLabel lblIniciarSesion = new JLabel("Home Manager");
 		lblIniciarSesion.setForeground(Color.WHITE);
-		lblIniciarSesion.setBounds(235, 17, 243, 37);
+		lblIniciarSesion.setBounds(269, 27, 243, 37);
 		lblIniciarSesion.setFont(new Font("Tahoma", Font.BOLD, 30));
 		add(lblIniciarSesion);
 		
@@ -58,11 +58,11 @@ public class PantallaInicio extends JPanel {
 				ventana.cambiarPantalla("principal");
 			}
 		});
-		btnbtnbotonVerde.setFont(new Font("Dialog", Font.PLAIN, 26));
+		btnbtnbotonVerde.setFont(new Font("Dialog", Font.PLAIN, 20));
 		btnbtnbotonVerde.setText("Lets GO....");
 		btnbtnbotonVerde.setForeground(Color.BLACK);
 		btnbtnbotonVerde.setToolTipText("Vamos....");
-		btnbtnbotonVerde.setBounds(235, 229, 224, 37);
+		btnbtnbotonVerde.setBounds(253, 241, 277, 27);
 		add(btnbtnbotonVerde);
 		
 		JLabel lblNewLabel = new JLabel("");

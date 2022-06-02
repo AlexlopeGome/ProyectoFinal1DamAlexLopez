@@ -96,17 +96,17 @@ public class QueHacer extends JPanel {
 			}
 		});
 		botonSalir.setBackground(new Color(255, 0, 0));
-		botonSalir.setFont(new Font("Dialog", Font.PLAIN, 26));
+		botonSalir.setFont(new Font("Dialog", Font.PLAIN, 23));
 		botonSalir.setText("Salir");
 		botonSalir.setForeground(Color.BLACK);
 		botonSalir.setToolTipText("Salir");
-		botonSalir.setBounds(548, 30, 85, 37);
+		botonSalir.setBounds(548, 30, 85, 29);
 		add(botonSalir);
 		
 		
 		JLabel Fondo = new JLabel("");
 		Fondo.setIcon(new ImageIcon("B:\\Xamp\\htdocs\\REPOSITOS\\ProyectoFinal1DamAlexLopez\\fondos\\Ventana_UsusarioAPI.jpg"));
-		Fondo.setBounds(0, 0, 658, 439);
+		Fondo.setBounds(-23, 11, 891, 499);
 		add(Fondo);
 		
 	

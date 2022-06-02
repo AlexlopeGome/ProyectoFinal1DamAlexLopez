@@ -221,11 +221,10 @@ public class PantallaUsuario extends JPanel {
 
 		
 		JLabel Fondo = new JLabel("");
-		Fondo.setBounds(-23, 0, 654, 478);
+		Fondo.setBounds(-23, 11, 891, 499);;
 		Fondo.setIcon(new ImageIcon("B:\\Xamp\\htdocs\\REPOSITOS\\ProyectoFinal1DamAlexLopez\\fondos\\Ventana_UsusarioAPI.jpg"));
 		add(Fondo);
 		
-	
 		
 		
 		

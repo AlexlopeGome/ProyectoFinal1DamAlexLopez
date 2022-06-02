@@ -11,6 +11,10 @@ import javax.swing.JScrollPane;
 
 import clases.Usuario;
 import elementosVisuales.ElementoListaUsuarios;
+import javax.swing.JButton;
+import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ListaUsuarios extends JPanel {
 
@@ -29,6 +33,18 @@ public class ListaUsuarios extends JPanel {
         JPanel listaUsuarios = new JPanel();
         scrollPane.setViewportView(listaUsuarios);
         listaUsuarios.setLayout(new BoxLayout(listaUsuarios, BoxLayout.Y_AXIS));
+        
+        JButton bontonAtras = new JButton("Atras");
+        bontonAtras.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		ventana.cambiarPantalla("queHacer");
+        	}
+        });
+        bontonAtras.setFont(new Font("Tahoma", Font.BOLD, 11));
+        bontonAtras.setForeground(Color.BLACK);
+        bontonAtras.setBackground(Color.CYAN);
+        add(bontonAtras, BorderLayout.SOUTH);
 
         ArrayList<Usuario> todos=Usuario.getTodos();
 

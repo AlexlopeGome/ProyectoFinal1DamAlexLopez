@@ -42,10 +42,10 @@ public class PantallaPrincipal extends JPanel {
 		setToolTipText("");
 		setBorder(new EmptyBorder(1, 1, 1, 1));
 		setBackground(Color.WHITE);
-		setLayout(null);
 		
 		
 	 JButton btnbotonVerde = new BotonVerde("");
+	 btnbotonVerde.setBounds(0, 0, 0, 0);
 	 btnbotonVerde.addActionListener(new ActionListener() {
 	 	public void actionPerformed(ActionEvent e) {
 	 		
@@ -55,17 +55,19 @@ public class PantallaPrincipal extends JPanel {
 			
 			
 		});
+		setLayout(null);
 		add(btnbotonVerde);
 		label.setBounds(544, 17, 0, 0);
 		add(label);
 		label.setVerticalAlignment(SwingConstants.TOP);
 		JLabel lblIniciarSesion = new JLabel("Bienvenido");
+		lblIniciarSesion.setBounds(293, 17, 215, 37);
 		lblIniciarSesion.setForeground(Color.WHITE);
-		lblIniciarSesion.setBounds(260, 17, 215, 37);
 		lblIniciarSesion.setFont(new Font("Tahoma", Font.BOLD, 30));
 		add(lblIniciarSesion);
 		
 		JButton botonSalir = new BotonRojo("Salir");
+		botonSalir.setBounds(270, 282, 224, 37);
 		botonSalir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -77,10 +79,10 @@ public class PantallaPrincipal extends JPanel {
 		botonSalir.setText("Salir");
 		botonSalir.setForeground(Color.BLACK);
 		botonSalir.setToolTipText("Salir");
-		botonSalir.setBounds(260, 284, 224, 37);
 		add(botonSalir);
 		
 		BotonVerde botonInicioSesion = new BotonVerde("Iniciar Sesion");
+		botonInicioSesion.setBounds(270, 217, 224, 37);
 		botonInicioSesion.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -91,11 +93,11 @@ public class PantallaPrincipal extends JPanel {
 		botonInicioSesion.setText("Iniciar Sesion");
 		botonInicioSesion.setForeground(Color.BLACK);
 		botonInicioSesion.setFont(new Font("Dialog", Font.PLAIN, 26));
-		botonInicioSesion.setBounds(260, 223, 224, 37);
 		add(botonInicioSesion);
 		
 		
 		JButton botonRegistro = new BotonAzul("Registro");
+		botonRegistro.setBounds(270, 156, 224, 37);
 		botonRegistro.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -105,12 +107,11 @@ public class PantallaPrincipal extends JPanel {
 		botonRegistro.setBackground(new Color(0, 0, 255));
 		botonRegistro.setForeground(new Color(0, 0, 0));
 		botonRegistro.setFont(new Font("Dialog", Font.PLAIN, 26));
-		botonRegistro.setBounds(260, 166, 224, 37);
 		add(botonRegistro);
 		
 		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setBounds(-23, 11, 891, 499);
 		lblNewLabel.setIcon(new ImageIcon("B:\\Xamp\\htdocs\\REPOSITOS\\ProyectoFinal1DamAlexLopez\\fondos\\General_VentanasApi.jpg"));
-		lblNewLabel.setBounds(0, -18, 670, 440);
 		add(lblNewLabel);
 		
 		
