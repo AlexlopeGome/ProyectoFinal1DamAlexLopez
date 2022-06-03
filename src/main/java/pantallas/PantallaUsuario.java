@@ -53,14 +53,10 @@ public class PantallaUsuario extends JPanel {
 	private JLabel labelContrasenia;
 	
 	private JTextField campoNombre;
-	private JTextField campoNick;
 	private JTextField campohijos;
-	private JTextField campoDireccion;
-	private JTextField campoFechaNacimiento;
-	private JTextField campoCorreo;
-	private JPasswordField compoContrasenia;
-	private JTextField campoHijos;
 	private JTextField campoApellidos;
+	private JTextField campoTelefono;
+	private JTextField textField_1;
 
 	public PantallaUsuario(Ventana v) {
 		setLayout(null);
@@ -69,125 +65,45 @@ public class PantallaUsuario extends JPanel {
 		JLabel labelNombre = new JLabel("Nombre:");
 		labelNombre.setFont(new Font("Tahoma", Font.BOLD, 23));
 		labelNombre.setForeground(new Color(0, 0, 0));
-		labelNombre.setBackground(Color.WHITE);
+		labelNombre.setBackground(new Color(255, 255, 255));
 		labelNombre.setToolTipText("");
-		labelNombre.setBounds(111, 82, 232, 33);
+		labelNombre.setBounds(32, 139, 232, 33);
 		add(labelNombre);
 		
 		campoNombre = new JTextField();
 		campoNombre.setBackground(Color.WHITE);
-		campoNombre.setBounds(460, 82, 105, 33);
+		campoNombre.setBounds(370, 139, 105, 33);
 		add(campoNombre);
 		campoNombre.setColumns(10);
 		
 		
 		
-		JLabel labelApellidos = new JLabel("Apellidos:");
+		JLabel labelApellidos = new JLabel("Actividad Desempeñada:");
 		labelApellidos.setToolTipText("");
 		labelApellidos.setForeground(new Color(0, 0, 0));
 		labelApellidos.setFont(new Font("Tahoma", Font.BOLD, 23));
-		labelApellidos.setBackground(Color.WHITE);
-		labelApellidos.setBounds(111, 119, 232, 33);
+		labelApellidos.setBackground(new Color(255, 255, 255));
+		labelApellidos.setBounds(32, 176, 286, 33);
 		add(labelApellidos);
 		
 		campoApellidos = new JTextField();
-		campoApellidos.setBounds(460, 126, 105, 33);
+		campoApellidos.setBounds(370, 181, 172, 33);
 		add(campoApellidos);
 		campoApellidos.setColumns(10);
 		
-		JLabel labelCorreo;
-		labelCorreo = new JLabel("Correo:");
-		labelCorreo.setToolTipText("");
-		labelCorreo.setForeground(new Color(0, 0, 0));
-		labelCorreo.setFont(new Font("Tahoma", Font.BOLD, 23));
-		labelCorreo.setBackground(Color.WHITE);
-		labelCorreo.setBounds(111, 163, 232, 33);
-		add(labelCorreo);
+		JLabel labelTelefono;
+		labelTelefono = new JLabel("Telefono:");
+		labelTelefono.setToolTipText("");
+		labelTelefono.setForeground(new Color(0, 0, 0));
+		labelTelefono.setFont(new Font("Tahoma", Font.BOLD, 23));
+		labelTelefono.setBackground(new Color(255, 255, 255));
+		labelTelefono.setBounds(32, 220, 232, 33);
+		add(labelTelefono);
 		
-		campoCorreo = new JTextField();
-		campoCorreo.setBackground(Color.WHITE);
-		campoCorreo.setBounds(460, 163, 105, 33);
-		add(campoCorreo);
-		campoCorreo.setColumns(10);
-		
-	
-		
-		JLabel labelFechaNacimento  = new JLabel("Fecha Nacimento:");
-		labelFechaNacimento.setToolTipText("");
-		labelFechaNacimento.setForeground(new Color(0, 0, 0));
-		labelFechaNacimento.setFont(new Font("Tahoma", Font.BOLD, 23));
-		labelFechaNacimento.setBackground(Color.WHITE);
-		labelFechaNacimento.setBounds(111, 203, 232, 33);
-		add(labelFechaNacimento);
-		
-		campoFechaNacimiento = new JTextField();
-		campoFechaNacimiento.setBackground(Color.WHITE);
-		campoFechaNacimiento.setBounds(460, 203, 105, 33);
-		add(campoFechaNacimiento);
-		campoFechaNacimiento.setColumns(10);
-		
-		
-		JLabel labelDireccion = new JLabel("Direccion:");
-		labelDireccion.setToolTipText("");
-		labelDireccion.setForeground(new Color(0, 0, 0));
-		labelDireccion.setFont(new Font("Tahoma", Font.BOLD, 23));
-		labelDireccion.setBackground(Color.WHITE);
-		labelDireccion.setBounds(111, 247, 232, 33);
-		add(labelDireccion);
-		
-		campoDireccion = new JTextField();
-		campoDireccion.setBackground(Color.WHITE);
-		campoDireccion.setBounds(460, 240, 105, 33);
-		add(campoDireccion);
-		campoDireccion.setColumns(10);
-		
-	
-		
-		
-		JLabel labelHijos = new JLabel("Hijos:");
-		labelHijos.setToolTipText("");
-		labelHijos.setForeground(new Color(0, 0, 0));
-		labelHijos.setFont(new Font("Tahoma", Font.BOLD, 23));
-		labelHijos.setBackground(Color.WHITE);
-		labelHijos.setBounds(111, 279, 232, 33);
-		add(labelHijos);
-		
-		
-		campoHijos = new JTextField();
-		campoHijos.setColumns(10);
-		campoHijos.setBackground(Color.WHITE);
-		campoHijos.setBounds(460, 279, 105, 33);
-		add(campoHijos);
-		
-		
-	
-		
-		JLabel labelNick = new JLabel("Nick:");
-		labelNick.setToolTipText("");
-		labelNick.setForeground(new Color(0, 0, 0));
-		labelNick.setFont(new Font("Tahoma", Font.BOLD, 23));
-		labelNick.setBackground(Color.WHITE);
-		labelNick.setBounds(111, 315, 232, 33);
-		add(labelNick);
-		
-		campoNick = new JTextField();
-		campoNick.setBackground(Color.WHITE);
-		campoNick.setBounds(460, 315, 105, 33);
-		add(campoNick);
-		campoNick.setColumns(10);
-		
-		JLabel labelContrasenia = new JLabel("Contrase\u00F1a");
-		labelContrasenia.setToolTipText("");
-		labelContrasenia.setForeground(new Color(0, 0, 0));
-		labelContrasenia.setFont(new Font("Tahoma", Font.BOLD, 23));
-		labelContrasenia.setBackground(Color.WHITE);
-		labelContrasenia.setBounds(111, 355, 232, 33);
-		add(labelContrasenia);
-		
-		compoContrasenia = new JPasswordField();
-		compoContrasenia.setBackground(Color.WHITE);
-		compoContrasenia.setBounds(460, 355, 105, 31);
-		add(compoContrasenia);
+		campoTelefono = new JTextField();
+		campoTelefono.setColumns(10);
+		campoTelefono.setBounds(370, 225, 147, 33);
+		add(campoTelefono);
 		
 		JButton botonCancelar = new BotonRojo("Cancelar");
 		botonCancelar.addMouseListener(new MouseAdapter() {
@@ -212,10 +128,10 @@ public class PantallaUsuario extends JPanel {
 		botonAceptar.setBounds(32, 399, 224, 37);
 		add(botonAceptar);
 		
-		JLabel labelRegistro = new JLabel("Registro");
-		labelRegistro.setFont(new Font("Tahoma", Font.BOLD, 29));
-		labelRegistro.setBounds(295, 27, 134, 31);
-		add(labelRegistro);
+		JLabel labelTrabajador = new JLabel("Trabajador");
+		labelTrabajador.setFont(new Font("Tahoma", Font.BOLD, 29));
+		labelTrabajador.setBounds(307, 27, 172, 44);
+		add(labelTrabajador);
 		
 		
 
@@ -225,52 +141,15 @@ public class PantallaUsuario extends JPanel {
 		Fondo.setIcon(new ImageIcon("B:\\Xamp\\htdocs\\REPOSITOS\\ProyectoFinal1DamAlexLopez\\fondos\\Ventana_UsusarioAPI.jpg"));
 		add(Fondo);
 		
+	
+		
+	
 		
 		
 		
 		botonAceptar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		
 			
-				try {
-					
-			String nombre = campoNombre.getText();
-			String apellidos=campoApellidos.getText();
-			String correo= campoCorreo.getText();
-			String contrasenia = new String (compoContrasenia.getPassword());
-			String direccion=campoDireccion.getText();
-			String fechaEnTexto=campoFechaNacimiento.getText();
-			String[] fechaNaciPartida=fechaEnTexto.split("/");
-			LocalDate fechaNacimiento=
-	                LocalDate.of(Integer.parseInt(fechaNaciPartida[2]),
-	                                Integer.parseInt(fechaNaciPartida[1]),
-	                                Integer.parseInt(fechaNaciPartida[0]));
-			String numeroHijos=campoHijos.getText();
-			String nick=campoNick.getText();
-		
-	
-		
-				new Usuario( nombre, apellidos,correo,contrasenia,  fechaNacimiento,numeroHijos,direccion,
-						nick);
-
-                JOptionPane.showMessageDialog(ventana,"Registro ok","Resgitro completado",JOptionPane.PLAIN_MESSAGE);
-                ventana.cambiarPantalla("login");
-				
-				
-			} catch (ContraseniaVaciaException | CorreoInvalidoException | SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-				
-				JOptionPane.showMessageDialog(
-		                ventana,e1.getMessage(),"Error",
-		                JOptionPane.ERROR_MESSAGE);
-
-		                //TODO METER EL ERROR DEL SPLIT DE LA CONTRASEÑA
-		            } catch (ArrayIndexOutOfBoundsException e1) {
-		                JOptionPane.showMessageDialog(ventana, "Formato erroneo, debe ser dd/mm/yyyy","error",JOptionPane.ERROR_MESSAGE);
-		            }
-				
-			}
 			
 			
 		});
