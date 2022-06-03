@@ -48,6 +48,9 @@ public class Ventana extends JFrame{
         case"usuario":
             this.pantallaActual=new PantallaUsuario(this);
             break;
+        case"trabajador":
+            this.pantallaActual=new PantallaTrabajador(this);
+            break;
             
         case "editar":
         	this.pantallaActual=new ListaUsuarios(this);

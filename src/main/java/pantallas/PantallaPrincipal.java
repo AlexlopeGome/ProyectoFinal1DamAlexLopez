@@ -67,7 +67,7 @@ public class PantallaPrincipal extends JPanel {
 		add(lblIniciarSesion);
 		
 		JButton botonSalir = new BotonRojo("Salir");
-		botonSalir.setBounds(270, 282, 224, 37);
+		botonSalir.setBounds(270, 308, 224, 37);
 		botonSalir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -82,7 +82,7 @@ public class PantallaPrincipal extends JPanel {
 		add(botonSalir);
 		
 		BotonVerde botonInicioSesion = new BotonVerde("Iniciar Sesion");
-		botonInicioSesion.setBounds(270, 217, 224, 37);
+		botonInicioSesion.setBounds(270, 260, 224, 37);
 		botonInicioSesion.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -96,23 +96,41 @@ public class PantallaPrincipal extends JPanel {
 		add(botonInicioSesion);
 		
 		
-		JButton botonRegistro = new BotonAzul("Registro");
-		botonRegistro.setBounds(270, 156, 224, 37);
-		botonRegistro.addMouseListener(new MouseAdapter() {
+		JButton botonRegistroUsuario = new BotonAzul("Registro");
+		botonRegistroUsuario.setText("Registro Usuario");
+		botonRegistroUsuario.setBounds(248, 156, 277, 37);
+		botonRegistroUsuario.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ventana.cambiarPantalla("usuario");
 			}
 		});
-		botonRegistro.setBackground(new Color(0, 0, 255));
-		botonRegistro.setForeground(new Color(0, 0, 0));
-		botonRegistro.setFont(new Font("Dialog", Font.PLAIN, 26));
-		add(botonRegistro);
+		botonRegistroUsuario.setBackground(new Color(0, 0, 255));
+		botonRegistroUsuario.setForeground(new Color(0, 0, 0));
+		botonRegistroUsuario.setFont(new Font("Dialog", Font.PLAIN, 26));
+		add(botonRegistroUsuario);
+		
+		BotonAzul botonRegistroUsuario_1 = new BotonAzul("Registro");
+		botonRegistroUsuario_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarPantalla("trabajador");
+			}
+		});
+		botonRegistroUsuario_1.setText("Registro Trabajador");
+		botonRegistroUsuario_1.setForeground(Color.BLACK);
+		botonRegistroUsuario_1.setFont(new Font("Dialog", Font.PLAIN, 26));
+		botonRegistroUsuario_1.setBackground(Color.BLUE);
+		botonRegistroUsuario_1.setBounds(248, 204, 277, 37);
+		add(botonRegistroUsuario_1);
+		
 		
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setBounds(-23, 11, 891, 499);
 		lblNewLabel.setIcon(new ImageIcon("B:\\Xamp\\htdocs\\REPOSITOS\\ProyectoFinal1DamAlexLopez\\fondos\\General_VentanasApi.jpg"));
 		add(lblNewLabel);
+		
+
 		
 		
 		
