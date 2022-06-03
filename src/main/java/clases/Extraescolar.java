@@ -3,43 +3,45 @@ package clases;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import enums.Asignatura;
+import enums.Clases;
+import enums.DiasSemana;
+import enums.TipoActividadDesenpeniada;
 
 public class Extraescolar extends Gastos{
 
-	private ArrayList profesoresExtraescolares;
-	private Asignatura asignatura;
-	private ArrayList diasSemana;	
-	
-public Extraescolar(String nombre, boolean importeFijo, float importe, LocalDate fecha,
-			ArrayList profesoresExtraescolares, Asignatura asignatura, ArrayList diasSemana) {
+
+	private Clases clase;
+	private DiasSemana diasSemana;
+	private String nombreProfesor;
+	public Extraescolar(String nombre, boolean importeFijo, float importe, LocalDate fecha, Clases clase,
+			DiasSemana diasSemana, String nombreProfesor) {
 		super(nombre, importeFijo, importe, fecha);
-		this.profesoresExtraescolares = profesoresExtraescolares;
-		this.asignatura = asignatura;
+		this.clase = clase;
+		this.diasSemana = diasSemana;
+		this.nombreProfesor = nombreProfesor;
+	}
+	public Clases getClase() {
+		return clase;
+	}
+	public void setClase(Clases clase) {
+		this.clase = clase;
+	}
+	public DiasSemana getDiasSemana() {
+		return diasSemana;
+	}
+	public void setDiasSemana(DiasSemana diasSemana) {
 		this.diasSemana = diasSemana;
 	}
+	public String getNombreProfesor() {
+		return nombreProfesor;
+	}
+	public void setNombreProfesor(String nombreProfesor) {
+		this.nombreProfesor = nombreProfesor;
+	}
+	
+	
+	
 
-public ArrayList getProfesoresExtraescolares() {
-	return profesoresExtraescolares;
-}
-public void setProfesoresExtraescolares(ArrayList profesoresExtraescolares) {
-	this.profesoresExtraescolares = profesoresExtraescolares;
-}
-public Asignatura getAsignatura() {
-	return asignatura;
-}
-public void setAsignatura(Asignatura asignatura) {
-	this.asignatura = asignatura;
-}
-public ArrayList getDiasSemana() {
-	return diasSemana;
-}
-public void setDiasSemana(ArrayList diasSemana) {
-	this.diasSemana = diasSemana;
-}
-@Override
-public String toString() {
-	return "Extraescolar [profesoresExtraescolares=" + profesoresExtraescolares + ", asignatura=" + asignatura
-			+ ", diasSemana=" + diasSemana + "]";
-}
+	
+	
 }
