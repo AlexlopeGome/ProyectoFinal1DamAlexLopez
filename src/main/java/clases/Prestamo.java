@@ -9,8 +9,8 @@ private LocalDate fechaFin;
 	
 	
 public Prestamo(String nombre, boolean importeFijo, float importe, LocalDate fecha, byte porcentajeInteres,
-			LocalDate fechaFin) {
-		super(nombre, importeFijo, importe, fecha);
+			LocalDate fechaFin,int codigoMovimiento) {
+		super(nombre, importeFijo, importe, fecha,codigoMovimiento);
 		this.porcentajeInteres = porcentajeInteres;
 		this.fechaFin = fechaFin;
 	}

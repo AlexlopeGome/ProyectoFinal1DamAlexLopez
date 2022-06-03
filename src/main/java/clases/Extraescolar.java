@@ -8,14 +8,12 @@ import enums.DiasSemana;
 import enums.TipoActividadDesenpeniada;
 
 public class Extraescolar extends Gastos{
-
-
 	private Clases clase;
 	private DiasSemana diasSemana;
 	private String nombreProfesor;
-	public Extraescolar(String nombre, boolean importeFijo, float importe, LocalDate fecha, Clases clase,
-			DiasSemana diasSemana, String nombreProfesor) {
-		super(nombre, importeFijo, importe, fecha);
+	public Extraescolar(String nombre, boolean importeFijo, float importe, LocalDate fecha, int codigoMovimiento,
+			Clases clase, DiasSemana diasSemana, String nombreProfesor) {
+		super(nombre, importeFijo, importe, fecha, codigoMovimiento);
 		this.clase = clase;
 		this.diasSemana = diasSemana;
 		this.nombreProfesor = nombreProfesor;
@@ -38,6 +36,13 @@ public class Extraescolar extends Gastos{
 	public void setNombreProfesor(String nombreProfesor) {
 		this.nombreProfesor = nombreProfesor;
 	}
+	@Override
+	public String toString() {
+		return "Extraescolar [clase=" + clase + ", diasSemana=" + diasSemana + ", nombreProfesor=" + nombreProfesor
+				+ "]";
+	}
+	
+	
 	
 	
 	

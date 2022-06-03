@@ -8,8 +8,8 @@ public class Inglesos extends Movimiento {
 private ArrayList tipoIngresos;
 	
 	
-public Inglesos(String nombre, boolean importeFijo, float importe, LocalDate fecha, ArrayList tipoIngresos) {
-		super(nombre, importeFijo, importe, fecha);
+public Inglesos(String nombre, boolean importeFijo, float importe, LocalDate fecha, ArrayList tipoIngresos,int codigoMovimiento) {
+		super(nombre, importeFijo, importe, fecha,codigoMovimiento);
 		this.tipoIngresos = tipoIngresos;
 	}
 

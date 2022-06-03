@@ -43,6 +43,8 @@ public class PantallaCompra extends JPanel {
 	private JTextField campoImporte;
 	private JTextField campoFecha;
 	private JTextField campoComentario;
+	private JTextField textField;
+	private JTextField campoCodigoMovimiento;
 
 	public PantallaCompra(Ventana v) {
 		this.ventana=v;
@@ -137,16 +139,28 @@ public class PantallaCompra extends JPanel {
 		gbc_selectorTipoCompras.setBounds(417, 368, 117, 22);
 		add(gbc_selectorTipoCompras);
 		
+		JLabel codigoMovimiento = new JLabel("CodigoMovimiento");
+		codigoMovimiento.setToolTipText("");
+		codigoMovimiento.setFont(new Font("Tahoma", Font.BOLD, 17));
+		codigoMovimiento.setBounds(228, 405, 180, 23);
+		add(codigoMovimiento);
 		
+		campoCodigoMovimiento = new JTextField();
+		campoCodigoMovimiento.setColumns(10);
+		campoCodigoMovimiento.setBounds(417, 408, 43, 20);
+		add(campoCodigoMovimiento);
 		
 		JLabel fondo = new JLabel("");
 		fondo.setIcon(new ImageIcon("B:\\Xamp\\htdocs\\REPOSITOS\\ProyectoFinal1DamAlexLopez\\fondos\\VentanaGastos_de_casa_API.jpg"));
 		fondo.setBounds(-23, 11, 891, 499);
 		add(fondo);
+		
 	
 		
 	
-;
+		
+	
+
 	}
 }
 		
