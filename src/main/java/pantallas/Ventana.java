@@ -70,9 +70,21 @@ public class Ventana extends JFrame{
     	this.pantallaActual=new PantallaGastos(this);
         break;  
         
+    	case "gastoEx":
+        	this.pantallaActual=new PantallaGastoExtra(this);
+            break;  
+        
     	case "compra":
         	this.pantallaActual=new PantallaCompra(this);
-            break;    
+            break;   
+            
+    	case "extraExcolar":
+        	this.pantallaActual=new PantallaExtraescolar(this);
+            break; 
+            
+    	case "prestamo":
+        	this.pantallaActual=new PantallaPrestamo(this);
+            break;
     	}
         this.pantallaActual.setVisible(true);
         this.setContentPane(pantallaActual);

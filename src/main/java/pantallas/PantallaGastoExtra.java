@@ -35,7 +35,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import enums.TipoCompra;
 
-public class PantallaCompra extends JPanel {
+public class PantallaGastoExtra extends JPanel {
 	;
 	private Ventana ventana;
 	private final JLabel label = new JLabel("");
@@ -45,7 +45,7 @@ public class PantallaCompra extends JPanel {
 	private JTextField campoComentario;
 	private JTextField campoCodigoMovimiento;
 
-	public PantallaCompra(Ventana v) {
+	public PantallaGastoExtra(Ventana v) {
 		this.ventana=v;
 		setLayout(null);
 		
@@ -63,10 +63,10 @@ public class PantallaCompra extends JPanel {
 		botonAtras.setBounds(10, 405, 89, 23);
 		add(botonAtras);
 		
-		JLabel Compra = new JLabel("Compra");
-		Compra.setFont(new Font("Tahoma", Font.BOLD, 29));
-		Compra.setBounds(387, 44, 117, 50);
-		add(Compra);
+		JLabel GastoExtra = new JLabel("GastoExtra");
+		GastoExtra.setFont(new Font("Tahoma", Font.BOLD, 29));
+		GastoExtra.setBounds(387, 44, 180, 50);
+		add(GastoExtra);
 		
 		
 		JLabel Nombre = new JLabel("Nombre");
@@ -124,29 +124,16 @@ public class PantallaCompra extends JPanel {
 		campoComentario.setColumns(10);
 		campoComentario.setBounds(417, 337, 243, 20);
 		add(campoComentario);
-	
-		
-		JLabel Tipo = new JLabel("Tipo");
-		Tipo.setToolTipText("");
-		Tipo.setFont(new Font("Tahoma", Font.BOLD, 17));
-		Tipo.setBounds(276, 371, 117, 23);
-		add(Tipo);
-		
-		JComboBox gbc_selectorTipoCompras = new JComboBox();
-		gbc_selectorTipoCompras.setModel(new DefaultComboBoxModel(TipoCompra.values()));
-		gbc_selectorTipoCompras.setToolTipText("SUPERMERCADO\t\r\nALIMENTACION\r\nDROGERIA\r\nFRESCOS");
-		gbc_selectorTipoCompras.setBounds(417, 368, 117, 22);
-		add(gbc_selectorTipoCompras);
 		
 		JLabel codigoMovimiento = new JLabel("CodigoMovimiento");
 		codigoMovimiento.setToolTipText("");
 		codigoMovimiento.setFont(new Font("Tahoma", Font.BOLD, 17));
-		codigoMovimiento.setBounds(228, 405, 180, 23);
+		codigoMovimiento.setBounds(223, 383, 180, 23);
 		add(codigoMovimiento);
 		
 		campoCodigoMovimiento = new JTextField();
 		campoCodigoMovimiento.setColumns(10);
-		campoCodigoMovimiento.setBounds(417, 408, 43, 20);
+		campoCodigoMovimiento.setBounds(417, 387, 43, 20);
 		add(campoCodigoMovimiento);
 		
 		

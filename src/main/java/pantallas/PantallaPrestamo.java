@@ -34,18 +34,21 @@ import javax.swing.JList;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import enums.TipoCompra;
+import enums.Clases;
+import enums.DiasSemana;
 
-public class PantallaCompra extends JPanel {
+public class PantallaPrestamo extends JPanel {
 	;
 	private Ventana ventana;
 	private final JLabel label = new JLabel("");
 	private JTextField campoNombre;
 	private JTextField campoImporte;
 	private JTextField campoFecha;
-	private JTextField campoComentario;
+	private JTextField campoNombreprofesor;
+	private JTextField textField;
 	private JTextField campoCodigoMovimiento;
 
-	public PantallaCompra(Ventana v) {
+	public PantallaPrestamo(Ventana v) {
 		this.ventana=v;
 		setLayout(null);
 		
@@ -63,10 +66,10 @@ public class PantallaCompra extends JPanel {
 		botonAtras.setBounds(10, 405, 89, 23);
 		add(botonAtras);
 		
-		JLabel Compra = new JLabel("Compra");
-		Compra.setFont(new Font("Tahoma", Font.BOLD, 29));
-		Compra.setBounds(387, 44, 117, 50);
-		add(Compra);
+		JLabel Prestamo = new JLabel("Prestamo");
+		Prestamo.setFont(new Font("Tahoma", Font.BOLD, 29));
+		Prestamo.setBounds(387, 44, 180, 50);
+		add(Prestamo);
 		
 		
 		JLabel Nombre = new JLabel("Nombre");
@@ -76,7 +79,7 @@ public class PantallaCompra extends JPanel {
 		add(Nombre);
 		
 		campoNombre = new JTextField();
-		campoNombre.setBounds(417, 204, 117, 20);
+		campoNombre.setBounds(450, 204, 117, 20);
 		add(campoNombre);
 		campoNombre.setColumns(10);
 		
@@ -88,7 +91,7 @@ public class PantallaCompra extends JPanel {
 		
 		
 		JRadioButton RadioButtonFijo = new JRadioButton("pulsar si es fijo");
-		RadioButtonFijo.setBounds(417, 237, 117, 23);
+		RadioButtonFijo.setBounds(450, 237, 117, 23);
 		add(RadioButtonFijo);
 
 		
@@ -100,7 +103,7 @@ public class PantallaCompra extends JPanel {
 		
 		campoImporte = new JTextField();
 		campoImporte.setColumns(10);
-		campoImporte.setBounds(417, 272, 117, 20);
+		campoImporte.setBounds(450, 272, 117, 20);
 		add(campoImporte);
 		
 		JLabel Fecha = new JLabel("Fecha");
@@ -111,56 +114,76 @@ public class PantallaCompra extends JPanel {
 		
 		campoFecha = new JTextField();
 		campoFecha.setColumns(10);
-		campoFecha.setBounds(417, 306, 117, 20);
+		campoFecha.setBounds(450, 306, 117, 20);
 		add(campoFecha);
 		
-		JLabel Comentario = new JLabel("Comentario");
-		Comentario.setToolTipText("");
-		Comentario.setFont(new Font("Tahoma", Font.BOLD, 17));
-		Comentario.setBounds(276, 336, 117, 23);
-		add(Comentario);
+		JLabel NombreProfesor = new JLabel("Nombre Profesor");
+		NombreProfesor.setToolTipText("");
+		NombreProfesor.setFont(new Font("Tahoma", Font.BOLD, 17));
+		NombreProfesor.setBounds(276, 336, 146, 23);
+		add(NombreProfesor);
 		
-		campoComentario = new JTextField();
-		campoComentario.setColumns(10);
-		campoComentario.setBounds(417, 337, 243, 20);
-		add(campoComentario);
-	
+		campoNombreprofesor = new JTextField();
+		campoNombreprofesor.setColumns(10);
+		campoNombreprofesor.setBounds(448, 337, 119, 20);
+		add(campoNombreprofesor);
 		
-		JLabel Tipo = new JLabel("Tipo");
-		Tipo.setToolTipText("");
-		Tipo.setFont(new Font("Tahoma", Font.BOLD, 17));
-		Tipo.setBounds(276, 371, 117, 23);
-		add(Tipo);
+		JComboBox CBx_Clases = new JComboBox();
 		
-		JComboBox gbc_selectorTipoCompras = new JComboBox();
-		gbc_selectorTipoCompras.setModel(new DefaultComboBoxModel(TipoCompra.values()));
-		gbc_selectorTipoCompras.setToolTipText("SUPERMERCADO\t\r\nALIMENTACION\r\nDROGERIA\r\nFRESCOS");
-		gbc_selectorTipoCompras.setBounds(417, 368, 117, 22);
-		add(gbc_selectorTipoCompras);
 		
 		JLabel codigoMovimiento = new JLabel("CodigoMovimiento");
 		codigoMovimiento.setToolTipText("");
 		codigoMovimiento.setFont(new Font("Tahoma", Font.BOLD, 17));
-		codigoMovimiento.setBounds(228, 405, 180, 23);
+		codigoMovimiento.setBounds(227, 462, 180, 23);
 		add(codigoMovimiento);
 		
 		campoCodigoMovimiento = new JTextField();
 		campoCodigoMovimiento.setColumns(10);
-		campoCodigoMovimiento.setBounds(417, 408, 43, 20);
+		campoCodigoMovimiento.setBounds(417, 462, 43, 20);
 		add(campoCodigoMovimiento);
 		
+		JLabel FechaFin = new JLabel("Fecha Fin");
+		FechaFin.setToolTipText("");
+		FechaFin.setFont(new Font("Tahoma", Font.BOLD, 17));
+		FechaFin.setBounds(276, 404, 117, 23);
+		add(FechaFin);
 		
-		BotonVerde Rejistrar = new BotonVerde("Rejistrar");
-		Rejistrar.setBounds(665, 403, 103, 27);
+		JPanel campoFechaFin = new JPanel();
+		campoFechaFin.setBounds(450, 405, 78, 23);
+		add(campoFechaFin);
+		
+		JButton Rejistrar = new BotonVerde("Rejistrar");
+		Rejistrar.setBounds(561, 461, 103, 27);
 		add(Rejistrar);
 		
-		
 		JLabel fondo = new JLabel("");
+		fondo.setToolTipText("LUNES\r\nMARTES\r\nMIERCOLES\r\nJUEVES\r\nVIERNES\r\nSAVADO");
+		
+		
+		JLabel Porcentaje = new JLabel("Porcentaje");
+		Porcentaje.setToolTipText("");
+		Porcentaje.setFont(new Font("Tahoma", Font.BOLD, 17));
+		Porcentaje.setBounds(276, 370, 117, 23);
+		add(Porcentaje);
+		
+		JPanel campoPorcentaje = new JPanel();
+		campoPorcentaje.setBounds(450, 371, 51, 23);
+		add(campoPorcentaje);
+		
 		fondo.setIcon(new ImageIcon("B:\\Xamp\\htdocs\\REPOSITOS\\ProyectoFinal1DamAlexLopez\\fondos\\VentanaGastos_de_casa_API.jpg"));
 		fondo.setBounds(-23, 11, 891, 499);
 		add(fondo);
 		
 	
+		
+		
+		
+		
+		
+		
+	
+		
+		
 	
 		
 	

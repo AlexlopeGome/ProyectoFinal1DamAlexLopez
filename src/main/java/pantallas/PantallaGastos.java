@@ -52,20 +52,32 @@ public class PantallaGastos extends JPanel {
 		add(btnNewButton);
 		
 		JButton btnNewButton_1 = new BotonRojo("Extraescolar");
+		btnNewButton_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarPantalla("extraExcolar");
+			}
+		});
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnNewButton_1.setBounds(522, 306, 149, 33);
 		add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new BotonRojo("Prestamo");
+		btnNewButton_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarPantalla("prestamo");
+			}
+		});
 		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnNewButton_2.setBounds(522, 161, 117, 33);
+		btnNewButton_2.setBounds(522, 161, 129, 33);
 		add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new BotonRojo("Otros Gastos");
 		btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ventana.cambiarPantalla("compra");
+				ventana.cambiarPantalla("gastoEx");
 			}
 		});
 		btnNewButton_3.setBounds(266, 161, 149, 33);
