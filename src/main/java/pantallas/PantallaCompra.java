@@ -30,6 +30,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import javax.swing.JRadioButton;
+import javax.swing.JList;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import enums.TipoCompra;
 
 public class PantallaCompra extends JPanel {
 	;
@@ -39,7 +43,6 @@ public class PantallaCompra extends JPanel {
 	private JTextField campoImporte;
 	private JTextField campoFecha;
 	private JTextField campoComentario;
-	private JTextField campoTipo;
 
 	public PantallaCompra(Ventana v) {
 		this.ventana=v;
@@ -128,15 +131,21 @@ public class PantallaCompra extends JPanel {
 		Tipo.setBounds(276, 371, 117, 23);
 		add(Tipo);
 		
-		campoTipo = new JTextField();
-		campoTipo.setColumns(10);
-		campoTipo.setBounds(417, 375, 117, 20);
-		add(campoTipo);
-
+		JComboBox gbc_selectorTipoCompras = new JComboBox();
+		gbc_selectorTipoCompras.setModel(new DefaultComboBoxModel(TipoCompra.values()));
+		gbc_selectorTipoCompras.setToolTipText("SUPERMERCADO\t\r\nALIMENTACION\r\nDROGERIA\r\nFRESCOS");
+		gbc_selectorTipoCompras.setBounds(417, 368, 117, 22);
+		add(gbc_selectorTipoCompras);
+		
+		
+		
 		JLabel fondo = new JLabel("");
 		fondo.setIcon(new ImageIcon("B:\\Xamp\\htdocs\\REPOSITOS\\ProyectoFinal1DamAlexLopez\\fondos\\VentanaGastos_de_casa_API.jpg"));
 		fondo.setBounds(-23, 11, 891, 499);
 		add(fondo);
+	
+		
+	
 ;
 	}
 }

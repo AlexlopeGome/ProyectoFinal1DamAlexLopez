@@ -47,7 +47,9 @@ Statement query=UtilsDB.conectarBD();
 		
 	}
 		
+	public Compra() {
 		
+	}
 	
 
 public Compra(LocalDate fecha) throws SQLException {
@@ -62,7 +64,7 @@ public Compra(LocalDate fecha) throws SQLException {
 		importeFijo = datosDevueltos.getBoolean("importeFijo");
 		importe=datosDevueltos.getFloat("importe");
 		fecha = datosDevueltos.getDate("fecha").toLocalDate();
-		tipoC =datosDevueltos.getString("tipo");
+		tipoC =datosDevueltos.getString("tipoCompra");
 		this.comentario = datosDevueltos.getString("comentario");
 		
 		
@@ -118,9 +120,46 @@ public boolean eliminarCompra() {
     UtilsDB.desconectarBD();
     return ret;
 }
+public static ArrayList<Compra> getTodasCompras(){
+	Statement smt=UtilsDB.conectarBD();
+//Inicializamos un ArrayList para devolver
+		ArrayList<Compra> ret=new ArrayList<Compra>();
+		
+		try {
+			
+			ResultSet cursor=smt.executeQuery("select * from compra");
+			while(cursor.next()) {
+		
+				Compra actual=new Compra();
+				
+				actual.nombre=cursor.getString("nombre");
+				actual.importeFijo = cursor.getBoolean("importeFijo");
+    			actual.importe = cursor.getFloat("importe");
+    			actual.fecha=cursor.getDate("fecha").toLocalDate();
+    			actual.fecha = cursor.getDate("fecha").toLocalDate();
+    			actual.tipoC=cursor.getString("tipoCompra");
+    			actual.comentario= cursor.getString("comentario");
+                
+				 			
+    			
+    			
+    			
+    			
+				ret.add(actual);
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+		UtilsDB.desconectarBD();
+		//Si no hay usuarios en la tabla, va a devolver un arraylist vacío
+		//Si la consulta fué erronea, se devuelve un ArrayList null, que son cosas distintas
+		return ret;
 
-
-
+}
 
 
 
