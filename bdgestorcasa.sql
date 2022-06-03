@@ -41,7 +41,7 @@ fecha date,
 nombreProfesor varchar(200),
 asignaturas varchar(100),
 diaSemana varchar(100),
-codigoMovimiento numeric(3)primary Key,
+codigoMovimiento int(3) auto_increment primary Key,
 foreign key (nombreProfesor) references Trabajador(nombre),
 foreign key (diaSemana) references diasSemana(diaSemana)
 
@@ -53,18 +53,18 @@ tipoCompra varchar(200) primary key
 
 create table tipoIngreso(
 tipoIngreso varchar(200) ,
-codigoMovimiento numeric(3)primary key
+codigoMovimiento int(3) auto_increment primary key
 
 );
 
 create table Compra(
 nombre varchar(200),
 importeFijo boolean,
-importe numeric(7,3),
+importe float(7,2),
 fecha date,
 comentario varchar(200),
 tipoCompras varchar(200),
-codigoMovimiento numeric(3)primary key,
+codigoMovimiento int(3) auto_increment primary key,
 foreign key (tipoCompras) references tipoCompras(tipoCompra)
 );
 
@@ -72,31 +72,31 @@ foreign key (tipoCompras) references tipoCompras(tipoCompra)
 create table ClaseParticular(
 nombre varchar(200),
 importeFijo boolean,
-importe numeric(7,3),
+importe float(7,2),
 fecha date,
 asignatatura varchar(200),
 nombreTrabajador varchar(200),
 nombreDiaSemana  varchar(100),
-codigoMovimiento numeric(3) primary key,
+codigoMovimiento int(3) auto_increment primary key,
 foreign key (nombreDiaSemana) references diasSemana(diaSemana),
 foreign key (nombreTrabajador) references Trabajador(nombre)
 );
 create table Ingresos(
-codigoMovimiento numeric(3)primary key,
+codigoMovimiento int(3) auto_increment primary key,
 foreign key (codigoMovimiento) references tipoIngreso(codigoMovimiento)
 
 );
 create table GastoExtra(
 nombre varchar (200),
 importeFijo boolean,
-importe float,
+importe float(7,2),
 fecha date,
-codigoMovimiento numeric(3) primary key
+codigoMovimiento  int(3) auto_increment primary key
 );
 
 
 create table Gastos(
-codigoMovimiento numeric(3)primary key,
+codigoMovimiento int(3)auto_increment primary key,
 foreign key (codigoMovimiento) references Claseparticular(codigoMovimiento),
 foreign key (codigoMovimiento) references Compra(codigoMovimiento),
 foreign key (codigoMovimiento) references Extraescolar(codigoMovimiento),

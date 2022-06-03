@@ -7,25 +7,27 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import enums.TipoCompra;
 import exepciones.ContraseniaVaciaException;
 import utils.UtilsDB;
 
 public class Compra extends Gastos {
 	
-private ArrayList tipoCompra;
+private TipoCompra tipo;
+private String tipoC;
 private String comentario;	
 	
-public Compra(String nombre, boolean importeFijo, float importe, LocalDate fecha, ArrayList tipoCompra,
+public Compra(String nombre, boolean importeFijo, float importe, LocalDate fecha, TipoCompra tipo,
 			String comentario) throws SQLException {
 		super(nombre, importeFijo, importe, fecha);
-		this.tipoCompra = tipoCompra;
+		this.tipo=tipo;
 		this.comentario = comentario;
 		
 Statement query=UtilsDB.conectarBD();
 		
 
 		if(query.executeUpdate(
-		"insert into compra values('"+nombre+"','"+importeFijo+"','"+importe+"','"+ fecha + "','"+tipoCompra+"','"+comentario+"')") > 0) {
+		"insert into compra values('"+nombre+"','"+importeFijo+"','"+importe+"','"+ fecha + "','"+  tipo+"','"+comentario+"')") > 0) {
 			System.out.println("Compra inserada con exito");
 			//Si la inserción en BD ha colado, ya podemos modificar las
 			//Variables internas con la tranquilidad de que en BD
@@ -34,7 +36,7 @@ Statement query=UtilsDB.conectarBD();
 			this.importeFijo = importeFijo;
 			this.importe = importe;
 			this.fecha = fecha;
-			this.tipoCompra = tipoCompra;
+			this.tipo = tipo;
 			this.comentario = comentario;
 			
 		}else {
@@ -60,7 +62,7 @@ public Compra(LocalDate fecha) throws SQLException {
 		importeFijo = datosDevueltos.getBoolean("importeFijo");
 		importe=datosDevueltos.getFloat("importe");
 		fecha = datosDevueltos.getDate("fecha").toLocalDate();
-		this.tipoCompra =(ArrayList) datosDevueltos.getArray("tipoCompra");
+		tipoC =datosDevueltos.getString("tipo");
 		this.comentario = datosDevueltos.getString("comentario");
 		
 		
@@ -71,12 +73,20 @@ public Compra(LocalDate fecha) throws SQLException {
 }
 
 
-public ArrayList getTipoCompra() {
-	return tipoCompra;
+
+public TipoCompra getTipo() {
+	return tipo;
 }
-public void setTipoCompra(ArrayList tipoCompra) {
-	this.tipoCompra = tipoCompra;
+
+
+
+public void setTipo(TipoCompra tipo) {
+	this.tipo = tipo;
 }
+
+
+
+
 public String getComentario() {
 	return comentario;
 }
@@ -95,7 +105,7 @@ public boolean eliminarCompra() {
         this.importeFijo = null != null;
 		this.importe = (Float) null;
 		this.fecha = null;
-		this.tipoCompra = null;
+		this.tipoC = null;
 		this.comentario = null;
         
         
@@ -116,6 +126,6 @@ public boolean eliminarCompra() {
 
 @Override
 public String toString() {
-	return "Compra [tipoCompra=" + tipoCompra + ", comentario=" + comentario + "]";
+	return "Compra [tipoCompra=" + tipoC + ", comentario=" + comentario + "]";
 }
 }

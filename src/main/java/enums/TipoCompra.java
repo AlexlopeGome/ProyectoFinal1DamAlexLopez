@@ -1,6 +1,6 @@
 package enums;
 
-public enum TipoCompa {
+public enum TipoCompra {
 ALIMENTACION,
 DROGERIA,
 FRESCOS
