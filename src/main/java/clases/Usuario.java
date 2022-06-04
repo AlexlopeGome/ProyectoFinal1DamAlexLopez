@@ -29,6 +29,8 @@ public class Usuario extends EntidadConNombre {
 	private boolean contraseniaValida(String contrasenia) {
 		return !contrasenia.isBlank();
 	}
+	
+	
 	private boolean correoValido(String correo) {
 		return correo.contains("@");
 	}
@@ -41,6 +43,7 @@ public class Usuario extends EntidadConNombre {
 		if(!this.contraseniaValida(contrasenia)) {
 			throw new ContraseniaVaciaException("La contraseña no puede estar vacía");
 		}
+		
 		if(!this.correoValido(correo)) {
 			throw new CorreoInvalidoException("El mail no es valido");
 		}
@@ -65,8 +68,10 @@ public class Usuario extends EntidadConNombre {
 			this.nick=nick;
 		}else {
 			throw new SQLException("No se ha podido insertar el usuario");
+			
 		}
-	UtilsDB.desconectarBD();
+		
+		UtilsDB.desconectarBD();
 		
 		
 	}
@@ -106,10 +111,16 @@ public class Usuario extends EntidadConNombre {
 	        //una vez, porque es la PK
 
 	        if(cursor.next()) {
+	        	
+	        	
+	        	
 
 	                this.contrasenia=cursor.getString("contrasenia");
 
 	                if(!this.contrasenia.equals(contrasenia)) {
+	                	
+	                	
+	                	
 
 	                        UtilsDB.desconectarBD();
 

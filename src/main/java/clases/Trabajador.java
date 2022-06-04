@@ -2,24 +2,29 @@ package clases;
 
 public class Trabajador extends EntidadConNombre {
 
-private int telefeno;
+private int telefono;
 private String claseTrabajador;	
 	
 public Trabajador(String nombre,int telefono, String claseTrabajador) {
 		super(nombre);
 		this.claseTrabajador = claseTrabajador;
+		
+		
+		
+		
+		
 	}
 
 
 
 public int getTelefeno() {
-	return telefeno;
+	return telefono;
 }
 
 
 
 public void setTelefeno(int telefeno) {
-	this.telefeno = telefeno;
+	this.telefono = telefeno;
 }
 
 
@@ -36,7 +41,7 @@ public void setClaseTrabajador(String claseTrabajador) {
 
 @Override
 public String toString() {
-	return "Trabajador [telefeno=" + telefeno + ", claseTrabajador=" + claseTrabajador + "]";
+	return "Trabajador [telefeno=" + telefono + ", claseTrabajador=" + claseTrabajador + "]";
 }
 
 

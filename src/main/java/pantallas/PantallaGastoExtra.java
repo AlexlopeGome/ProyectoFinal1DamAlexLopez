@@ -29,6 +29,8 @@ import javax.swing.JPasswordField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.time.LocalDate;
+
 import javax.swing.JRadioButton;
 import javax.swing.JList;
 import javax.swing.JComboBox;
@@ -42,7 +44,6 @@ public class PantallaGastoExtra extends JPanel {
 	private JTextField campoNombre;
 	private JTextField campoImporte;
 	private JTextField campoFecha;
-	private JTextField campoComentario;
 	private JTextField campoCodigoMovimiento;
 
 	public PantallaGastoExtra(Ventana v) {
@@ -87,10 +88,14 @@ public class PantallaGastoExtra extends JPanel {
 		add(Fijo);
 		
 		
-		JRadioButton RadioButtonFijo = new JRadioButton("pulsar si es fijo");
-		RadioButtonFijo.setBounds(417, 237, 117, 23);
-		add(RadioButtonFijo);
-
+		final JRadioButton siFijo = new JRadioButton("pulsar si es fijo");
+		siFijo.setBounds(417, 237, 117, 23);
+		add(siFijo);
+		
+		final JRadioButton noFijo = new JRadioButton("pulsar no es fijo");
+		noFijo.setBounds(543, 237, 117, 23);
+		add(noFijo);
+		
 		
 		JLabel Nombre_2 = new JLabel("Importe");
 		Nombre_2.setToolTipText("");
@@ -114,17 +119,6 @@ public class PantallaGastoExtra extends JPanel {
 		campoFecha.setBounds(417, 306, 117, 20);
 		add(campoFecha);
 		
-		JLabel Comentario = new JLabel("Comentario");
-		Comentario.setToolTipText("");
-		Comentario.setFont(new Font("Tahoma", Font.BOLD, 17));
-		Comentario.setBounds(276, 336, 117, 23);
-		add(Comentario);
-		
-		campoComentario = new JTextField();
-		campoComentario.setColumns(10);
-		campoComentario.setBounds(417, 337, 243, 20);
-		add(campoComentario);
-		
 		JLabel codigoMovimiento = new JLabel("CodigoMovimiento");
 		codigoMovimiento.setToolTipText("");
 		codigoMovimiento.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -138,6 +132,49 @@ public class PantallaGastoExtra extends JPanel {
 		
 		
 		BotonVerde Rejistrar = new BotonVerde("Rejistrar");
+		Rejistrar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				try {
+					
+					String nombre= campoNombre.getText();
+					boolean importeFijo=true;
+			
+		            if (siFijo.isSelected()) {
+		            	importeFijo=true;
+		                
+		            }
+		            else if(noFijo.isSelected()) {
+		            	importeFijo =false;
+		            }
+					float importe=Float.parseFloat(campoImporte.getText());
+					String fechaEnTexto=campoFecha.getText();
+					String[] fechaPartida=fechaEnTexto.split("/");
+					LocalDate fecha=
+			                LocalDate.of(Integer.parseInt(fechaPartida[2]),
+			                                Integer.parseInt(fechaPartida[1]),
+			                                Integer.parseInt(fechaPartida[0]));
+				
+					
+					int codigoMovimiento=Integer.parseInt(campoCodigoMovimiento.getText());
+				
+						new clases.GastoExtra(nombre,importeFijo,importe,fecha,codigoMovimiento);
+						
+						JOptionPane.showMessageDialog(ventana,"Registro ok","Resgitro completado",JOptionPane.PLAIN_MESSAGE);
+					} catch (SQLException e1) {
+						System.out.println(e1);
+						e1.printStackTrace();
+						JOptionPane.showMessageDialog(
+				                ventana,e1.getMessage(),"Error",
+				                JOptionPane.ERROR_MESSAGE);
+					} catch (ArrayIndexOutOfBoundsException e1) {
+		                JOptionPane.showMessageDialog(ventana, "Formato erroneo, debe ser dd/mm/yyyy","error",JOptionPane.ERROR_MESSAGE);
+						
+					}
+					
+			}
+		});
 		Rejistrar.setBounds(665, 403, 103, 27);
 		add(Rejistrar);
 		
@@ -146,6 +183,8 @@ public class PantallaGastoExtra extends JPanel {
 		fondo.setIcon(new ImageIcon("B:\\Xamp\\htdocs\\REPOSITOS\\ProyectoFinal1DamAlexLopez\\fondos\\VentanaGastos_de_casa_API.jpg"));
 		fondo.setBounds(-23, 11, 891, 499);
 		add(fondo);
+		
+	
 		
 	
 	

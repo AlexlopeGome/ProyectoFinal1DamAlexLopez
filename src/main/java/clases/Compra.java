@@ -17,18 +17,18 @@ private TipoCompra tipo;
 private String tipoC;
 private String comentario;	
 	
-public Compra(String nombre, boolean importeFijo, float importe, LocalDate fecha, TipoCompra tipo,
+public Compra(String nombre, boolean importeFijo, float importe, LocalDate fecha, TipoCompra tipoC,
 			String comentario,int codigoMovimiento) throws SQLException {
 		super(nombre, importeFijo, importe, fecha, codigoMovimiento);
-		this.tipo=tipo;
 		this.comentario = comentario;
 		
 Statement query=UtilsDB.conectarBD();
 		
-
 		if(query.executeUpdate(
-		"insert into compra values('"+nombre+"','"+importeFijo+"','"+importe+"','"+ fecha + "','"+  tipo+"','"+comentario+"','"+codigoMovimiento+"')") > 0) {
+				
+		"insert into compra values('"+nombre+"',"+importeFijo+","+importe+",'"+ fecha + "','"+ tipo+"','"+comentario+"',"+codigoMovimiento+")") > 0) {
 			System.out.println("Compra inserada con exito");
+		
 			//Si la inserción en BD ha colado, ya podemos modificar las
 			//Variables internas con la tranquilidad de que en BD
 			//También existen.

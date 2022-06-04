@@ -29,6 +29,8 @@ import javax.swing.JPasswordField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.time.LocalDate;
+
 import javax.swing.JRadioButton;
 import javax.swing.JList;
 import javax.swing.JComboBox;
@@ -87,16 +89,19 @@ public class PantallaCompra extends JPanel {
 		add(Fijo);
 		
 		
-		JRadioButton RadioButtonFijo = new JRadioButton("pulsar si es fijo");
-		RadioButtonFijo.setBounds(417, 237, 117, 23);
-		add(RadioButtonFijo);
+		final JRadioButton siFijo = new JRadioButton("pulsar si es fijo");
+		siFijo.setBounds(417, 237, 117, 23);
+		add(siFijo);
 
+		final JRadioButton noFijo = new JRadioButton("pulsar si no es fijo");
+		noFijo.setBounds(543, 237, 117, 23);
+		add(noFijo);
 		
-		JLabel Nombre_2 = new JLabel("Importe");
-		Nombre_2.setToolTipText("");
-		Nombre_2.setFont(new Font("Tahoma", Font.BOLD, 17));
-		Nombre_2.setBounds(276, 268, 117, 23);
-		add(Nombre_2);
+		JLabel Importe = new JLabel("Importe");
+		Importe.setToolTipText("");
+		Importe.setFont(new Font("Tahoma", Font.BOLD, 17));
+		Importe.setBounds(276, 268, 117, 23);
+		add(Importe);
 		
 		campoImporte = new JTextField();
 		campoImporte.setColumns(10);
@@ -126,13 +131,13 @@ public class PantallaCompra extends JPanel {
 		add(campoComentario);
 	
 		
-		JLabel Tipo = new JLabel("Tipo");
+		final JLabel Tipo = new JLabel("Tipo");
 		Tipo.setToolTipText("");
 		Tipo.setFont(new Font("Tahoma", Font.BOLD, 17));
 		Tipo.setBounds(276, 371, 117, 23);
 		add(Tipo);
 		
-		JComboBox gbc_selectorTipoCompras = new JComboBox();
+		final JComboBox gbc_selectorTipoCompras = new JComboBox();
 		gbc_selectorTipoCompras.setModel(new DefaultComboBoxModel(TipoCompra.values()));
 		gbc_selectorTipoCompras.setToolTipText("SUPERMERCADO\t\r\nALIMENTACION\r\nDROGERIA\r\nFRESCOS");
 		gbc_selectorTipoCompras.setBounds(417, 368, 117, 22);
@@ -151,6 +156,50 @@ public class PantallaCompra extends JPanel {
 		
 		
 		BotonVerde Rejistrar = new BotonVerde("Rejistrar");
+		Rejistrar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+				try {
+					
+			String nombre= campoNombre.getText();
+			boolean importeFijo=true;
+	
+            if (siFijo.isSelected()) {
+            	importeFijo=true;
+                
+            }
+            else if(noFijo.isSelected()) {
+            	importeFijo =false;
+            }
+			float importe=Float.parseFloat(campoImporte.getText());
+			String fechaEnTexto=campoFecha.getText();
+			String[] fechaPartida=fechaEnTexto.split("/");
+			LocalDate fecha=
+	                LocalDate.of(Integer.parseInt(fechaPartida[2]),
+	                                Integer.parseInt(fechaPartida[1]),
+	                                Integer.parseInt(fechaPartida[0]));
+			TipoCompra tipo=(TipoCompra)gbc_selectorTipoCompras.getSelectedItem();
+			String comentario= campoComentario.getText();
+			int codigoMovimiento=Integer.parseInt(campoCodigoMovimiento.getText());
+		
+				new clases.Compra(nombre,importeFijo,importe,fecha,tipo,comentario,codigoMovimiento);
+				
+				JOptionPane.showMessageDialog(ventana,"Registro ok","Resgitro completado",JOptionPane.PLAIN_MESSAGE);
+			} catch (SQLException e1) {
+				System.out.println(e1);
+				e1.printStackTrace();
+				JOptionPane.showMessageDialog(
+		                ventana,e1.getMessage(),"Error",
+		                JOptionPane.ERROR_MESSAGE);
+			} catch (ArrayIndexOutOfBoundsException e1) {
+                JOptionPane.showMessageDialog(ventana, "Formato erroneo, debe ser dd/mm/yyyy","error",JOptionPane.ERROR_MESSAGE);
+				
+			}
+			
+				}
+			
+		});
 		Rejistrar.setBounds(665, 403, 103, 27);
 		add(Rejistrar);
 		
@@ -160,6 +209,7 @@ public class PantallaCompra extends JPanel {
 		fondo.setBounds(-23, 11, 891, 499);
 		add(fondo);
 		
+	
 	
 	
 		

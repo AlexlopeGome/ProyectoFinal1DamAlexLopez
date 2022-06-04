@@ -17,6 +17,10 @@ public class Extraescolar extends Gastos{
 		this.clase = clase;
 		this.diasSemana = diasSemana;
 		this.nombreProfesor = nombreProfesor;
+		
+		
+		
+		
 	}
 	public Clases getClase() {
 		return clase;
