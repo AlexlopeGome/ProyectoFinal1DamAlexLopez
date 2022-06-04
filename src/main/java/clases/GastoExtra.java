@@ -67,12 +67,12 @@ UtilsDB.desconectarBD();
 	}
 
 	@SuppressWarnings("null")
-	public boolean eliminarCompra() {
+	public boolean eliminarGastoExtra() {
 	    Statement smt = UtilsDB.conectarBD();
 	    boolean ret;
 	 
 	    try {
-	        ret = smt.executeUpdate("delete from compra where nombre='" + nombre + "'") > 0;
+	        ret = smt.executeUpdate("delete from GastoEtra where nombre='" + nombre + "'") > 0;
 
 	        nombre=null;
 	        this.importeFijo = null != null;
@@ -97,7 +97,7 @@ UtilsDB.desconectarBD();
 			
 			try {
 				
-				ResultSet cursor=smt.executeQuery("select * from compra");
+				ResultSet cursor=smt.executeQuery("select * from GastoExtra");
 				while(cursor.next()) {
 			
 					GastoExtra actual=new GastoExtra();

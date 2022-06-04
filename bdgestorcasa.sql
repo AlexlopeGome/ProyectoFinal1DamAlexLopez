@@ -16,6 +16,7 @@ create table usuario(
 
 create table Trabajador (
 nombre varchar(200) primary key,
+telefono int(9),
 actividadDesempeñada varchar(200)
 
 );
@@ -91,7 +92,7 @@ nombre varchar (200),
 importeFijo boolean,
 importe float(7,2),
 fecha date,
-codigoMovimiento  int(3) auto_increment primary key
+codigoMovimiento  int(3)  primary key
 );
 
 
@@ -103,3 +104,5 @@ foreign key (codigoMovimiento) references Extraescolar(codigoMovimiento),
 foreign key (codigoMovimiento) references Prestamo(codigoMovimiento),
 foreign key (codigoMovimiento) references GastoExtra(codigoMovimiento)
 );
+
+
