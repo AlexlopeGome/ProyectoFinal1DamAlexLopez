@@ -9,21 +9,27 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import clases.Compra;
+import clases.GastoExtra;
+import clases.Trabajador;
 import clases.Usuario;
+import elementosVisuales.ElementoListaCompras;
+import elementosVisuales.ElementoListaGastosExtra;
+import elementosVisuales.ElementoListaTrabajadores;
 import elementosVisuales.ElementoListaUsuarios;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class ListaUsuarios extends JPanel {
+public class PantallaListaGastosExtra extends JPanel {
 
     private Ventana ventana;
-    public ListaUsuarios(Ventana v) {
+    public PantallaListaGastosExtra(Ventana v) {
         this.ventana=v;
         setLayout(new BorderLayout(0, 0));
 
-        JLabel lblTitulo = new JLabel("Trabajadores Existentes");
+        JLabel lblTitulo = new JLabel("Compras Registradas");
         lblTitulo.setFont(new Font("Tahoma", Font.PLAIN, 30));
         add(lblTitulo, BorderLayout.NORTH);
 
@@ -46,10 +52,10 @@ public class ListaUsuarios extends JPanel {
         bontonAtras.setBackground(Color.CYAN);
         add(bontonAtras, BorderLayout.SOUTH);
 
-        ArrayList<Usuario> todos=Usuario.getTodos();
+        ArrayList<GastoExtra> todos=GastoExtra.getTodosGastosExtra();
 
         for(int i=0;i<todos.size();i++) {
-            listaUsuarios.add(new ElementoListaUsuarios(ventana, todos.get(i)));
+            listaUsuarios.add(new ElementoListaGastosExtra(ventana, todos.get(i)));
         }
 
     }}

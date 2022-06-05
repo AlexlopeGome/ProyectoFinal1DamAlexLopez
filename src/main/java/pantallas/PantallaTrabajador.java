@@ -13,6 +13,7 @@ import javax.swing.SwingConstants;
 import java.awt.Color;
 import javax.swing.border.EmptyBorder;
 
+import clases.Trabajador;
 import clases.Usuario;
 import elementosVisuales.BotonAzul;
 import elementosVisuales.BotonRojo;
@@ -125,28 +126,69 @@ public class PantallaTrabajador extends JPanel {
 		botonAceptar.setBounds(32, 399, 224, 37);
 		add(botonAceptar);
 		
+		
+		
 		JLabel labelTrabajador = new JLabel("Trabajador");
 		labelTrabajador.setFont(new Font("Tahoma", Font.BOLD, 29));
 		labelTrabajador.setBounds(295, 27, 167, 31);
 		add(labelTrabajador);;
 		
-		JComboBox comboBoxTipoTrabajador = new JComboBox();
+		final JComboBox comboBoxTipoTrabajador = new JComboBox();
 		comboBoxTipoTrabajador.setModel(new DefaultComboBoxModel(TipoActividadDesenpeniada.values()));
 		comboBoxTipoTrabajador.setToolTipText("PROFESOR,\r\nPROFESORA,\r\nASISTENTA,\r\nASISTENTE,\r\nCOCINERO\r\nCOCINERA\r\nLIMPIADORA\r\nLIPIADOR\r\nJARDINERO\r\nJARDINERA\r\nENTRENADOR\r\nENTRENADORA");
 		comboBoxTipoTrabajador.setBounds(423, 241, 148, 28);
 		add(comboBoxTipoTrabajador);
 		
+		JButton editar = new BotonAzul("ListaTrabajadores");
+		editar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarPantalla("listaTrabajadores");
+				
+			}
+		});
+		editar.setBounds(89, 331, 148, 28);
+		add(editar);
 		
 		JLabel Fondo = new JLabel("");
+		Fondo.addMouseListener(new MouseAdapter() {
+			
+		
+			
+		});
 		Fondo.setBounds(-23, 11, 891, 499);;
 		Fondo.setIcon(new ImageIcon("B:\\Xamp\\htdocs\\REPOSITOS\\ProyectoFinal1DamAlexLopez\\fondos\\Ventana_UsusarioAPI.jpg"));
 		add(Fondo);
+		
+	
 		
 	
 	
 		botonAceptar.addMouseListener(new MouseAdapter() {
 			
 			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				try {
+					String nombre= campoNombre.getText();
+					int telefono=Integer.parseInt(campoTelefono.getText());
+					TipoActividadDesenpeniada tipoTrabajador=(TipoActividadDesenpeniada)comboBoxTipoTrabajador.getSelectedItem();
+					
+					
+						new Trabajador(nombre,telefono,tipoTrabajador);
+						JOptionPane.showMessageDialog(ventana,"Registro ok","Resgitro completado",JOptionPane.PLAIN_MESSAGE);
+					} catch (SQLException e1) {
+						System.out.println(e1);
+						e1.printStackTrace();
+						JOptionPane.showMessageDialog(
+				                ventana,e1.getMessage(),"Error",
+				                JOptionPane.ERROR_MESSAGE);
+					}
+					
+					
+				
+			}
 		});
 		
 		

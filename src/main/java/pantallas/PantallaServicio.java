@@ -145,27 +145,19 @@ public class PantallaServicio extends JPanel {
 		JLabel text_DiasSemana = new JLabel("Dia Semana");
 		text_DiasSemana.setToolTipText("");
 		text_DiasSemana.setFont(new Font("Tahoma", Font.BOLD, 17));
-		text_DiasSemana.setBounds(276, 404, 117, 23);
+		text_DiasSemana.setBounds(276, 374, 117, 23);
 		add(text_DiasSemana);
 		
 		
 		JComboBox comboBox_DiasSeman = new JComboBox();
 		comboBox_DiasSeman.setModel(new DefaultComboBoxModel(DiasSemana.values()));
 		comboBox_DiasSeman.setToolTipText("");
-		comboBox_DiasSeman.setBounds(450, 407, 117, 22);
+		comboBox_DiasSeman.setBounds(472, 377, 117, 22);
 		add(comboBox_DiasSeman);
 		
 		JButton Rejistrar = new BotonVerde("Rejistrar");
 		Rejistrar.setBounds(561, 461, 103, 27);
 		add(Rejistrar);
-		
-		
-		
-		JLabel Clases = new JLabel("Dia Semana");
-		Clases.setToolTipText("");
-		Clases.setFont(new Font("Tahoma", Font.BOLD, 17));
-		Clases.setBounds(276, 370, 117, 23);
-		add(Clases);
 		
 		JRadioButton noFijo = new JRadioButton("pulsar si no es  fijo");
 		noFijo.setBounds(606, 237, 117, 23);
@@ -176,7 +168,7 @@ public class PantallaServicio extends JPanel {
 		JLabel fondo = new JLabel("");
 		fondo.setToolTipText("LUNES\r\nMARTES\r\nMIERCOLES\r\nJUEVES\r\nVIERNES\r\nSAVADO");
 		fondo.setIcon(new ImageIcon("B:\\Xamp\\htdocs\\REPOSITOS\\ProyectoFinal1DamAlexLopez\\fondos\\VentanaGastos_de_casa_API.jpg"));
-		fondo.setBounds(-23, 11, 891, 499);
+		fondo.setBounds(20, -16, 891, 499);
 		add(fondo);
 		
 		

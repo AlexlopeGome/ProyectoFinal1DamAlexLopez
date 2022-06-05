@@ -9,21 +9,23 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import clases.Trabajador;
 import clases.Usuario;
+import elementosVisuales.ElementoListaTrabajadores;
 import elementosVisuales.ElementoListaUsuarios;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class ListaUsuarios extends JPanel {
+public class ListaTrabajadores extends JPanel {
 
     private Ventana ventana;
-    public ListaUsuarios(Ventana v) {
+    public ListaTrabajadores(Ventana v) {
         this.ventana=v;
         setLayout(new BorderLayout(0, 0));
 
-        JLabel lblTitulo = new JLabel("Trabajadores Existentes");
+        JLabel lblTitulo = new JLabel("Usuarios Logeados");
         lblTitulo.setFont(new Font("Tahoma", Font.PLAIN, 30));
         add(lblTitulo, BorderLayout.NORTH);
 
@@ -46,10 +48,10 @@ public class ListaUsuarios extends JPanel {
         bontonAtras.setBackground(Color.CYAN);
         add(bontonAtras, BorderLayout.SOUTH);
 
-        ArrayList<Usuario> todos=Usuario.getTodos();
+        ArrayList<Trabajador> todos=Trabajador.getTodostrabajdores();
 
         for(int i=0;i<todos.size();i++) {
-            listaUsuarios.add(new ElementoListaUsuarios(ventana, todos.get(i)));
+            listaUsuarios.add(new ElementoListaTrabajadores(ventana, todos.get(i)));
         }
 
     }}

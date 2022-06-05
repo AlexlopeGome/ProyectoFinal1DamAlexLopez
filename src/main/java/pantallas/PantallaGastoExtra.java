@@ -178,12 +178,23 @@ public class PantallaGastoExtra extends JPanel {
 		Rejistrar.setBounds(665, 403, 103, 27);
 		add(Rejistrar);
 		
+		JButton botonListaGastosExtra = new BotonAzul("Lista GastosExtra");
+		botonListaGastosExtra.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarPantalla("listaExtra");
+				
+			}
+		});
+		botonListaGastosExtra.setBounds(27, 339, 165, 23);
+		add(botonListaGastosExtra);
 		
 		JLabel fondo = new JLabel("");
 		fondo.setIcon(new ImageIcon("B:\\Xamp\\htdocs\\REPOSITOS\\ProyectoFinal1DamAlexLopez\\fondos\\VentanaGastos_de_casa_API.jpg"));
 		fondo.setBounds(-23, 11, 891, 499);
 		add(fondo);
 		
+
 	
 		
 	

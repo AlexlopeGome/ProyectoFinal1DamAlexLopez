@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import javax.swing.ComboBoxModel;
+
 import enums.TipoActividadDesenpeniada;
 import utils.UtilsDB;
 
@@ -22,7 +24,7 @@ public Trabajador(String nombre, int telefono, TipoActividadDesenpeniada activi)
 	
 	
 	if(query.executeUpdate(
-			"insert into usuario values('"+nombre+"',"+telefono+",'"+activi+"')") > 0) {
+			"insert into Trabajador values('"+nombre+"',"+telefono+",'"+activi+"')") > 0) {
 				System.out.println("Trabajador inserado con exito");
 				//Si la inserciÃ³n en BD ha colado, ya podemos modificar las
 				//Variables internas con la tranquilidad de que en BD
@@ -40,12 +42,6 @@ public Trabajador(String nombre, int telefono, TipoActividadDesenpeniada activi)
 			
 		}
 	
-	
-	
-	
-
-
-
 
 
 
@@ -55,7 +51,7 @@ public Trabajador(int telefono) throws SQLException {
 	
 	
 	Statement query=UtilsDB.conectarBD();
-	ResultSet datosDevueltos=query.executeQuery("select * from compra where fecha='"+telefono+"'");
+	ResultSet datosDevueltos=query.executeQuery("select * from Trabajador where fecha="+telefono+"");
 	if(datosDevueltos.next()) {
 		
 		nombre=datosDevueltos.getString("nombre");
@@ -82,16 +78,37 @@ public int getTelefono() {
 public void setTelefono(int telefono) {
 	this.telefono = telefono;
 }
+
+
+
 public TipoActividadDesenpeniada getActividadDesempeñada() {
-	return actividadDesempeñada;
+	return actividadDesempeñada ;
 }
+
+
 public void setActividadDesempeñada(TipoActividadDesenpeniada actividadDesempeñada) {
 	this.actividadDesempeñada = actividadDesempeñada;
-}	
-	
+}
+
+
+
+
+public String getActivi() {
+	return activi;
+}
+
+
+
+
+public void setActivi(String activi) {
+	this.activi = activi;
+}
+
+
+
 
 @SuppressWarnings("null")
-public boolean eliminarCompra() {
+public boolean eliminarTrabajador() {
     Statement smt = UtilsDB.conectarBD();
     boolean ret;
  
@@ -100,7 +117,7 @@ public boolean eliminarCompra() {
 
         this.nombre=null;
         this.telefono =0;
-        this.actividadDesempeñada = null;
+        this.activi= null;
         
         
         

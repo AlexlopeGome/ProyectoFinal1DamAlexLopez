@@ -179,11 +179,12 @@ public class PantallaCompra extends JPanel {
 	                LocalDate.of(Integer.parseInt(fechaPartida[2]),
 	                                Integer.parseInt(fechaPartida[1]),
 	                                Integer.parseInt(fechaPartida[0]));
-			TipoCompra tipo=(TipoCompra)gbc_selectorTipoCompras.getSelectedItem();
 			String comentario= campoComentario.getText();
+			TipoCompra tipo=(TipoCompra)gbc_selectorTipoCompras.getSelectedItem();
+			
 			int codigoMovimiento=Integer.parseInt(campoCodigoMovimiento.getText());
 		
-				new clases.Compra(nombre,importeFijo,importe,fecha,tipo,comentario,codigoMovimiento);
+				new clases.Compra(nombre,importeFijo,importe,fecha,comentario,tipo,codigoMovimiento);
 				
 				JOptionPane.showMessageDialog(ventana,"Registro ok","Resgitro completado",JOptionPane.PLAIN_MESSAGE);
 			} catch (SQLException e1) {
@@ -203,12 +204,24 @@ public class PantallaCompra extends JPanel {
 		Rejistrar.setBounds(665, 403, 103, 27);
 		add(Rejistrar);
 		
+
+		JButton botonListaCompras = new BotonAzul("ListaCompra");
+		botonListaCompras.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarPantalla("listaCompras");
+			}
+		});
+		botonListaCompras.setText("ListaCompras");
+		botonListaCompras.setBounds(60, 339, 132, 20);
+		add(botonListaCompras);
 		
 		JLabel fondo = new JLabel("");
 		fondo.setIcon(new ImageIcon("B:\\Xamp\\htdocs\\REPOSITOS\\ProyectoFinal1DamAlexLopez\\fondos\\VentanaGastos_de_casa_API.jpg"));
 		fondo.setBounds(-23, 11, 891, 499);
 		add(fondo);
 		
+	
 	
 	
 	

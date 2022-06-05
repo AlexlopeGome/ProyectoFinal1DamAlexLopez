@@ -17,8 +17,8 @@ private TipoCompra tipo;
 private String tipoC;
 private String comentario;	
 	
-public Compra(String nombre, boolean importeFijo, float importe, LocalDate fecha, TipoCompra tipoC,
-			String comentario,int codigoMovimiento) throws SQLException {
+public Compra(String nombre, boolean importeFijo, float importe, LocalDate fecha,String comentario, TipoCompra tipoC,
+			int codigoMovimiento) throws SQLException {
 		super(nombre, importeFijo, importe, fecha, codigoMovimiento);
 		this.comentario = comentario;
 		
@@ -26,7 +26,7 @@ Statement query=UtilsDB.conectarBD();
 		
 		if(query.executeUpdate(
 				
-		"insert into compra values('"+nombre+"',"+importeFijo+","+importe+",'"+ fecha + "','"+ tipo+"','"+comentario+"',"+codigoMovimiento+")") > 0) {
+		"insert into compra values('"+nombre+"',"+importeFijo+","+importe+",'"+ fecha + "','"+ comentario+"','"+tipoC+"',"+codigoMovimiento+")") > 0) {
 			System.out.println("Compra inserada con exito");
 		
 			//Si la inserción en BD ha colado, ya podemos modificar las
@@ -36,8 +36,9 @@ Statement query=UtilsDB.conectarBD();
 			this.importeFijo = importeFijo;
 			this.importe = importe;
 			this.fecha = fecha;
-			this.tipo = tipo;
 			this.comentario = comentario;
+			this.tipo = tipo;
+			this.codigoMovimiento=codigoMovimiento;
 			
 		}else {
 			throw new SQLException("No se ha podido insertar el usuario");
@@ -47,6 +48,14 @@ Statement query=UtilsDB.conectarBD();
 		
 	}
 		
+	public String getTipoC() {
+	return tipoC;
+}
+
+public void setTipoC(String tipoC) {
+	this.tipoC = tipoC;
+}
+
 	public Compra() {
 		
 	}
@@ -136,7 +145,7 @@ public static ArrayList<Compra> getTodasCompras(){
     			actual.importe = cursor.getFloat("importe");
     			actual.fecha=cursor.getDate("fecha").toLocalDate();
     			actual.fecha = cursor.getDate("fecha").toLocalDate();
-    			actual.tipoC=cursor.getString("tipoCompra");
+    			actual.tipoC=cursor.getString("tipoCompras");
     			actual.comentario= cursor.getString("comentario");
                 
 				 			
