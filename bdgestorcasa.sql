@@ -16,8 +16,8 @@ create table usuario(
 
 create table Trabajador (
 nombre varchar(200) primary key,
-telefono int(9),
-actividadDesempeñada varchar(200)
+actividadDesempeñada varchar(200),
+telefono int(9)
 
 );
 create table Prestamo(
@@ -27,13 +27,10 @@ importe numeric(7,3),
 fecha date,
 porcentaje int(2),
 fechafin date,
-codigoMovimiento int(3) auto_increment primary Key
+codigoMovimiento int(3) primary Key
 
 );
-create table diasSemana(
-diaSemana varchar(100) primary key
 
-);
 create table Extraescolar(
 nombre varchar(200),
 importeFijo boolean,
@@ -42,19 +39,16 @@ fecha date,
 nombreProfesor varchar(200),
 asignaturas varchar(100),
 diaSemana varchar(100),
-codigoMovimiento int(3) auto_increment primary Key,
-foreign key (nombreProfesor) references Trabajador(nombre),
-foreign key (diaSemana) references diasSemana(diaSemana)
+codigoMovimiento int(3)  primary Key,
+foreign key (nombreProfesor) references Trabajador(nombre)
 
 );
 
-create table tipoCompras(
-tipoCompra varchar(200) primary key
-);
+
 
 create table tipoIngreso(
 tipoIngreso varchar(200) ,
-codigoMovimiento int(3) auto_increment primary key
+codigoMovimiento int(3)  primary key
 
 );
 
@@ -65,25 +59,13 @@ importe float(7,2),
 fecha date,
 comentario varchar(200),
 tipoCompras varchar(200),
-codigoMovimiento int(3) auto_increment primary key,
-foreign key (tipoCompras) references tipoCompras(tipoCompra)
+codigoMovimiento int(3)  primary key
 );
 
 
-create table ClaseParticular(
-nombre varchar(200),
-importeFijo boolean,
-importe float(7,2),
-fecha date,
-asignatatura varchar(200),
-nombreTrabajador varchar(200),
-nombreDiaSemana  varchar(100),
-codigoMovimiento int(3) auto_increment primary key,
-foreign key (nombreDiaSemana) references diasSemana(diaSemana),
-foreign key (nombreTrabajador) references Trabajador(nombre)
-);
+
 create table Ingresos(
-codigoMovimiento int(3) auto_increment primary key,
+codigoMovimiento int(3)  primary key,
 foreign key (codigoMovimiento) references tipoIngreso(codigoMovimiento)
 
 );
@@ -97,12 +79,9 @@ codigoMovimiento  int(3)  primary key
 
 
 create table Gastos(
-codigoMovimiento int(3)auto_increment primary key,
-foreign key (codigoMovimiento) references Claseparticular(codigoMovimiento),
+codigoMovimiento int(3) primary key,
 foreign key (codigoMovimiento) references Compra(codigoMovimiento),
 foreign key (codigoMovimiento) references Extraescolar(codigoMovimiento),
 foreign key (codigoMovimiento) references Prestamo(codigoMovimiento),
 foreign key (codigoMovimiento) references GastoExtra(codigoMovimiento)
 );
-
-

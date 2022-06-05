@@ -39,49 +39,49 @@ public class PantallaGastos extends JPanel {
 		this.ventana=v;
 		setLayout(null);
 		
-		JButton btnNewButton = new BotonRojo("Compra");
-		btnNewButton.addMouseListener(new MouseAdapter() {
+		JButton botonCompra = new BotonRojo("Compra");
+		botonCompra.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
 				ventana.cambiarPantalla("compra");
 			}
 		});
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnNewButton.setBounds(266, 306, 121, 33);
-		add(btnNewButton);
+		botonCompra.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		botonCompra.setBounds(266, 306, 121, 33);
+		add(botonCompra);
 		
-		JButton btnNewButton_1 = new BotonRojo("Extraescolar");
-		btnNewButton_1.addMouseListener(new MouseAdapter() {
+		JButton botonExtraescolar = new BotonRojo("Extraescolar");
+		botonExtraescolar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ventana.cambiarPantalla("extraExcolar");
 			}
 		});
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnNewButton_1.setBounds(522, 306, 149, 33);
-		add(btnNewButton_1);
+		botonExtraescolar.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		botonExtraescolar.setBounds(522, 306, 149, 33);
+		add(botonExtraescolar);
 		
-		JButton btnNewButton_2 = new BotonRojo("Prestamo");
-		btnNewButton_2.addMouseListener(new MouseAdapter() {
+		JButton botonPrestamo = new BotonRojo("Prestamo");
+		botonPrestamo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ventana.cambiarPantalla("prestamo");
 			}
 		});
-		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnNewButton_2.setBounds(522, 161, 129, 33);
-		add(btnNewButton_2);
+		botonPrestamo.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		botonPrestamo.setBounds(522, 161, 129, 33);
+		add(botonPrestamo);
 		
-		JButton btnNewButton_3 = new BotonRojo("Otros Gastos");
-		btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnNewButton_3.addActionListener(new ActionListener() {
+		JButton botonOtrosGastos = new BotonRojo("Otros Gastos");
+		botonOtrosGastos.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		botonOtrosGastos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ventana.cambiarPantalla("gastoEx");
 			}
 		});
-		btnNewButton_3.setBounds(266, 161, 149, 33);
-		add(btnNewButton_3);
+		botonOtrosGastos.setBounds(266, 161, 149, 33);
+		add(botonOtrosGastos);
 		
 		JButton botonAtras = new BotonAzul("Atras");
 		botonAtras.addMouseListener(new MouseAdapter() {
@@ -112,11 +112,26 @@ public class PantallaGastos extends JPanel {
 		botonSalir.setBounds(0, 376, 99, 32);
 		add(botonSalir);
 		
+		BotonRojo BotonServicio = new BotonRojo("Servicio");
+		BotonServicio.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarPantalla("servicio");
+				
+			}
+		});
+		BotonServicio.setText("Servicio");
+		BotonServicio.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		BotonServicio.setBounds(388, 389, 149, 33);
+		add(BotonServicio);
+		
 		
 		JLabel fondo = new JLabel("");
 		fondo.setIcon(new ImageIcon("B:\\Xamp\\htdocs\\REPOSITOS\\ProyectoFinal1DamAlexLopez\\fondos\\VentanaGastos_de_casa_API.jpg"));
 		fondo.setBounds(-23, 11, 891, 499);
 		add(fondo);
+		
+	
 		
 	;
 		
