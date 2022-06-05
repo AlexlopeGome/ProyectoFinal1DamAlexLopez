@@ -71,7 +71,7 @@ public Compra(LocalDate fecha) throws SQLException {
 		nombre=datosDevueltos.getString("nombre");
 		importeFijo = datosDevueltos.getBoolean("importeFijo");
 		importe=datosDevueltos.getFloat("importe");
-		fecha = datosDevueltos.getDate("fecha").toLocalDate();
+		importe=datosDevueltos.getFloat("importe");
 		tipoC =datosDevueltos.getString("tipoCompra");
 		this.comentario = datosDevueltos.getString("comentario");
 		

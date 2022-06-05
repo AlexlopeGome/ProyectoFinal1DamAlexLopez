@@ -15,6 +15,7 @@ import java.awt.Font;
 
 import javax.swing.border.EmptyBorder;
 
+import clases.Extraescolar;
 import clases.Usuario;
 import elementosVisuales.BotonAzul;
 import elementosVisuales.BotonRojo;
@@ -29,6 +30,8 @@ import javax.swing.JPasswordField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.time.LocalDate;
+
 import javax.swing.JRadioButton;
 import javax.swing.JList;
 import javax.swing.JComboBox;
@@ -90,10 +93,13 @@ public class PantallaExtraescolar extends JPanel {
 		add(Fijo);
 		
 		
-		JRadioButton RadioButtonFijo = new JRadioButton("pulsar si es fijo");
-		RadioButtonFijo.setBounds(450, 237, 117, 23);
-		add(RadioButtonFijo);
+		final JRadioButton siFijo = new JRadioButton("pulsar si es fijo");
+		siFijo.setBounds(450, 237, 117, 23);
+		add(siFijo);
 
+		final JRadioButton noFijo = new JRadioButton("pulsar si no es fijo");
+		noFijo.setBounds(579, 237, 117, 23);
+		add(noFijo);
 		
 		JLabel Nombre_2 = new JLabel("Importe");
 		Nombre_2.setToolTipText("");
@@ -149,7 +155,7 @@ public class PantallaExtraescolar extends JPanel {
 		add(text_DiasSemana);
 		
 		
-		JComboBox comboBox_DiasSeman = new JComboBox();
+		final JComboBox comboBox_DiasSeman = new JComboBox();
 		comboBox_DiasSeman.setModel(new DefaultComboBoxModel(DiasSemana.values()));
 		comboBox_DiasSeman.setToolTipText("");
 		comboBox_DiasSeman.setBounds(450, 407, 117, 22);
@@ -161,13 +167,57 @@ public class PantallaExtraescolar extends JPanel {
 		text_Clases.setBounds(276, 370, 117, 23);
 		add(text_Clases);
 		
-		JComboBox conboBox_Clases = new JComboBox();
+		final JComboBox conboBox_Clases = new JComboBox();
 		conboBox_Clases.setModel(new DefaultComboBoxModel(Clases.values()));
 		conboBox_Clases.setToolTipText("CIENCIA\r\nLETRAS\r\nIDIOMAS\r\nDEPORTE");
 		conboBox_Clases.setBounds(450, 374, 117, 22);
 		add(conboBox_Clases);
 		
 		JButton Rejistrar = new BotonVerde("Rejistrar");
+		Rejistrar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+				String nombre=campoNombre.getText();
+				
+				boolean importeFijo=true;
+				
+	            if (siFijo.isSelected()) {
+	            	importeFijo=true;
+	                
+	            }
+	            else if(noFijo.isSelected()) {
+	            	importeFijo =false;
+	            }
+				float importe=Float.parseFloat(campoImporte.getText());
+				String fechaEnTexto=campoFecha.getText();
+				String[] fechaPartida=fechaEnTexto.split("/");
+				LocalDate fecha=
+		                LocalDate.of(Integer.parseInt(fechaPartida[2]),
+		                                Integer.parseInt(fechaPartida[1]),
+		                                Integer.parseInt(fechaPartida[0]));
+				String nombreProfesor=campoNombreprofesor.getText();
+				Clases clase=(Clases)conboBox_Clases.getSelectedItem();
+				DiasSemana dias=(DiasSemana)comboBox_DiasSeman.getSelectedItem();
+				int codigoMovimiento=Integer.parseInt(campoCodigoMovimiento.getText());
+				
+				
+					new Extraescolar(nombre,importeFijo,importe,fecha,nombreProfesor,clase,dias,codigoMovimiento);
+					
+				} catch (SQLException e1) {
+					System.out.println(e1);
+					e1.printStackTrace();
+					JOptionPane.showMessageDialog(
+			                ventana,e1.getMessage(),"Error",
+			                JOptionPane.ERROR_MESSAGE);
+				} catch (ArrayIndexOutOfBoundsException e1) {
+	                JOptionPane.showMessageDialog(ventana, "Formato erroneo, debe ser dd/mm/yyyy","error",JOptionPane.ERROR_MESSAGE);
+					
+				}
+				
+					}
+				
+			});
 		Rejistrar.setBounds(561, 461, 103, 27);
 		add(Rejistrar);
 		
@@ -182,6 +232,7 @@ public class PantallaExtraescolar extends JPanel {
 		Clases.setFont(new Font("Tahoma", Font.BOLD, 17));
 		Clases.setBounds(276, 370, 117, 23);
 		add(Clases);
+		
 		
 		
 		
