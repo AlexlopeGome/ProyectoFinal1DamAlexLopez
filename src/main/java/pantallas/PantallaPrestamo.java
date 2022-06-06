@@ -1,7 +1,7 @@
 package pantallas;
 
 
-import java.awt.BorderLayout;
+
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -9,32 +9,25 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import java.awt.Color;
+
 import java.awt.Font;
 
-import javax.swing.border.EmptyBorder;
 
-import clases.Usuario;
 import elementosVisuales.BotonAzul;
-import elementosVisuales.BotonRojo;
-import elementosVisuales.BotonVerde;
-import enums.Clases;
-import enums.DiasSemana;
-import enums.TipoCompra;
-import exepciones.ContraseniaIncorrectaException;
-import exepciones.UsuarioNoExisteException;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JPasswordField;
+import elementosVisuales.BotonVerde;
+
+
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.time.LocalDate;
+
 import javax.swing.JRadioButton;
-import javax.swing.JList;
+
 import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
+
 
 public class PantallaPrestamo extends JPanel {
 	;
@@ -46,6 +39,8 @@ public class PantallaPrestamo extends JPanel {
 	private JTextField campoNombreprofesor;
 	private JTextField textField;
 	private JTextField campoCodigoMovimiento;
+	private JTextField campoPorcentaje;
+	private JTextField campoFechaFin;
 
 	public PantallaPrestamo(Ventana v) {
 		this.ventana=v;
@@ -89,16 +84,24 @@ public class PantallaPrestamo extends JPanel {
 		add(Fijo);
 		
 		
-		JRadioButton RadioButtonFijo = new JRadioButton("pulsar si es fijo");
-		RadioButtonFijo.setBounds(450, 237, 117, 23);
-		add(RadioButtonFijo);
+		final JRadioButton siFijo = new JRadioButton("pulsar si es fijo");
+		siFijo.setBounds(450, 237, 117, 23);
+		add(siFijo);
 
+		final JRadioButton noFijo = new JRadioButton("pulsar si no es fijo");
+		noFijo.setBounds(582, 237, 117, 23);
+		add(noFijo);
 		
-		JLabel Nombre_2 = new JLabel("Importe");
-		Nombre_2.setToolTipText("");
-		Nombre_2.setFont(new Font("Tahoma", Font.BOLD, 17));
-		Nombre_2.setBounds(276, 268, 117, 23);
-		add(Nombre_2);
+		
+		
+		JLabel importe = new JLabel("Importe");
+		importe.setToolTipText("");
+		importe.setFont(new Font("Tahoma", Font.BOLD, 17));
+		importe.setBounds(276, 268, 117, 23);
+		add(importe);
+		
+		
+		
 		
 		campoImporte = new JTextField();
 		campoImporte.setColumns(10);
@@ -126,10 +129,7 @@ public class PantallaPrestamo extends JPanel {
 		campoNombreprofesor.setColumns(10);
 		campoNombreprofesor.setBounds(448, 337, 119, 20);
 		add(campoNombreprofesor);
-		
-		JComboBox CBx_Clases = new JComboBox();
-		
-		
+
 		JLabel codigoMovimiento = new JLabel("CodigoMovimiento");
 		codigoMovimiento.setToolTipText("");
 		codigoMovimiento.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -147,31 +147,104 @@ public class PantallaPrestamo extends JPanel {
 		FechaFin.setBounds(276, 404, 117, 23);
 		add(FechaFin);
 		
-		JPanel campoFechaFin = new JPanel();
-		campoFechaFin.setBounds(450, 405, 78, 23);
+		campoFechaFin = new JTextField();
+		campoFechaFin.setBounds(450, 405, 86, 20);
 		add(campoFechaFin);
+		campoFechaFin.setColumns(10);
 		
-		JButton Rejistrar = new BotonVerde("Rejistrar");
-		Rejistrar.setBounds(561, 461, 103, 27);
-		add(Rejistrar);
-		
-		JLabel fondo = new JLabel("");
-		fondo.setToolTipText("LUNES\r\nMARTES\r\nMIERCOLES\r\nJUEVES\r\nVIERNES\r\nSAVADO");
-		
-		
+
 		JLabel Porcentaje = new JLabel("Porcentaje");
 		Porcentaje.setToolTipText("");
 		Porcentaje.setFont(new Font("Tahoma", Font.BOLD, 17));
 		Porcentaje.setBounds(276, 370, 117, 23);
 		add(Porcentaje);
 		
-		JPanel campoPorcentaje = new JPanel();
-		campoPorcentaje.setBounds(450, 371, 51, 23);
+		campoPorcentaje = new JTextField();
+		campoPorcentaje.setBounds(450, 368, 86, 20);
 		add(campoPorcentaje);
+		campoPorcentaje.setColumns(10);
+		
+		
+		
+		
+		
+		
+		JButton Rejistrar = new BotonVerde("Rejistrar");
+		Rejistrar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					String nombre=campoNombre.getText();
+					boolean importeFijo=true;
+					
+		            if (siFijo.isSelected()) {
+		            	importeFijo=true;
+		                
+		            }
+		            else if(noFijo.isSelected()) {
+		            	importeFijo =false;
+		            }
+					
+					float importe=Float.parseFloat(campoImporte.getText());
+				    float porcentaje=Float.parseFloat(campoPorcentaje.getText());
+				    
+					String fechaEnTexto=campoFecha.getText();
+					String[] fechaPartida=fechaEnTexto.split("/");
+					LocalDate fecha=
+			                LocalDate.of(Integer.parseInt(fechaPartida[2]),
+			                                Integer.parseInt(fechaPartida[1]),
+			                                Integer.parseInt(fechaPartida[0]));
+				
+					String fechaEnTexto2=campoFechaFin.getText();
+					String[] fechaPartida2=fechaEnTexto2.split("/");
+					LocalDate fechaFin=
+			                LocalDate.of(Integer.parseInt(fechaPartida2[2]),
+			                                Integer.parseInt(fechaPartida2[1]),
+			                                Integer.parseInt(fechaPartida2[0]));
+					
+			
+					
+					int codigoMovimiento=Integer.parseInt(campoCodigoMovimiento.getText());
+					
+				
+						new clases.Prestamo(nombre,importeFijo,importe,fecha,porcentaje,fechaFin,codigoMovimiento);
+						 JOptionPane.showMessageDialog(ventana,"Registro ok","Resgitro completado",JOptionPane.PLAIN_MESSAGE);
+					} catch (SQLException e1) {
+						System.out.println(e1);
+						e1.printStackTrace();
+						JOptionPane.showMessageDialog(
+				                ventana,e1.getMessage(),"Error",
+				                JOptionPane.ERROR_MESSAGE);
+					} catch (ArrayIndexOutOfBoundsException e1) {
+		                JOptionPane.showMessageDialog(ventana, "Formato erroneo, debe ser dd/mm/yyyy","error",JOptionPane.ERROR_MESSAGE);
+						
+					}
+					
+						}
+					
+				});
+		Rejistrar.setBounds(561, 461, 103, 27);
+		add(Rejistrar);
+		
+		JLabel fondo = new JLabel("");
+		fondo.setToolTipText("");
+		
+		
+		
 		
 		fondo.setIcon(new ImageIcon("B:\\Xamp\\htdocs\\REPOSITOS\\ProyectoFinal1DamAlexLopez\\fondos\\VentanaGastos_de_casa_API.jpg"));
 		fondo.setBounds(-23, 11, 891, 499);
 		add(fondo);
+		
+		
+		
+		
+		
+		
+		
+		
+	
+		
 		
 	
 		
