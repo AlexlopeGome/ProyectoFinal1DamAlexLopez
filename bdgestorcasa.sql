@@ -25,13 +25,13 @@ nombre varchar(200),
 importeFijo boolean,
 importe numeric(7,3),
 fecha date,
-porcentaje int(2),
+porcentaje float(3,2),
 fechafin date,
 codigoMovimiento int(3) primary Key
 
 );
 
-create table Extraescolar(
+create table extraEscolar(
 nombre varchar(200),
 importeFijo boolean,
 importe float(7,2),
@@ -44,6 +44,17 @@ foreign key (nombreProfesor) references Trabajador(nombre)
 
 );
 
+create table Servicio(
+nombre varchar(200),
+importeFijo boolean,
+importe float(7,2),
+fecha date,
+nombreTrabajador varchar(200),
+diaSemana varchar(100),
+codigoMovimiento int(3)  primary Key,
+foreign key (nombreTrabajador) references Trabajador(nombre)
+
+);
 
 
 create table tipoIngreso(
@@ -82,6 +93,9 @@ create table Gastos(
 codigoMovimiento int(3) primary key,
 foreign key (codigoMovimiento) references Compra(codigoMovimiento),
 foreign key (codigoMovimiento) references Extraescolar(codigoMovimiento),
+foreign key (codigoMovimiento) references Servicio(codigoMovimiento),
 foreign key (codigoMovimiento) references Prestamo(codigoMovimiento),
 foreign key (codigoMovimiento) references GastoExtra(codigoMovimiento)
+
 );
+select * from extraescolar

@@ -291,7 +291,8 @@ public class Usuario extends EntidadConNombre {
 	    			actual.contrasenia=cursor.getString("contrasenia");
 	    			actual.fechaNacimiento = cursor.getDate("fechaNacimiento").toLocalDate();
 	    			actual.contrasenia=cursor.getString("contrasenia");
-	    			actual.numeroHijos = cursor.getString("direccion");
+	    			actual.numeroHijos = cursor.getString("numeroHijos");
+	    			actual.direccion=cursor.getNString("direccion");
 	    			actual.nick= cursor.getString("nick");
 	                
 					
