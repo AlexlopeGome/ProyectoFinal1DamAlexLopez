@@ -15,6 +15,7 @@ import clases.Usuario;
 import elementosVisuales.ElementoListaCompras;
 import elementosVisuales.ElementoListaTrabajadores;
 import elementosVisuales.ElementoListaUsuarios;
+
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
@@ -34,9 +35,9 @@ public class PantallaListaCompras extends JPanel {
         JScrollPane scrollPane = new JScrollPane();
         add(scrollPane, BorderLayout.WEST);
 
-        JPanel listaUsuarios = new JPanel();
-        scrollPane.setViewportView(listaUsuarios);
-        listaUsuarios.setLayout(new BoxLayout(listaUsuarios, BoxLayout.Y_AXIS));
+        JPanel listaCompra = new JPanel();
+        scrollPane.setViewportView(listaCompra);
+        listaCompra.setLayout(new BoxLayout(listaCompra, BoxLayout.Y_AXIS));
         
         JButton bontonAtras = new JButton("Atras");
         bontonAtras.addMouseListener(new MouseAdapter() {
@@ -53,7 +54,7 @@ public class PantallaListaCompras extends JPanel {
         ArrayList<Compra> todos=Compra.getTodasCompras();
 
         for(int i=0;i<todos.size();i++) {
-            listaUsuarios.add(new ElementoListaCompras(ventana, todos.get(i)));
+            listaCompra.add(new ElementoListaCompras(ventana, todos.get(i)));
         }
 
     }}

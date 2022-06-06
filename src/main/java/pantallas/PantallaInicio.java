@@ -15,6 +15,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import elementosVisuales.BotonVerde;
+
 import java.awt.event.MouseEvent;
 
 public class PantallaInicio extends JPanel {
@@ -55,7 +56,7 @@ public class PantallaInicio extends JPanel {
 		JButton btnbtnbotonVerde = new BotonVerde("Vamoss....");
 		btnbtnbotonVerde.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				ventana.cambiarPantalla("principal");
+				ventana.cambiarPantalla("Principal");
 			}
 		});
 		btnbtnbotonVerde.setFont(new Font("Dialog", Font.PLAIN, 20));

@@ -21,7 +21,6 @@ import elementosVisuales.BotonVerde;
 import exepciones.ContraseniaIncorrectaException;
 import exepciones.UsuarioNoExisteException;
 
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
@@ -113,7 +112,7 @@ public class PantallaLogin extends JPanel {
 		botonAtras.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ventana.cambiarPantalla("principal");
+				ventana.cambiarPantalla("Principal");
 			}
 		});
 		botonAtras.setBackground(new Color(0, 0, 255));

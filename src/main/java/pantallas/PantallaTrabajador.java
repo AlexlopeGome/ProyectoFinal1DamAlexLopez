@@ -108,7 +108,7 @@ public class PantallaTrabajador extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				ventana.cambiarPantalla("principal");
+				ventana.cambiarPantalla("Principal");
 			}
 		});
 		botonCancelar.setBackground(new Color(255, 0, 0));

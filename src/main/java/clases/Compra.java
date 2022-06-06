@@ -7,9 +7,9 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import Utils.UtilsDB;
 import enums.TipoCompra;
 import exepciones.ContraseniaVaciaException;
-import utils.UtilsDB;
 
 public class Compra extends Gastos {
 	
@@ -73,8 +73,8 @@ public Compra(LocalDate fecha) throws SQLException {
 		importe=datosDevueltos.getFloat("importe");
 		importe=datosDevueltos.getFloat("importe");
 		tipoC =datosDevueltos.getString("tipoCompra");
-		this.comentario = datosDevueltos.getString("comentario");
-		
+		comentario = datosDevueltos.getString("comentario");
+		codigoMovimiento=datosDevueltos.getInt("codigoMovimiento");
 		
 	}else {
 		throw new SQLException("la compra no existe");
@@ -117,7 +117,7 @@ public boolean eliminarCompra() {
 		this.fecha = null;
 		this.tipoC = null;
 		this.comentario = null;
-        
+        this.codigoMovimiento=(Integer) null;
         
         
     } catch (SQLException e) {
@@ -147,6 +147,7 @@ public static ArrayList<Compra> getTodasCompras(){
     			actual.fecha = cursor.getDate("fecha").toLocalDate();
     			actual.tipoC=cursor.getString("tipoCompras");
     			actual.comentario= cursor.getString("comentario");
+    			actual.codigoMovimiento=cursor.getInt("codigoMovimiento");
                 
 				 			
     			

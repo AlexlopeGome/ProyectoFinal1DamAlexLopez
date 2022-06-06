@@ -15,14 +15,15 @@ import java.awt.Font;
 
 import javax.swing.border.EmptyBorder;
 
-import clases.Extraescolar;
 import clases.Usuario;
 import elementosVisuales.BotonAzul;
 import elementosVisuales.BotonRojo;
 import elementosVisuales.BotonVerde;
+import enums.Clases;
+import enums.DiasSemana;
+import enums.TipoCompra;
 import exepciones.ContraseniaIncorrectaException;
 import exepciones.UsuarioNoExisteException;
-
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -36,9 +37,6 @@ import javax.swing.JRadioButton;
 import javax.swing.JList;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-import enums.TipoCompra;
-import enums.Clases;
-import enums.DiasSemana;
 
 public class PantallaExtraescolar extends JPanel {
 	;
@@ -161,12 +159,6 @@ public class PantallaExtraescolar extends JPanel {
 		comboBox_DiasSeman.setBounds(450, 407, 117, 22);
 		add(comboBox_DiasSeman);
 		
-		JLabel text_Clases = new JLabel("Clase");
-		text_Clases.setToolTipText("");
-		text_Clases.setFont(new Font("Tahoma", Font.BOLD, 17));
-		text_Clases.setBounds(276, 370, 117, 23);
-		add(text_Clases);
-		
 		final JComboBox conboBox_Clases = new JComboBox();
 		conboBox_Clases.setModel(new DefaultComboBoxModel(Clases.values()));
 		conboBox_Clases.setToolTipText("CIENCIA\r\nLETRAS\r\nIDIOMAS\r\nDEPORTE");
@@ -202,8 +194,8 @@ public class PantallaExtraescolar extends JPanel {
 				int codigoMovimiento=Integer.parseInt(campoCodigoMovimiento.getText());
 				
 				
-					new Extraescolar(nombre,importeFijo,importe,fecha,nombreProfesor,clase,dias,codigoMovimiento);
-					
+					new clases.ExtraEscolar(nombre,importeFijo,importe,fecha,nombreProfesor,clase,dias,codigoMovimiento);
+					 JOptionPane.showMessageDialog(ventana,"Registro ok","Resgitro completado",JOptionPane.PLAIN_MESSAGE);
 				} catch (SQLException e1) {
 					System.out.println(e1);
 					e1.printStackTrace();
@@ -221,17 +213,34 @@ public class PantallaExtraescolar extends JPanel {
 		Rejistrar.setBounds(561, 461, 103, 27);
 		add(Rejistrar);
 		
-		JLabel fondo = new JLabel("");
-		fondo.setToolTipText("LUNES\r\nMARTES\r\nMIERCOLES\r\nJUEVES\r\nVIERNES\r\nSAVADO");
-		fondo.setIcon(new ImageIcon("B:\\Xamp\\htdocs\\REPOSITOS\\ProyectoFinal1DamAlexLopez\\fondos\\VentanaGastos_de_casa_API.jpg"));
-		fondo.setBounds(-23, 11, 891, 499);
-		add(fondo);
+		
+		JButton btnlistaExtraEscolar = new BotonAzul("Lista ExtraEscolar");
+		btnlistaExtraEscolar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarPantalla("listaExtraEscolar");
+			}
+		});
+		btnlistaExtraEscolar.setBounds(10, 446, 163, 23);
+		add(btnlistaExtraEscolar);
+		
 		
 		JLabel Clases = new JLabel("Dia Semana");
 		Clases.setToolTipText("");
 		Clases.setFont(new Font("Tahoma", Font.BOLD, 17));
 		Clases.setBounds(276, 370, 117, 23);
 		add(Clases);
+		
+		
+		JLabel fondo = new JLabel("");
+		fondo.setToolTipText("LUNES\r\nMARTES\r\nMIERCOLES\r\nJUEVES\r\nVIERNES\r\nSAVADO");
+		fondo.setIcon(new ImageIcon("B:\\Xamp\\htdocs\\REPOSITOS\\ProyectoFinal1DamAlexLopez\\fondos\\VentanaGastos_de_casa_API.jpg"));
+		fondo.setBounds(-23, 11, 891, 499);
+		add(fondo);
+		
+		
+		
+		
 		
 		
 		

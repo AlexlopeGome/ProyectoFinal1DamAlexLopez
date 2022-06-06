@@ -6,15 +6,13 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-
-
+import Utils.UtilsDB;
 import exepciones.ContraseniaIncorrectaException;
 import exepciones.ContraseniaVaciaException;
 import exepciones.CorreoInvalidoException;
 import exepciones.FechaInvalidoNacimientoException;
 import exepciones.NickInvalidoExceptions;
 import exepciones.UsuarioNoExisteException;
-import utils.UtilsDB;
 
 public class Usuario extends EntidadConNombre {
 	
@@ -68,7 +66,6 @@ public class Usuario extends EntidadConNombre {
 			this.nick=nick;
 		}else {
 			throw new SQLException("No se ha podido insertar el usuario");
-			
 		}
 		
 		UtilsDB.desconectarBD();
@@ -112,16 +109,13 @@ public class Usuario extends EntidadConNombre {
 
 	        if(cursor.next()) {
 	        	
-	        	
-	        	
+	  
 
 	                this.contrasenia=cursor.getString("contrasenia");
 
 	                if(!this.contrasenia.equals(contrasenia)) {
 	                	
-	                	
-	                	
-
+	                
 	                        UtilsDB.desconectarBD();
 
 	                        throw new ContraseniaIncorrectaException("La contraseña no es correcta");
@@ -137,6 +131,8 @@ public class Usuario extends EntidadConNombre {
 	    			this.numeroHijos = cursor.getString("numerohijos"); 
 	    			this.direccion = cursor.getString("direccion");
 	    			this.nick= cursor.getString("nick");
+	    			
+	    			
 	        }else {
 
 	        	  UtilsDB.desconectarBD();
@@ -241,16 +237,9 @@ public class Usuario extends EntidadConNombre {
 				this.nick = nick;
 		    }
 				
-				//Lo primero de todo, intentar el update. Si no funciona en BD
-				//No lo hacemos en Java.
-				
-				//La consulta se debe de hacer modificando la variable especifica
-				//del setter y haciendolo solo donde la PK coincida
-				//OJO de poner en el update el valor de argumentos. Si pones el this no cambias nada
-				
+			
 				UtilsDB.desconectarBD();
-				
-		
+	
 		
 	}
 	

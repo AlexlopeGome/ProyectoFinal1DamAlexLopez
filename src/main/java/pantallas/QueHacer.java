@@ -79,7 +79,7 @@ public class QueHacer extends JPanel {
 		BotonAtras.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ventana.cambiarPantalla("principal");
+				ventana.cambiarPantalla("Principal");
 			}
 		});
 		BotonAtras.setFont(new Font("Tahoma", Font.PLAIN, 18));

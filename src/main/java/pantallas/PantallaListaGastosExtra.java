@@ -17,6 +17,7 @@ import elementosVisuales.ElementoListaCompras;
 import elementosVisuales.ElementoListaGastosExtra;
 import elementosVisuales.ElementoListaTrabajadores;
 import elementosVisuales.ElementoListaUsuarios;
+
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
@@ -29,7 +30,7 @@ public class PantallaListaGastosExtra extends JPanel {
         this.ventana=v;
         setLayout(new BorderLayout(0, 0));
 
-        JLabel lblTitulo = new JLabel("Compras Registradas");
+        JLabel lblTitulo = new JLabel("Gastos Registrados");
         lblTitulo.setFont(new Font("Tahoma", Font.PLAIN, 30));
         add(lblTitulo, BorderLayout.NORTH);
 

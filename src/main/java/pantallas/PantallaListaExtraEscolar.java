@@ -9,7 +9,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import clases.Compra;
+import clases.ExtraEscolar;
+import clases.GastoExtra;
+import clases.Trabajador;
 import clases.Usuario;
+import elementosVisuales.ElementoListaCompras;
+import elementosVisuales.ElementoListaExtraEscolar;
+import elementosVisuales.ElementoListaGastosExtra;
+import elementosVisuales.ElementoListaTrabajadores;
 import elementosVisuales.ElementoListaUsuarios;
 
 import javax.swing.JButton;
@@ -17,23 +25,23 @@ import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class ListaUsuarios extends JPanel {
+public class PantallaListaExtraEscolar extends JPanel {
 
     private Ventana ventana;
-    public ListaUsuarios(Ventana v) {
+    public PantallaListaExtraEscolar(Ventana v) {
         this.ventana=v;
         setLayout(new BorderLayout(0, 0));
 
-        JLabel lblTitulo = new JLabel("Trabajadores Existentes");
+        JLabel lblTitulo = new JLabel(" ExtraEscolares Registradas");
         lblTitulo.setFont(new Font("Tahoma", Font.PLAIN, 30));
         add(lblTitulo, BorderLayout.NORTH);
 
         JScrollPane scrollPane = new JScrollPane();
         add(scrollPane, BorderLayout.WEST);
 
-        JPanel listaUsuarios = new JPanel();
-        scrollPane.setViewportView(listaUsuarios);
-        listaUsuarios.setLayout(new BoxLayout(listaUsuarios, BoxLayout.Y_AXIS));
+        JPanel listaExtraEscolares  = new JPanel();
+        scrollPane.setViewportView(listaExtraEscolares );
+        listaExtraEscolares .setLayout(new BoxLayout(listaExtraEscolares , BoxLayout.Y_AXIS));
         
         JButton bontonAtras = new JButton("Atras");
         bontonAtras.addMouseListener(new MouseAdapter() {
@@ -47,10 +55,10 @@ public class ListaUsuarios extends JPanel {
         bontonAtras.setBackground(Color.CYAN);
         add(bontonAtras, BorderLayout.SOUTH);
 
-        ArrayList<Usuario> todos=Usuario.getTodos();
+        ArrayList<ExtraEscolar > todos=ExtraEscolar .getTodosExtraEscolar();
 
         for(int i=0;i<todos.size();i++) {
-            listaUsuarios.add(new ElementoListaUsuarios(ventana, todos.get(i)));
+        	listaExtraEscolares.add(new  ElementoListaExtraEscolar(ventana, todos.get(i)));
         }
 
     }}

@@ -19,6 +19,8 @@ import javax.swing.border.EtchedBorder;
 
 import clases.Compra;
 import clases.EntidadConNombre;
+import clases.ExtraEscolar;
+import clases.GastoExtra;
 import clases.Trabajador;
 import clases.Usuario;
 import dialogoEmergentes.EmergenteEditarTrabajador;
@@ -28,15 +30,15 @@ import pantallas.Ventana;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class ElementoListaCompras extends JPanel{
+public class ElementoListaExtraEscolar extends JPanel{
 
     private Ventana ventana;
-    private Compra compra;
+    private ExtraEscolar extra;
 
-    public ElementoListaCompras(Ventana v, Compra c) {
+    public ElementoListaExtraEscolar(Ventana v, ExtraEscolar eX) {
         setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.ORANGE, Color.GREEN));
         this.ventana=v;
-        this.compra=c;
+        this.extra=eX;
         this.setMaximumSize(new Dimension(8000,200));
         GridBagLayout gridBagLayout = new GridBagLayout();
         gridBagLayout.columnWidths = new int[]{11, 9, 0, 90, 52, 123, 37, 98, 222, 0};
@@ -62,12 +64,12 @@ public class ElementoListaCompras extends JPanel{
                         gbc_lblNick.gridy = 2;
                         add(lblNick, gbc_lblNick);
                 
-                        JButton btnBorrarUsuario = new JButton("Borrar Compra");
+                        JButton btnBorrarUsuario = new JButton("Borrar ExtraEscolar");
                         btnBorrarUsuario.addMouseListener(new MouseAdapter() {
                             @Override
                             public void mouseClicked(MouseEvent e) {
                                 setVisible(false);
-                                compra.eliminarCompra();
+                                extra.eliminarExtraEscolar();
                             }
                         });
                         btnBorrarUsuario.setIcon(new ImageIcon("./iconos/delete.png"));
@@ -77,14 +79,21 @@ public class ElementoListaCompras extends JPanel{
                         gbc_btnBorrarUsuario.gridy = 2;
                         add(btnBorrarUsuario, gbc_btnBorrarUsuario);
                 
-                JLabel lblNombre = new JLabel(this.compra.getNombre());
+                JLabel lblNombre = new JLabel(this.extra.getNombre());
                 GridBagConstraints gbc_lblNombre = new GridBagConstraints();
                 gbc_lblNombre.insets = new Insets(0, 0, 5, 5);
                 gbc_lblNombre.gridx = 3;
                 gbc_lblNombre.gridy = 4;
                 add(lblNombre, gbc_lblNombre);
                 
-                JLabel lblImporteFijo = new JLabel (String.valueOf(this.compra.isImporteFijo()));
+                JLabel lblGuion_2_3_1 = new JLabel("-");
+                GridBagConstraints gbc_lblGuion_2_3_1 = new GridBagConstraints();
+                gbc_lblGuion_2_3_1.insets = new Insets(0, 0, 5, 5);
+                gbc_lblGuion_2_3_1.gridx = 4;
+                gbc_lblGuion_2_3_1.gridy = 4;
+                add(lblGuion_2_3_1, gbc_lblGuion_2_3_1);
+                
+                JLabel lblImporteFijo = new JLabel (String.valueOf(this.extra.isImporteFijo()));
                 GridBagConstraints gbc_lblImporteFijo = new GridBagConstraints();
                 gbc_lblImporteFijo.insets = new Insets(0, 0, 5, 5);
                 gbc_lblImporteFijo.gridx = 5;
@@ -98,7 +107,7 @@ public class ElementoListaCompras extends JPanel{
                 gbc_lblGuion_2_2.gridy = 4;
                 add(lblGuion_2_2, gbc_lblGuion_2_2);
                 
-                JLabel lblimporte = new JLabel(String.valueOf(this.compra.getImporte()));
+                JLabel lblimporte = new JLabel(String.valueOf(this.extra.getImporte()));
                 GridBagConstraints gbc_lblimporte = new GridBagConstraints();
                 gbc_lblimporte.insets = new Insets(0, 0, 5, 5);
                 gbc_lblimporte.gridx = 7;
@@ -106,64 +115,67 @@ public class ElementoListaCompras extends JPanel{
                 add(lblimporte, gbc_lblimporte);
                 
                 
-                JLabel lblfecha = new JLabel (DateTimeFormatter.ISO_DATE.format(this.compra.getFecha()));
+                JLabel lblfecha = new JLabel (DateTimeFormatter.ISO_DATE.format(this.extra.getFecha()));
                 GridBagConstraints gbc_lblfecha = new GridBagConstraints();
                 gbc_lblfecha.insets = new Insets(0, 0, 5, 5);
                 gbc_lblfecha.gridx = 3;
                 gbc_lblfecha.gridy = 5;
                 add(lblfecha, gbc_lblfecha);
                 
-                JLabel lblGuion_2_1 = new JLabel("-");
-                GridBagConstraints gbc_lblGuion_2_1 = new GridBagConstraints();
-                gbc_lblGuion_2_1.insets = new Insets(0, 0, 5, 5);
-                gbc_lblGuion_2_1.gridx = 4;
-                gbc_lblGuion_2_1.gridy = 5;
-                add(lblGuion_2_1, gbc_lblGuion_2_1);
-                
-                JLabel lblcometario = new JLabel(this.compra.getComentario());
-                GridBagConstraints gbc_lblcometario = new GridBagConstraints();
-                gbc_lblcometario.insets = new Insets(0, 0, 5, 5);
-                gbc_lblcometario.gridx = 5;
-                gbc_lblcometario.gridy = 5;
-                add(lblcometario, gbc_lblcometario);
-                
-                JLabel lblGuion_2_4 = new JLabel("-");
-                GridBagConstraints gbc_lblGuion_2_4 = new GridBagConstraints();
-                gbc_lblGuion_2_4.insets = new Insets(0, 0, 5, 5);
-                gbc_lblGuion_2_4.gridx = 6;
-                gbc_lblGuion_2_4.gridy = 5;
-                add(lblGuion_2_4, gbc_lblGuion_2_4);
-                
-                JLabel lblTipoGasto = new JLabel((this.compra.getTipoC()));
-                GridBagConstraints gbc_lblTipoGasto = new GridBagConstraints();
-                gbc_lblTipoGasto.insets = new Insets(0, 0, 5, 5);
-                gbc_lblTipoGasto.gridx = 7;
-                gbc_lblTipoGasto.gridy = 5;
-                add(lblTipoGasto, gbc_lblTipoGasto);
-                
-                
-                
+       
                 JLabel lblGuion_2_3 = new JLabel("-");
                 GridBagConstraints gbc_lblGuion_2_3 = new GridBagConstraints();
                 gbc_lblGuion_2_3.insets = new Insets(0, 0, 5, 5);
                 gbc_lblGuion_2_3.gridx = 4;
-                gbc_lblGuion_2_3.gridy = 6;
+                gbc_lblGuion_2_3.gridy = 5;
                 add(lblGuion_2_3, gbc_lblGuion_2_3);
                 
-                JLabel lblCodigoMovimiento = new JLabel(String.valueOf(this.compra.getCodigoMovimiento()));
+                JLabel lblNombreProfesor = new JLabel(this.extra.getNombreProfesor());
+                GridBagConstraints gbc_lblNombreProfesor = new GridBagConstraints();
+                gbc_lblNombreProfesor.insets = new Insets(0, 0, 5, 5);
+                gbc_lblNombreProfesor.gridx = 5;
+                gbc_lblNombreProfesor.gridy = 5;
+                add(lblNombreProfesor, gbc_lblNombreProfesor);
+                
+                JLabel lblGuion_2_3_3 = new JLabel("-");
+                GridBagConstraints gbc_lblGuion_2_3_3 = new GridBagConstraints();
+                gbc_lblGuion_2_3_3.insets = new Insets(0, 0, 5, 5);
+                gbc_lblGuion_2_3_3.gridx = 6;
+                gbc_lblGuion_2_3_3.gridy = 5;
+                add(lblGuion_2_3_3, gbc_lblGuion_2_3_3);
+                
+                JLabel lblclase = new JLabel(this.extra.getClaseC());
+                GridBagConstraints gbc_lblclase = new GridBagConstraints();
+                gbc_lblclase.insets = new Insets(0, 0, 5, 5);
+                gbc_lblclase.gridx = 7;
+                gbc_lblclase.gridy = 5;
+                add(lblclase, gbc_lblclase);
+                
+                JLabel lbldiaSemana = new JLabel(this.extra.getDiasSemanaD());
+                GridBagConstraints gbc_lbldiaSemana = new GridBagConstraints();
+                gbc_lbldiaSemana.insets = new Insets(0, 0, 5, 5);
+                gbc_lbldiaSemana.gridx = 3;
+                gbc_lbldiaSemana.gridy = 6;
+                add(lbldiaSemana, gbc_lbldiaSemana);
+                
+                JLabel lblGuion_2_3_2 = new JLabel("-");
+                GridBagConstraints gbc_lblGuion_2_3_2 = new GridBagConstraints();
+                gbc_lblGuion_2_3_2.insets = new Insets(0, 0, 5, 5);
+                gbc_lblGuion_2_3_2.gridx = 4;
+                gbc_lblGuion_2_3_2.gridy = 6;
+                add(lblGuion_2_3_2, gbc_lblGuion_2_3_2);
+                
+                JLabel lblCodigoMovimiento = new JLabel(String.valueOf(this.extra.getCodigoMovimiento()));
                 GridBagConstraints gbc_lblCodigoMovimiento = new GridBagConstraints();
                 gbc_lblCodigoMovimiento.insets = new Insets(0, 0, 5, 5);
                 gbc_lblCodigoMovimiento.gridx = 5;
                 gbc_lblCodigoMovimiento.gridy = 6;
                 add(lblCodigoMovimiento, gbc_lblCodigoMovimiento);
                 
-                JLabel lblGuion_2 = new JLabel("-");
-                GridBagConstraints gbc_lblGuion_2 = new GridBagConstraints();
-                gbc_lblGuion_2.insets = new Insets(0, 0, 5, 5);
-                gbc_lblGuion_2.gridx = 4;
-                gbc_lblGuion_2.gridy = 4;
-                add(lblGuion_2, gbc_lblGuion_2);
-              
+                
+                
+                
+                
                 
         
                

@@ -19,9 +19,9 @@ import clases.Usuario;
 import elementosVisuales.BotonAzul;
 import elementosVisuales.BotonRojo;
 import elementosVisuales.BotonVerde;
+import enums.TipoCompra;
 import exepciones.ContraseniaIncorrectaException;
 import exepciones.UsuarioNoExisteException;
-
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -35,7 +35,6 @@ import javax.swing.JRadioButton;
 import javax.swing.JList;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-import enums.TipoCompra;
 
 public class PantallaCompra extends JPanel {
 	;

@@ -15,6 +15,7 @@ import java.awt.Font;
 
 import javax.swing.border.EmptyBorder;
 
+import clases.Servicio;
 import clases.Usuario;
 import elementosVisuales.BotonAzul;
 import elementosVisuales.BotonRojo;
@@ -29,6 +30,8 @@ import javax.swing.JPasswordField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.time.LocalDate;
+
 import javax.swing.JRadioButton;
 import javax.swing.JList;
 import javax.swing.JComboBox;
@@ -44,7 +47,7 @@ public class PantallaServicio extends JPanel {
 	private JTextField campoNombre;
 	private JTextField campoImporte;
 	private JTextField campoFecha;
-	private JTextField campoNombreprofesor;
+	private JTextField campoNombreTrabajador;
 	private JTextField textField;
 	private JTextField campoCodigoMovimiento;
 
@@ -90,10 +93,13 @@ public class PantallaServicio extends JPanel {
 		add(Fijo);
 		
 		
-		JRadioButton siFijo = new JRadioButton("pulsar si es fijo");
+		final JRadioButton siFijo = new JRadioButton("pulsar si es fijo");
 		siFijo.setBounds(472, 237, 117, 23);
 		add(siFijo);
-
+		
+		final JRadioButton noFijo = new JRadioButton("pulsar si no es  fijo");
+		noFijo.setBounds(606, 237, 117, 23);
+		add(noFijo);
 		
 		JLabel Nombre_2 = new JLabel("Importe");
 		Nombre_2.setToolTipText("");
@@ -123,10 +129,10 @@ public class PantallaServicio extends JPanel {
 		NombreTrabajador.setBounds(276, 336, 172, 23);
 		add(NombreTrabajador);
 		
-		campoNombreprofesor = new JTextField();
-		campoNombreprofesor.setColumns(10);
-		campoNombreprofesor.setBounds(470, 337, 119, 20);
-		add(campoNombreprofesor);
+		campoNombreTrabajador = new JTextField();
+		campoNombreTrabajador.setColumns(10);
+		campoNombreTrabajador.setBounds(470, 337, 119, 20);
+		add(campoNombreTrabajador);
 		
 		JComboBox CBx_Clases = new JComboBox();
 		
@@ -149,27 +155,84 @@ public class PantallaServicio extends JPanel {
 		add(text_DiasSemana);
 		
 		
-		JComboBox comboBox_DiasSeman = new JComboBox();
+		final JComboBox comboBox_DiasSeman = new JComboBox();
 		comboBox_DiasSeman.setModel(new DefaultComboBoxModel(DiasSemana.values()));
 		comboBox_DiasSeman.setToolTipText("");
 		comboBox_DiasSeman.setBounds(472, 377, 117, 22);
 		add(comboBox_DiasSeman);
 		
 		JButton Rejistrar = new BotonVerde("Rejistrar");
+		Rejistrar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				try {
+					String nombre=campoNombre.getText();
+					
+					boolean importeFijo=true;
+					
+		            if (siFijo.isSelected()) {
+		            	importeFijo=true;
+		                
+		            }
+		            else if(noFijo.isSelected()) {
+		            	importeFijo =false;
+		            }
+					float importe=Float.parseFloat(campoImporte.getText());
+					String fechaEnTexto=campoFecha.getText();
+					String[] fechaPartida=fechaEnTexto.split("/");
+					LocalDate fecha=
+			                LocalDate.of(Integer.parseInt(fechaPartida[2]),
+			                                Integer.parseInt(fechaPartida[1]),
+			                                Integer.parseInt(fechaPartida[0]));
+					String nombreTrabajador=campoNombreTrabajador.getText();
+					DiasSemana dias=(DiasSemana)comboBox_DiasSeman.getSelectedItem();
+					int codigoMovimiento=Integer.parseInt(campoCodigoMovimiento.getText());
+					
+					
+						new Servicio(nombre,importeFijo,importe,fecha,nombreTrabajador,dias,codigoMovimiento);
+						 JOptionPane.showMessageDialog(ventana,"Registro ok","Resgitro completado",JOptionPane.PLAIN_MESSAGE);	
+					} catch (SQLException e1) {
+						System.out.println(e1);
+						e1.printStackTrace();
+						JOptionPane.showMessageDialog(
+				                ventana,e1.getMessage(),"Error",
+				                JOptionPane.ERROR_MESSAGE);
+					} catch (ArrayIndexOutOfBoundsException e1) {
+		                JOptionPane.showMessageDialog(ventana, "Formato erroneo, debe ser dd/mm/yyyy","error",JOptionPane.ERROR_MESSAGE);
+						
+					}
+					
+						}
+						
+				
+				
+				
+				
+			
+		});
 		Rejistrar.setBounds(561, 461, 103, 27);
 		add(Rejistrar);
 		
-		JRadioButton noFijo = new JRadioButton("pulsar si no es  fijo");
-		noFijo.setBounds(606, 237, 117, 23);
-		add(noFijo);
-		
-		
+	
+		JButton botonListaServicios = new BotonAzul("Lista Servicios");
+		botonListaServicios.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarPantalla("listaServicio");
+				
+			}
+		});
+		botonListaServicios.setBounds(52, 447, 140, 23);
+		add(botonListaServicios);
 		
 		JLabel fondo = new JLabel("");
 		fondo.setToolTipText("LUNES\r\nMARTES\r\nMIERCOLES\r\nJUEVES\r\nVIERNES\r\nSAVADO");
 		fondo.setIcon(new ImageIcon("B:\\Xamp\\htdocs\\REPOSITOS\\ProyectoFinal1DamAlexLopez\\fondos\\VentanaGastos_de_casa_API.jpg"));
 		fondo.setBounds(20, -16, 891, 499);
 		add(fondo);
+		
+	
 		
 		
 		

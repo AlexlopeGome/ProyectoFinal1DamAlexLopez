@@ -42,7 +42,7 @@ public class Ventana extends JFrame{
         case "inicio":
             this.pantallaActual=new PantallaInicio(this);
             break;
-        case "principal":
+        case "Principal":
             this.pantallaActual=new PantallaPrincipal(this);
             break;
         case"usuario":
@@ -66,6 +66,15 @@ public class Ventana extends JFrame{
         case "listaExtra":
         	this.pantallaActual=new PantallaListaGastosExtra(this);
             break;
+            
+        case "listaExtraEscolar":
+        	this.pantallaActual=new PantallaListaExtraEscolar(this);
+            break;
+            
+        case "listaServicio":
+        	this.pantallaActual=new PantallaListaServicio(this);
+            break;
+            
             
         case "login":
         	this.pantallaActual=new PantallaLogin(this);

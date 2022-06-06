@@ -6,7 +6,7 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import utils.UtilsDB;
+import Utils.UtilsDB;
 
 public class GastoExtra extends Gastos {
 
@@ -31,6 +31,7 @@ public class GastoExtra extends Gastos {
 		this.importeFijo = importeFijo;
 		this.importe = importe;
 		this.fecha = fecha;
+		this.codigoMovimiento=codigoMovimiento;
 		
 		
 	}else {
@@ -57,7 +58,7 @@ UtilsDB.desconectarBD();
 			importeFijo = datosDevueltos.getBoolean("importeFijo");
 			importe=datosDevueltos.getFloat("importe");
 			fecha = datosDevueltos.getDate("fecha").toLocalDate();
-			
+			codigoMovimiento=datosDevueltos.getInt(codigoMovimiento);
 			
 			
 		}else {
@@ -107,7 +108,7 @@ UtilsDB.desconectarBD();
 	    			actual.importe = cursor.getFloat("importe");
 	    			actual.fecha=cursor.getDate("fecha").toLocalDate();
 	    			actual.fecha = cursor.getDate("fecha").toLocalDate();
-	    
+	    			actual.codigoMovimiento=cursor.getInt("codigoMovimiento");
 	                
 					 			
 	    			

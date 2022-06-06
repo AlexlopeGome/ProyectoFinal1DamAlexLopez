@@ -22,7 +22,6 @@ import elementosVisuales.BotonVerde;
 import exepciones.ContraseniaIncorrectaException;
 import exepciones.UsuarioNoExisteException;
 
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;

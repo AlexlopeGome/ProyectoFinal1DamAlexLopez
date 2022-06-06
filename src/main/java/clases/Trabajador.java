@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 import javax.swing.ComboBoxModel;
 
+import Utils.UtilsDB;
 import enums.TipoActividadDesenpeniada;
-import utils.UtilsDB;
 
 public class Trabajador extends EntidadConNombre {
 
@@ -24,7 +24,7 @@ public Trabajador(String nombre, int telefono, TipoActividadDesenpeniada activi)
 	
 	
 	if(query.executeUpdate(
-			"insert into Trabajador values('"+nombre+"',"+telefono+",'"+activi+"')") > 0) {
+			"insert into Trabajador values('"+nombre+"','"+activi+"',"+telefono+")") > 0) {
 				System.out.println("Trabajador inserado con exito");
 				//Si la inserción en BD ha colado, ya podemos modificar las
 				//Variables internas con la tranquilidad de que en BD

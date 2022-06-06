@@ -13,19 +13,17 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-
-import clases.Trabajador;
-
-import elementosVisuales.BotonRojo;
-import elementosVisuales.BotonVerde;
-
-import pantallas.Ventana;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+
+import clases.Trabajador;
+import elementosVisuales.BotonRojo;
+import elementosVisuales.BotonVerde;
 import enums.TipoActividadDesenpeniada;
 import exepciones.ContraseniaVaciaException;
 import exepciones.CorreoInvalidoException;
 import exepciones.NickInvalidoExceptions;
+import pantallas.Ventana;
 
 public class EmergenteEditarTrabajador extends JDialog {
 

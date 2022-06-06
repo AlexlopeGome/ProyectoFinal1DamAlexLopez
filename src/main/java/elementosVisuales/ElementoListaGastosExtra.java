@@ -19,12 +19,14 @@ import javax.swing.border.EtchedBorder;
 
 import clases.Compra;
 import clases.EntidadConNombre;
+import clases.ExtraEscolar;
 import clases.GastoExtra;
 import clases.Trabajador;
 import clases.Usuario;
 import dialogoEmergentes.EmergenteEditarTrabajador;
 import dialogoEmergentes.EmergenteEditarUsuario;
 import pantallas.Ventana;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -62,7 +64,7 @@ public class ElementoListaGastosExtra extends JPanel{
                         gbc_lblNick.gridy = 2;
                         add(lblNick, gbc_lblNick);
                 
-                        JButton btnBorrarUsuario = new JButton("Borrar Compra");
+                        JButton btnBorrarUsuario = new JButton("Borrar Gastos Extra");
                         btnBorrarUsuario.addMouseListener(new MouseAdapter() {
                             @Override
                             public void mouseClicked(MouseEvent e) {
@@ -128,6 +130,8 @@ public class ElementoListaGastosExtra extends JPanel{
                 gbc_lblGuion_2_3.gridy = 5;
                 add(lblGuion_2_3, gbc_lblGuion_2_3);
                 
+                
+              
                 JLabel lblCodigoMovimiento = new JLabel(String.valueOf(this.extra.getCodigoMovimiento()));
                 GridBagConstraints gbc_lblCodigoMovimiento = new GridBagConstraints();
                 gbc_lblCodigoMovimiento.insets = new Insets(0, 0, 5, 5);
@@ -143,5 +147,6 @@ public class ElementoListaGastosExtra extends JPanel{
 
 	
 }
+
 
 
