@@ -41,7 +41,7 @@ Statement query=UtilsDB.conectarBD();
 			this.codigoMovimiento=codigoMovimiento;
 			
 		}else {
-			throw new SQLException("No se ha podido insertar el usuario");
+			throw new SQLException("No se ha podido insertar la Compra");
 		}
 	UtilsDB.desconectarBD();
 		
@@ -113,7 +113,7 @@ public boolean eliminarCompra() {
 
         nombre=null;
         this.importeFijo = null != null;
-		this.importe = (Float) null;
+		this.importe =0;
 		this.fecha = null;
 		this.tipoC = null;
 		this.comentario = null;
@@ -144,7 +144,6 @@ public static ArrayList<Compra> getTodasCompras(){
 				actual.importeFijo = cursor.getBoolean("importeFijo");
     			actual.importe = cursor.getFloat("importe");
     			actual.fecha=cursor.getDate("fecha").toLocalDate();
-    			actual.fecha = cursor.getDate("fecha").toLocalDate();
     			actual.tipoC=cursor.getString("tipoCompras");
     			actual.comentario= cursor.getString("comentario");
     			actual.codigoMovimiento=cursor.getInt("codigoMovimiento");

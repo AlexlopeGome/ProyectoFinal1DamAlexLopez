@@ -36,7 +36,6 @@ public class PantallaPrestamo extends JPanel {
 	private JTextField campoNombre;
 	private JTextField campoImporte;
 	private JTextField campoFecha;
-	private JTextField campoNombreprofesor;
 	private JTextField textField;
 	private JTextField campoCodigoMovimiento;
 	private JTextField campoPorcentaje;
@@ -118,37 +117,26 @@ public class PantallaPrestamo extends JPanel {
 		campoFecha.setColumns(10);
 		campoFecha.setBounds(450, 306, 117, 20);
 		add(campoFecha);
-		
-		JLabel NombreProfesor = new JLabel("Nombre Profesor");
-		NombreProfesor.setToolTipText("");
-		NombreProfesor.setFont(new Font("Tahoma", Font.BOLD, 17));
-		NombreProfesor.setBounds(276, 336, 146, 23);
-		add(NombreProfesor);
-		
-		campoNombreprofesor = new JTextField();
-		campoNombreprofesor.setColumns(10);
-		campoNombreprofesor.setBounds(448, 337, 119, 20);
-		add(campoNombreprofesor);
 
 		JLabel codigoMovimiento = new JLabel("CodigoMovimiento");
 		codigoMovimiento.setToolTipText("");
 		codigoMovimiento.setFont(new Font("Tahoma", Font.BOLD, 17));
-		codigoMovimiento.setBounds(227, 462, 180, 23);
+		codigoMovimiento.setBounds(239, 418, 180, 23);
 		add(codigoMovimiento);
 		
 		campoCodigoMovimiento = new JTextField();
 		campoCodigoMovimiento.setColumns(10);
-		campoCodigoMovimiento.setBounds(417, 462, 43, 20);
+		campoCodigoMovimiento.setBounds(450, 422, 43, 20);
 		add(campoCodigoMovimiento);
 		
 		JLabel FechaFin = new JLabel("Fecha Fin");
 		FechaFin.setToolTipText("");
 		FechaFin.setFont(new Font("Tahoma", Font.BOLD, 17));
-		FechaFin.setBounds(276, 404, 117, 23);
+		FechaFin.setBounds(276, 370, 117, 23);
 		add(FechaFin);
 		
 		campoFechaFin = new JTextField();
-		campoFechaFin.setBounds(450, 405, 86, 20);
+		campoFechaFin.setBounds(450, 368, 86, 20);
 		add(campoFechaFin);
 		campoFechaFin.setColumns(10);
 		
@@ -156,11 +144,11 @@ public class PantallaPrestamo extends JPanel {
 		JLabel Porcentaje = new JLabel("Porcentaje");
 		Porcentaje.setToolTipText("");
 		Porcentaje.setFont(new Font("Tahoma", Font.BOLD, 17));
-		Porcentaje.setBounds(276, 370, 117, 23);
+		Porcentaje.setBounds(276, 336, 117, 23);
 		add(Porcentaje);
 		
 		campoPorcentaje = new JTextField();
-		campoPorcentaje.setBounds(450, 368, 86, 20);
+		campoPorcentaje.setBounds(450, 337, 86, 20);
 		add(campoPorcentaje);
 		campoPorcentaje.setColumns(10);
 		
@@ -205,7 +193,7 @@ public class PantallaPrestamo extends JPanel {
 			
 					
 					int codigoMovimiento=Integer.parseInt(campoCodigoMovimiento.getText());
-					
+				
 				
 						new clases.Prestamo(nombre,importeFijo,importe,fecha,porcentaje,fechaFin,codigoMovimiento);
 						 JOptionPane.showMessageDialog(ventana,"Registro ok","Resgitro completado",JOptionPane.PLAIN_MESSAGE);
@@ -229,12 +217,22 @@ public class PantallaPrestamo extends JPanel {
 		JLabel fondo = new JLabel("");
 		fondo.setToolTipText("");
 		
+		JButton ListadoPestamo = new BotonAzul("Listado Prestamo");
+		ListadoPestamo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarPantalla("listaPrestamo");
+			}
+		});
+		ListadoPestamo.setBounds(22, 355, 153, 23);
+		add(ListadoPestamo);
 		
 		
 		
 		fondo.setIcon(new ImageIcon("B:\\Xamp\\htdocs\\REPOSITOS\\ProyectoFinal1DamAlexLopez\\fondos\\VentanaGastos_de_casa_API.jpg"));
 		fondo.setBounds(-23, 11, 891, 499);
 		add(fondo);
+		
 		
 		
 		

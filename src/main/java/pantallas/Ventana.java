@@ -62,7 +62,9 @@ public class Ventana extends JFrame{
         case "listaCompras":
         	this.pantallaActual=new PantallaListaCompras(this);
             break;
-            
+        case "listaIngresos":
+        	this.pantallaActual=new PantallaListaIngresos(this);
+            break;
         case "listaExtra":
         	this.pantallaActual=new PantallaListaGastosExtra(this);
             break;
@@ -74,7 +76,9 @@ public class Ventana extends JFrame{
         case "listaServicio":
         	this.pantallaActual=new PantallaListaServicio(this);
             break;
-            
+        case "listaPrestamo":
+        	this.pantallaActual=new PantallaListaPrestamo(this);
+            break;
             
         case "login":
         	this.pantallaActual=new PantallaLogin(this);
@@ -84,7 +88,9 @@ public class Ventana extends JFrame{
     	case "queHacer":
     	this.pantallaActual=new QueHacer(this);
         break;    
-    	
+    	case "ingresos":
+        	this.pantallaActual=new PantallaIngreso(this);
+            break; 
         
     	case "gastos":
     	this.pantallaActual=new PantallaGastos(this);

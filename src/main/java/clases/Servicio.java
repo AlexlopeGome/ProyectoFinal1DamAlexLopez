@@ -35,7 +35,7 @@ public Servicio (String nombre, boolean importeFijo, float importe, LocalDate fe
 		Statement query=UtilsDB.conectarBD();
 		if(query.executeUpdate(
 		"insert into Servicio values('"+nombre+"',"+importeFijo+","+importe+",'"+ fecha + "','"+ nombreTrabajador+"','"+diasSemanaD+"',"+codigoMovimiento+")") > 0) {
-			System.out.println("SErvicio inserado con exito");
+			System.out.println("Servicio inserado con exito");
 	
 		this.nombre=nombre;
 		this.importeFijo=importeFijo;

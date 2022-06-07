@@ -45,6 +45,12 @@ public class QueHacer extends JPanel {
 		add(lblNewLabel);
 		
 		JButton botonIngresos = new BotonVerde("Ingresos");
+		botonIngresos.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarPantalla("ingresos");
+			}
+		});
 		botonIngresos.setFont(new Font("Dialog", Font.PLAIN, 20));
 		botonIngresos.setBounds(275, 317, 114, 37);
 		add(botonIngresos);

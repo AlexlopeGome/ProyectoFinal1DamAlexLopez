@@ -1,8 +1,10 @@
 package clases;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import Utils.UtilsDB;
 
@@ -19,7 +21,7 @@ public Prestamo(String nombre, boolean importeFijo, float importe, LocalDate fec
 		Statement query=UtilsDB.conectarBD();
 		if(query.executeUpdate(
 		"insert into Prestamo values('"+nombre+"',"+importeFijo+","+importe+",'"+ fecha + "',"+ porcentajeInteres+",'"+fechaFin+"',"+codigoMovimiento+")") > 0) {
-			System.out.println("Actividad extraescolar inserada con exito");
+			System.out.println("Prestamo inserada con exito");
 		
 		this.nombre=nombre;
 		this.importeFijo=importeFijo;
@@ -38,7 +40,71 @@ public Prestamo(String nombre, boolean importeFijo, float importe, LocalDate fec
 	}
 
 
+Prestamo(){
+	
+}
 
+@SuppressWarnings("null")
+public boolean eliminarPrestamo() {
+    Statement smt = UtilsDB.conectarBD();
+    boolean ret;
+ 
+    try {
+        ret = smt.executeUpdate("delete from Prestamo where nombre='" + nombre + "'") > 0;
+
+		this.nombre=null;
+		this.importeFijo=null != null;
+		this.importe=0;
+		this.fecha=null;
+		this.porcentajeInteres=null;
+		this.fechaFin=null;
+		this.codigoMovimiento=0;
+        
+        
+        
+    } catch (SQLException e) {
+        // e.printStackTrace();
+        UtilsDB.desconectarBD();
+        return false;
+    }
+    UtilsDB.desconectarBD();
+    return ret;
+}
+public static ArrayList<Prestamo> getTodosprestamo(){
+	Statement smt=UtilsDB.conectarBD();
+//Inicializamos un ArrayList para devolver
+		ArrayList<Prestamo> ret=new ArrayList<Prestamo>();
+		
+		try {
+			
+			ResultSet cursor=smt.executeQuery("select * from Prestamo");
+			while(cursor.next()) {
+		
+				Prestamo actual=new Prestamo();
+				
+				actual.nombre=cursor.getString("nombre");
+				actual.importeFijo = cursor.getBoolean("importeFijo");
+    			actual.importe = cursor.getFloat("importe");
+    			actual.fecha=cursor.getDate("fecha").toLocalDate();
+    			actual.porcentajeInteres=cursor.getFloat("porcentaje");
+    			actual.fechaFin = cursor.getDate("fecha").toLocalDate();
+    			actual.codigoMovimiento=cursor.getInt("codigoMovimiento");
+        
+				ret.add(actual);
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+		UtilsDB.desconectarBD();
+		//Si no hay usuarios en la tabla, va a devolver un arraylist vacío
+		//Si la consulta fué erronea, se devuelve un ArrayList null, que son cosas distintas
+		return ret;
+
+}
 
 
 public Float getPorcentajeInteres() {

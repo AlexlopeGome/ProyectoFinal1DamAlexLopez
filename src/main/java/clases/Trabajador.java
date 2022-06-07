@@ -33,7 +33,7 @@ public Trabajador(String nombre, int telefono, TipoActividadDesenpeniada activi)
 				this.telefono = telefono;
 				this.actividadDesempeñada = actividadDesempeñada;;
 			}else {
-				throw new SQLException("No se ha podido insertar el usuario");
+				throw new SQLException("No se ha podido insertar el Trabajador");
 				
 			}
 			
@@ -113,7 +113,7 @@ public boolean eliminarTrabajador() {
     boolean ret;
  
     try {
-        ret = smt.executeUpdate("delete from Trabajador where nombre='" + nombre + "'") > 0;
+        ret = smt.executeUpdate("delete  from Trabajador where nombre='" + nombre + "'") > 0;
 
         this.nombre=null;
         this.telefono =0;

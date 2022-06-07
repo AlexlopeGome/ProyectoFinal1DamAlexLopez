@@ -84,13 +84,13 @@ public class ExtraEscolar extends Gastos{
 	        ret = smt.executeUpdate("delete from extraEscolar where nombre='" + nombre + "'") > 0;
 
 	        this.nombre=null;
-			this.importeFijo=(Boolean) null;
-			this.importe=(Float) null;
+			this.importeFijo=false;
+			this.importe= 0;
 			this.fecha=null;
 			this.nombreProfesor=null;
 			this.clase = null;
 			this.diasSemana = null;
-			this.codigoMovimiento=(Integer) null;
+			this.codigoMovimiento=0;
 			
 	        
 	        

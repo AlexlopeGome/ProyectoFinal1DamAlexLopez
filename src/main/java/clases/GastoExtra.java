@@ -73,11 +73,11 @@ UtilsDB.desconectarBD();
 	    boolean ret;
 	 
 	    try {
-	        ret = smt.executeUpdate("delete from GastoEtra where nombre='" + nombre + "'") > 0;
+	        ret = smt.executeUpdate("delete from GastoExtra where nombre='" + nombre + "'") > 0;
 
 	        nombre=null;
 	        this.importeFijo = null != null;
-			this.importe = (Float) null;
+			this.importe = 0;
 			this.fecha = null;
 			
 	        
@@ -107,7 +107,6 @@ UtilsDB.desconectarBD();
 					actual.importeFijo = cursor.getBoolean("importeFijo");
 	    			actual.importe = cursor.getFloat("importe");
 	    			actual.fecha=cursor.getDate("fecha").toLocalDate();
-	    			actual.fecha = cursor.getDate("fecha").toLocalDate();
 	    			actual.codigoMovimiento=cursor.getInt("codigoMovimiento");
 	                
 					 			
