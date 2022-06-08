@@ -1,6 +1,12 @@
 package clases;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.ArrayList;
+
+import Utils.UtilsDB;
 
 public class Gastos extends Movimiento  {
 
@@ -13,4 +19,6 @@ public class Gastos extends Movimiento  {
 		
 	}
 
+
+	
 }

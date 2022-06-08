@@ -23,9 +23,9 @@ telefono int(9)
 create table Prestamo(
 nombre varchar(200),
 importeFijo boolean,
-importe numeric(7,3),
+importe float(7,2),
 fecha date,
-porcentaje float(3,2),
+porcentaje float(7,2),
 fechafin date,
 codigoMovimiento int(3) primary Key
 
@@ -58,7 +58,11 @@ foreign key (nombreTrabajador) references Trabajador(nombre)
 
 
 create table tipoIngreso(
-tipoIngreso varchar(200) ,
+nombre varchar(200),
+importeFijo boolean,
+importe float(7,2),
+fecha date,
+tipoIngreso varchar(200),
 codigoMovimiento int(3)  primary key
 
 );
@@ -98,4 +102,11 @@ foreign key (codigoMovimiento) references Prestamo(codigoMovimiento),
 foreign key (codigoMovimiento) references GastoExtra(codigoMovimiento)
 
 );
-select * from extraescolar
+/*CONSULTA Q DEVUELVE LA SUMA DE TODAS LAS COLUMNAS importe*/
+SELECT SUM(importe) FROM Compra;
+SELECT SUM(importe) FROM extraEscolar;
+SELECT SUM(importe) FROM Servicio;
+SELECT SUM(importe) FROM GastosExtra;
+SELECT SUM(importe) FROM Prestamo;
+
+SELECT SUM(importe) FROM tipoIngreso;

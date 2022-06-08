@@ -1,5 +1,8 @@
 package clases;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,8 +18,9 @@ public class Compra extends Gastos {
 	
 private TipoCompra tipo;
 private String tipoC;
-private String comentario;	
-	
+private String comentario;
+
+
 public Compra(String nombre, boolean importeFijo, float importe, LocalDate fecha,String comentario, TipoCompra tipoC,
 			int codigoMovimiento) throws SQLException {
 		super(nombre, importeFijo, importe, fecha, codigoMovimiento);
@@ -136,6 +140,7 @@ public static ArrayList<Compra> getTodasCompras(){
 		try {
 			
 			ResultSet cursor=smt.executeQuery("select * from compra");
+			
 			while(cursor.next()) {
 		
 				Compra actual=new Compra();
@@ -148,8 +153,6 @@ public static ArrayList<Compra> getTodasCompras(){
     			actual.comentario= cursor.getString("comentario");
     			actual.codigoMovimiento=cursor.getInt("codigoMovimiento");
                 
-				 			
-    			
     			
     			
     			
@@ -167,9 +170,27 @@ public static ArrayList<Compra> getTodasCompras(){
 		//Si la consulta fué erronea, se devuelve un ArrayList null, que son cosas distintas
 		return ret;
 
+	
+		
 }
 
-
+public static void imprimeInforme() throws IOException {
+	File archivo = new File("./ticket.txt");
+    if (archivo.exists()) {
+        archivo.delete();
+    }
+    archivo.createNewFile();
+    FileWriter escritor = new FileWriter(archivo,true);
+    ArrayList<Compra> informe=getTodasCompras();
+    
+    for (int i=0 ;i<informe.size();i++) {
+    	escritor.write(informe.get(i).getNombre());
+      	escritor.write(""+ informe.get(i).getImporte());
+    	
+    }
+    escritor.flush();
+    escritor.close();
+}
 
 @Override
 public String toString() {
