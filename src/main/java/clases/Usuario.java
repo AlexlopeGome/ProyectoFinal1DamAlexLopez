@@ -74,7 +74,7 @@ public class Usuario extends EntidadConNombre {
 	}
 
 	public Usuario(String nick) throws SQLException {
-		super(nick);
+		super();
 		
 		
 		Statement query=UtilsDB.conectarBD();
@@ -82,7 +82,7 @@ public class Usuario extends EntidadConNombre {
 		if(datosDevueltos.next()) {
 			
 			
-			nombre=datosDevueltos.getString("nombre");
+			this.nombre=datosDevueltos.getString("nombre");
 			this.apellidos = datosDevueltos.getString("apellidos");
 			this.fechaNacimiento = datosDevueltos.getDate("fechaNacimiento").toLocalDate();
 			this.contrasenia=datosDevueltos.getString("contrasenia");
@@ -97,7 +97,7 @@ public class Usuario extends EntidadConNombre {
 		}
 	}
 	public Usuario(String nick, String contrasenia) throws ContraseniaIncorrectaException, UsuarioNoExisteException, SQLException {
-		super(nick);
+		super();
 		
 		  Statement smt=UtilsDB.conectarBD();
 

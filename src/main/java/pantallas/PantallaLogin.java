@@ -96,7 +96,7 @@ public class PantallaLogin extends JPanel {
 							JOptionPane.showMessageDialog(ventana,e1.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
 							
 						} catch (UsuarioNoExisteException e1) {
-												
+							JOptionPane.showMessageDialog(ventana,e1.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);					
 													}
 
 						}

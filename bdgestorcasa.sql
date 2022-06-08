@@ -79,11 +79,7 @@ codigoMovimiento int(3)  primary key
 
 
 
-create table Ingresos(
-codigoMovimiento int(3)  primary key,
-foreign key (codigoMovimiento) references tipoIngreso(codigoMovimiento)
 
-);
 create table GastoExtra(
 nombre varchar (200),
 importeFijo boolean,
@@ -93,20 +89,3 @@ codigoMovimiento  int(3)  primary key
 );
 
 
-create table Gastos(
-codigoMovimiento int(3) primary key,
-foreign key (codigoMovimiento) references Compra(codigoMovimiento),
-foreign key (codigoMovimiento) references Extraescolar(codigoMovimiento),
-foreign key (codigoMovimiento) references Servicio(codigoMovimiento),
-foreign key (codigoMovimiento) references Prestamo(codigoMovimiento),
-foreign key (codigoMovimiento) references GastoExtra(codigoMovimiento)
-
-);
-/*CONSULTA Q DEVUELVE LA SUMA DE TODAS LAS COLUMNAS importe*/
-SELECT SUM(importe) FROM Compra;
-SELECT SUM(importe) FROM extraEscolar;
-SELECT SUM(importe) FROM Servicio;
-SELECT SUM(importe) FROM GastosExtra;
-SELECT SUM(importe) FROM Prestamo;
-
-SELECT SUM(importe) FROM tipoIngreso;
