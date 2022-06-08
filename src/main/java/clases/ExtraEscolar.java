@@ -1,5 +1,8 @@
 package clases;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -144,7 +147,28 @@ public class ExtraEscolar extends Gastos{
 
 	}
 
-	
+	public static void imprimeInforme() throws IOException {
+		File archivo = new File("./Informes/InformeExtraescolar.txt");
+	    if (archivo.exists()) {
+	        archivo.delete();
+	    }
+	    archivo.createNewFile();
+	    FileWriter escritor = new FileWriter(archivo,true);
+	    ArrayList<ExtraEscolar> informe=getTodosExtraEscolar();
+	    
+	    for (int i=0 ;i<informe.size();i++) {
+	    	escritor.write(" -- ");;
+	    	escritor.write("Nombre. "+informe.get(i).getNombre());
+	      	escritor.write(" Importe. "+ informe.get(i).getImporte());
+	      	escritor.write(" Tipo Clase. "+informe.get(i).getClaseC());
+	      	escritor.write("Dias de la Semana. "+informe.get(i).getDiasSemanaD());
+	      	escritor.write("Profesor. "+informe.get(i).getNombreProfesor());
+	    }
+	    escritor.flush();
+	    escritor.close();
+	}
+
+
 	
 	
 	

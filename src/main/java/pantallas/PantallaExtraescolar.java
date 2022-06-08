@@ -30,6 +30,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
@@ -64,7 +65,7 @@ public class PantallaExtraescolar extends JPanel {
 			
 		
 		});
-		botonAtras.setBounds(10, 405, 89, 23);
+		botonAtras.setBounds(10, 390, 89, 23);
 		add(botonAtras);
 		
 		JLabel ExtraEscolar = new JLabel("ExtaEscolar");
@@ -215,13 +216,21 @@ public class PantallaExtraescolar extends JPanel {
 		
 		
 		JButton btnlistaExtraEscolar = new BotonAzul("Lista ExtraEscolar");
+		btnlistaExtraEscolar.setFont(new Font("Dialog", Font.PLAIN, 13));
+		btnlistaExtraEscolar.setText("Lista ExtraEscolar y Informe.txt ");
 		btnlistaExtraEscolar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				try {
+					clases.ExtraEscolar.imprimeInforme();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				ventana.cambiarPantalla("listaExtraEscolar");
 			}
 		});
-		btnlistaExtraEscolar.setBounds(10, 446, 163, 23);
+		btnlistaExtraEscolar.setBounds(10, 433, 219, 23);
 		add(btnlistaExtraEscolar);
 		
 		

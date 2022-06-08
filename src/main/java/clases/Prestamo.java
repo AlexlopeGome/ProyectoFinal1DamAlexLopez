@@ -1,5 +1,8 @@
 package clases;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -104,6 +107,26 @@ public static ArrayList<Prestamo> getTodosprestamo(){
 		//Si la consulta fué erronea, se devuelve un ArrayList null, que son cosas distintas
 		return ret;
 
+}
+public static void imprimeInforme() throws IOException {
+	File archivo = new File("./Informes/InformeCompras.txt");
+    if (archivo.exists()) {
+        archivo.delete();
+    }
+    archivo.createNewFile();
+    FileWriter escritor = new FileWriter(archivo,true);
+    ArrayList<Prestamo> informe=getTodosprestamo();
+    
+    for (int i=0 ;i<informe.size();i++) {
+    	escritor.write(" -- ");;
+    	escritor.write("Nombre. "+informe.get(i).getNombre());
+      	escritor.write(" Importe. "+ informe.get(i).getImporte());
+      	escritor.write("Porcentaje."+ informe.get(i).getPorcentajeInteres());
+      	escritor.write("Es Fijo. "+informe.get(i).isImporteFijo());
+      
+    }
+    escritor.flush();
+    escritor.close();
 }
 
 

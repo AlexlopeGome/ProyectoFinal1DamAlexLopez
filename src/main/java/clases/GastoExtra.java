@@ -1,5 +1,8 @@
 package clases;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -130,7 +133,25 @@ UtilsDB.desconectarBD();
 
 	}
 
-	
+	public static void imprimeInforme() throws IOException {
+		File archivo = new File("./Informes/InformeGastosExtra.txt");
+	    if (archivo.exists()) {
+	        archivo.delete();
+	    }
+	    archivo.createNewFile();
+	    FileWriter escritor = new FileWriter(archivo,true);
+	    ArrayList<GastoExtra> informe=getTodosGastosExtra();
+	    
+	    for (int i=0 ;i<informe.size();i++) {
+	    	escritor.write(" -- ");;
+	    	escritor.write("Nombre. "+informe.get(i).getNombre());
+	      	escritor.write(" Importe. "+ informe.get(i).getImporte());
+	      	
+	    }
+	    escritor.flush();
+	    escritor.close();
+	}
+
 	
 
 }

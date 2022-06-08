@@ -62,7 +62,7 @@ public class PantallaCompra extends JPanel {
 			
 		
 		});
-		botonAtras.setBounds(10, 405, 89, 23);
+		botonAtras.setBounds(10, 372, 89, 23);
 		add(botonAtras);
 		
 		JLabel Compra = new JLabel("Compra");
@@ -219,8 +219,8 @@ public class PantallaCompra extends JPanel {
 				
 			}
 		});
-		botonListaCompras.setText("ListaCompras");
-		botonListaCompras.setBounds(60, 339, 132, 20);
+		botonListaCompras.setText("Lista Compras y Informe.txt");
+		botonListaCompras.setBounds(10, 407, 203, 20);
 		add(botonListaCompras);
 		
 		JLabel fondo = new JLabel("");

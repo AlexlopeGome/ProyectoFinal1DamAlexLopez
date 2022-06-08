@@ -175,7 +175,7 @@ public static ArrayList<Compra> getTodasCompras(){
 }
 
 public static void imprimeInforme() throws IOException {
-	File archivo = new File("./ticket.txt");
+	File archivo = new File("./Informes/InformeCompras.txt");
     if (archivo.exists()) {
         archivo.delete();
     }
@@ -184,9 +184,12 @@ public static void imprimeInforme() throws IOException {
     ArrayList<Compra> informe=getTodasCompras();
     
     for (int i=0 ;i<informe.size();i++) {
-    	escritor.write(informe.get(i).getNombre());
-      	escritor.write(""+ informe.get(i).getImporte());
-    	
+    	escritor.write(" -- ");;
+    	escritor.write("Nombre. "+informe.get(i).getNombre());
+      	escritor.write(" Importe. "+ informe.get(i).getImporte());
+      	escritor.write(" Tipo Compra. "+informe.get(i).getTipoC());
+      	escritor.write("Es Fijo. "+informe.get(i).isImporteFijo());
+      	escritor.write("Cometario. "+informe.get(i).getComentario());
     }
     escritor.flush();
     escritor.close();

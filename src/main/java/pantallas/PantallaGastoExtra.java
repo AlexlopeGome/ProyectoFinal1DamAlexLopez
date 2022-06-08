@@ -28,6 +28,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
@@ -60,7 +61,7 @@ public class PantallaGastoExtra extends JPanel {
 			
 		
 		});
-		botonAtras.setBounds(10, 405, 89, 23);
+		botonAtras.setBounds(10, 370, 89, 23);
 		add(botonAtras);
 		
 		JLabel GastoExtra = new JLabel("GastoExtra");
@@ -177,15 +178,22 @@ public class PantallaGastoExtra extends JPanel {
 		Rejistrar.setBounds(665, 403, 103, 27);
 		add(Rejistrar);
 		
-		JButton botonListaGastosExtra = new BotonAzul("Lista GastosExtra");
+		JButton botonListaGastosExtra = new BotonAzul("Lista GastosExtra y Informe.txt");
+		botonListaGastosExtra.setFont(new Font("Dialog", Font.PLAIN, 13));
 		botonListaGastosExtra.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				try {
+					clases.GastoExtra.imprimeInforme();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				ventana.cambiarPantalla("listaExtra");
 				
 			}
 		});
-		botonListaGastosExtra.setBounds(27, 339, 165, 23);
+		botonListaGastosExtra.setBounds(10, 424, 213, 23);
 		add(botonListaGastosExtra);
 		
 		JLabel fondo = new JLabel("");

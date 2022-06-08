@@ -52,12 +52,20 @@ public class PantallaListaGastosExtra extends JPanel {
         bontonAtras.setForeground(Color.BLACK);
         bontonAtras.setBackground(Color.CYAN);
         add(bontonAtras, BorderLayout.SOUTH);
+        
+        JLabel lblTotal = new JLabel("New label");
+        add(lblTotal, BorderLayout.EAST);
 
         ArrayList<GastoExtra> todos=GastoExtra.getTodosGastosExtra();
-
+        float precioTotal=0;
         for(int i=0;i<todos.size();i++) {
             listaUsuarios.add(new ElementoListaGastosExtra(ventana, todos.get(i)));
+            precioTotal=precioTotal + todos.get(i).getImporte();
         }
 
+        JLabel lblTotalImporte = new JLabel("Total "+ precioTotal+"€");
+        lblTotalImporte.setFont(new Font("Tahoma", Font.BOLD, 13));
+        lblTotalImporte.setForeground(Color.BLUE);
+        add(lblTotalImporte, BorderLayout.EAST);
     }}
 

@@ -54,12 +54,21 @@ public class PantallaListaExtraEscolar extends JPanel {
         bontonAtras.setForeground(Color.BLACK);
         bontonAtras.setBackground(Color.CYAN);
         add(bontonAtras, BorderLayout.SOUTH);
+        
+        
 
         ArrayList<ExtraEscolar > todos=ExtraEscolar .getTodosExtraEscolar();
-
+        float precioTotal=0;
         for(int i=0;i<todos.size();i++) {
         	listaExtraEscolares.add(new  ElementoListaExtraEscolar(ventana, todos.get(i)));
+        	 precioTotal=precioTotal + todos.get(i).getImporte();
         }
-
+        JLabel lbltotal = new JLabel("Total "+precioTotal+"€");
+        lbltotal.setForeground(Color.BLUE);
+        lbltotal.setFont(new Font("Tahoma", Font.BOLD, 13));
+        add(lbltotal, BorderLayout.EAST);
+        
+        
+        
     }}
 
