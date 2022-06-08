@@ -26,6 +26,7 @@ import java.awt.event.MouseEvent;
 public class PantallaListaIngresos extends JPanel {
 
     private Ventana ventana;
+   
     public PantallaListaIngresos(Ventana v) {
         this.ventana=v;
         setLayout(new BorderLayout(0, 0));
@@ -52,12 +53,19 @@ public class PantallaListaIngresos extends JPanel {
         bontonAtras.setForeground(Color.BLACK);
         bontonAtras.setBackground(Color.CYAN);
         add(bontonAtras, BorderLayout.SOUTH);
+        
+      
 
         ArrayList<TipoIngresos> todos=TipoIngresos.getTodosIngresos();
-
+       float precioTotal=0;
         for(int i=0;i<todos.size();i++) {
            listaIngresos.add(new ElementoListaIngresos(ventana, todos.get(i)));
+           precioTotal=precioTotal + todos.get(i).getImporte();
         }
-
-    }}
+        JLabel lblTotal = new JLabel("Total "+precioTotal+"€");
+        lblTotal.setFont(new Font("Tahoma", Font.BOLD, 13));
+        lblTotal.setForeground(Color.BLUE);
+        add(lblTotal, BorderLayout.EAST);
+    }
+}
 

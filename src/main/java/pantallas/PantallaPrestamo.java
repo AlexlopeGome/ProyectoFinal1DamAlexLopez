@@ -21,6 +21,7 @@ import elementosVisuales.BotonVerde;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
@@ -56,7 +57,7 @@ public class PantallaPrestamo extends JPanel {
 			
 		
 		});
-		botonAtras.setBounds(10, 405, 89, 23);
+		botonAtras.setBounds(10, 381, 89, 23);
 		add(botonAtras);
 		
 		JLabel Prestamo = new JLabel("Prestamo");
@@ -217,14 +218,21 @@ public class PantallaPrestamo extends JPanel {
 		JLabel fondo = new JLabel("");
 		fondo.setToolTipText("");
 		
-		JButton ListadoPestamo = new BotonAzul("Listado Prestamo");
+		JButton ListadoPestamo = new BotonAzul("Listado Prestamo y informe.txt");
+		ListadoPestamo.setFont(new Font("Dialog", Font.PLAIN, 13));
 		ListadoPestamo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				try {
+					clases.Prestamo.imprimeInforme();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				ventana.cambiarPantalla("listaPrestamo");
 			}
 		});
-		ListadoPestamo.setBounds(22, 355, 153, 23);
+		ListadoPestamo.setBounds(10, 440, 217, 23);
 		add(ListadoPestamo);
 		
 		

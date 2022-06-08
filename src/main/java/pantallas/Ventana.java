@@ -11,13 +11,12 @@ import clases.Usuario;
 import elementosVisuales.ElementoListaUsuarios;
 
 public class Ventana extends JFrame{
-	//private HashMap<String, JPanel> pantallas;
+
 	private JPanel pantallaActual;
 	protected Object PantayaloginV2 ;
 
 
 	public Ventana() {
-
 		
 		this.setSize(800,550);  
 		this.setLocationRelativeTo(null); 

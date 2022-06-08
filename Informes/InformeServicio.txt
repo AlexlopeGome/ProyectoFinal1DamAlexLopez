@@ -1,0 +1,3 @@
+ -- Nombre. Jardineria Importe. 200.0Es Fijo. trueNombre TrabajadorJuanDia de la semananull
+ -- Nombre. Jandineria zona Sur Importe. 200.0Es Fijo. trueNombre TrabajadorJuanDia de la semananull
+ -- Nombre. Jardineria Piscina Importe. 120.0Es Fijo. falseNombre TrabajadorJUanDia de la semananull

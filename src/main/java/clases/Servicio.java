@@ -1,5 +1,8 @@
 package clases;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -28,7 +31,7 @@ public class Servicio extends Gastos{
 	}
 	
 	
-public Servicio (String nombre, boolean importeFijo, float importe, LocalDate fecha, String nombreTrabajador, DiasSemana dias, int codigoMovimiento) throws SQLException {
+public Servicio (String nombre, boolean importeFijo, float importe, LocalDate fecha, String nombreTrabajador, DiasSemana diasSemanaD, int codigoMovimiento) throws SQLException {
 		
 	
 		
@@ -173,7 +176,29 @@ public Servicio(String nombre) throws SQLException {
 
 	
 	
-	
+	public static void imprimeInforme() throws IOException {
+		File archivo = new File("./Informes/InformeServicio.txt");
+	    if (archivo.exists()) {
+	        archivo.delete();
+	    }
+	    archivo.createNewFile();
+	    FileWriter escritor = new FileWriter(archivo,true);
+	    ArrayList<Servicio> informe=getTodosServicio();
+	    
+	    for (int i=0 ;i<informe.size();i++) {
+	    	escritor.write(" -- ");;
+	    	escritor.write("Nombre. "+informe.get(i).getNombre());
+	      	escritor.write(" Importe. "+ informe.get(i).getImporte());
+	      	escritor.write("Es Fijo. "+informe.get(i).isImporteFijo());
+	      	escritor.write("Nombre Trabajador"+informe.get(i).getNombreTrabajador());
+	      	escritor.write("Dia de la semana"+ informe.get(i).getDiasSemana()+"\n");
+	      	
+	      
+	    }
+	    escritor.flush();
+	    escritor.close();
+	}
+
 	
 	
 

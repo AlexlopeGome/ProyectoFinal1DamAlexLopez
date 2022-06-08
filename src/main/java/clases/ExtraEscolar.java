@@ -162,7 +162,7 @@ public class ExtraEscolar extends Gastos{
 	      	escritor.write(" Importe. "+ informe.get(i).getImporte());
 	      	escritor.write(" Tipo Clase. "+informe.get(i).getClaseC());
 	      	escritor.write("Dias de la Semana. "+informe.get(i).getDiasSemanaD());
-	      	escritor.write("Profesor. "+informe.get(i).getNombreProfesor());
+	      	escritor.write("Profesor. "+informe.get(i).getNombreProfesor()+"\n");
 	    }
 	    escritor.flush();
 	    escritor.close();

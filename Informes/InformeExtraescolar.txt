@@ -1,0 +1,2 @@
+ -- Nombre. baile Importe. 20.0 Tipo Clase. DEPORTEDias de la Semana. LUNESProfesor. David
+ -- Nombre. Ingles Importe. 20.0 Tipo Clase. IDIOMASDias de la Semana. LUNESProfesor. David

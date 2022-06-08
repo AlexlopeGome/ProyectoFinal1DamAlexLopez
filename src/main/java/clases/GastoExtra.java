@@ -145,7 +145,7 @@ UtilsDB.desconectarBD();
 	    for (int i=0 ;i<informe.size();i++) {
 	    	escritor.write(" -- ");;
 	    	escritor.write("Nombre. "+informe.get(i).getNombre());
-	      	escritor.write(" Importe. "+ informe.get(i).getImporte());
+	      	escritor.write(" Importe. "+ informe.get(i).getImporte()+"\n");
 	      	
 	    }
 	    escritor.flush();

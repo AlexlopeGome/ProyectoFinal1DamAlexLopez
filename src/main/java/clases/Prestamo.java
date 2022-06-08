@@ -122,7 +122,7 @@ public static void imprimeInforme() throws IOException {
     	escritor.write("Nombre. "+informe.get(i).getNombre());
       	escritor.write(" Importe. "+ informe.get(i).getImporte());
       	escritor.write("Porcentaje."+ informe.get(i).getPorcentajeInteres());
-      	escritor.write("Es Fijo. "+informe.get(i).isImporteFijo());
+      	escritor.write("Es Fijo. "+informe.get(i).isImporteFijo()+"\n");
       
     }
     escritor.flush();

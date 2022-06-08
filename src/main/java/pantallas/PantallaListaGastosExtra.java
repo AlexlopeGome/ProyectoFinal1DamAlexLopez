@@ -53,8 +53,7 @@ public class PantallaListaGastosExtra extends JPanel {
         bontonAtras.setBackground(Color.CYAN);
         add(bontonAtras, BorderLayout.SOUTH);
         
-        JLabel lblTotal = new JLabel("New label");
-        add(lblTotal, BorderLayout.EAST);
+      
 
         ArrayList<GastoExtra> todos=GastoExtra.getTodosGastosExtra();
         float precioTotal=0;

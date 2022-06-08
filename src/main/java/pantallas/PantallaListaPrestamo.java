@@ -34,7 +34,7 @@ public class PantallaListaPrestamo extends JPanel {
         this.ventana=v;
         setLayout(new BorderLayout(0, 0));
 
-        JLabel lblTitulo = new JLabel(" Prestamos Registradas");
+        JLabel lblTitulo = new JLabel(" Prestamos Registrados");
         lblTitulo.setFont(new Font("Tahoma", Font.PLAIN, 30));
         add(lblTitulo, BorderLayout.NORTH);
 
@@ -56,12 +56,18 @@ public class PantallaListaPrestamo extends JPanel {
         bontonAtras.setForeground(Color.BLACK);
         bontonAtras.setBackground(Color.CYAN);
         add(bontonAtras, BorderLayout.SOUTH);
+        
+       
 
         ArrayList<Prestamo > todos=Prestamo.getTodosprestamo();
-
+        float precioTotal=0;
         for(int i=0;i<todos.size();i++) {
         	listaPrestamo.add(new  ElementoListaPrestamo(ventana, todos.get(i)));
+        	 precioTotal=precioTotal + todos.get(i).getImporte();
         }
-
+        JLabel lblTotal = new JLabel("Total "+precioTotal+"€");
+        lblTotal.setFont(new Font("Tahoma", Font.BOLD, 11));
+        lblTotal.setForeground(Color.BLUE);
+        add(lblTotal, BorderLayout.EAST);
     }}
 

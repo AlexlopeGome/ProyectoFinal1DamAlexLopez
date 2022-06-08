@@ -1,5 +1,8 @@
 package clases;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -26,7 +29,7 @@ Statement query=UtilsDB.conectarBD();
 		
 		if(query.executeUpdate(
 				
-		"insert into tipoIngreso values('"+nombre+"',"+importeFijo+","+importe+","+ fecha + "','"+ingresoT+"',"+codigoMovimiento+")") > 0) {
+		"insert into tipoIngreso values('"+nombre+"',"+importeFijo+","+importe+",'"+ fecha + "','"+ingresoT+"',"+codigoMovimiento+")") > 0) {
 			System.out.println("Ingreso inserado con exito");
 		
 			//Si la inserción en BD ha colado, ya podemos modificar las
@@ -128,7 +131,26 @@ Statement query=UtilsDB.conectarBD();
 
 	}
 
-	
+	public static void imprimeInforme() throws IOException {
+		File archivo = new File("./Informes/InformeIngresos.txt");
+	    if (archivo.exists()) {
+	        archivo.delete();
+	    }
+	    archivo.createNewFile();
+	    FileWriter escritor = new FileWriter(archivo,true);
+	    ArrayList<TipoIngresos> informe=getTodosIngresos();
+	    
+	    for (int i=0 ;i<informe.size();i++) {
+	    	escritor.write(" -- ");;
+	    	escritor.write("Nombre. "+informe.get(i).getNombre());
+	      	escritor.write(" Importe. "+ informe.get(i).getImporte());
+	      	escritor.write("Tipo Ingreso."+informe.get(i).getIngresoT()+"\n");
+	      	
+	    }
+	    escritor.flush();
+	    escritor.close();
+	}
+
 	
 }
 

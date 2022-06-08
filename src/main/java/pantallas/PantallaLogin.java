@@ -33,7 +33,7 @@ public class PantallaLogin extends JPanel {
 	private Ventana ventana;
 	private JTextField campoNick;
 	private final JLabel label = new JLabel("");
-	private JPasswordField campoContraseña;
+	private JPasswordField campoContrasena;
 
 	public PantallaLogin(Ventana v) {
 		this.ventana=v;
@@ -64,10 +64,10 @@ public class PantallaLogin extends JPanel {
 		Contrasenia.setFont(new Font("Tahoma", Font.BOLD, 18));
 		add(Contrasenia);
 		
-		campoContraseña = new JPasswordField();
-		campoContraseña.setToolTipText("");
-		campoContraseña.setBounds(518, 177, 110, 31);
-		add(campoContraseña);
+		campoContrasena = new JPasswordField();
+		campoContrasena.setToolTipText("");
+		campoContrasena.setBounds(518, 177, 110, 31);
+		add(campoContrasena);
 	
 		label.setVerticalAlignment(SwingConstants.TOP);
 		JLabel lblIniciarSesion = new JLabel("Iniciar Sesion");
@@ -84,7 +84,7 @@ public class PantallaLogin extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				try {
 					String nick= campoNick.getText();
-					String contrasenia = new String (campoContraseña.getPassword());
+					String contrasenia = new String (campoContrasena.getPassword());
 					ventana.PantayaloginV2= new Usuario(nick,contrasenia);
 					JOptionPane.showMessageDialog(ventana, "Bienvenido, "+ventana.PantayaloginV2, "Login correcto", JOptionPane.PLAIN_MESSAGE);
 					ventana.cambiarPantalla("queHacer");

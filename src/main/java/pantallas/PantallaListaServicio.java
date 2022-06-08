@@ -54,12 +54,18 @@ public class PantallaListaServicio extends JPanel {
         bontonAtras.setForeground(Color.BLACK);
         bontonAtras.setBackground(Color.CYAN);
         add(bontonAtras, BorderLayout.SOUTH);
-
+        
+     
         ArrayList<Servicio> todos=Servicio.getTodosServicio();
 
+        float precioTotal=0;
         for(int i=0;i<todos.size();i++) {
            listaservicio.add(new ElementoListaServicios(ventana, todos.get(i)));
+           precioTotal=precioTotal + todos.get(i).getImporte();
         }
-
+        JLabel lblTotal = new JLabel("Total "+precioTotal+"€" );
+        lblTotal.setFont(new Font("Tahoma", Font.BOLD, 13));
+        lblTotal.setForeground(Color.BLUE);
+        add(lblTotal, BorderLayout.EAST);
     }}
 

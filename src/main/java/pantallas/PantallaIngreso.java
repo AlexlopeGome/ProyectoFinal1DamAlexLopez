@@ -30,6 +30,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
@@ -63,7 +64,7 @@ public class PantallaIngreso extends JPanel {
 			
 		
 		});
-		botonAtras.setBounds(10, 405, 89, 23);
+		botonAtras.setBounds(10, 334, 89, 23);
 		add(botonAtras);
 		
 		JLabel Ingreso = new JLabel("Ingreso");
@@ -192,15 +193,21 @@ public class PantallaIngreso extends JPanel {
 		add(Rejistrar);
 		
 
-		JButton botonListaIngresos = new BotonAzul("ListaCompra");
+		JButton botonListaIngresos = new BotonAzul("ListaCompra y informe.txt");
 		botonListaIngresos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				try {
+					clases.TipoIngresos.imprimeInforme();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				ventana.cambiarPantalla("listaIngresos");
 			}
 		});
-		botonListaIngresos.setText("Lista Ingresos");
-		botonListaIngresos.setBounds(60, 339, 132, 20);
+		botonListaIngresos.setText("Lista Ingresos y Informe.txt");
+		botonListaIngresos.setBounds(10, 389, 208, 20);
 		add(botonListaIngresos);
 		
 		JLabel fondo = new JLabel("");
