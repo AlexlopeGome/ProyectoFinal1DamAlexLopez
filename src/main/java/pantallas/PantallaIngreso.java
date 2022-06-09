@@ -211,7 +211,7 @@ public class PantallaIngreso extends JPanel {
 		add(botonListaIngresos);
 		
 		JLabel fondo = new JLabel("");
-		fondo.setIcon(new ImageIcon("B:\\Xamp\\htdocs\\REPOSITOS\\ProyectoFinal1DamAlexLopez\\fondos\\Ventana_IngresosApi.jpg"));
+		fondo.setIcon(new ImageIcon("./fondos/Ventana_IngresosApi.jpg"));
 		fondo.setBounds(-23, 0, 891, 510);
 		add(fondo);
 		

@@ -127,7 +127,7 @@ public class PantallaPrincipal extends JPanel {
 		
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setBounds(-23, 11, 891, 499);
-		lblNewLabel.setIcon(new ImageIcon("B:\\Xamp\\htdocs\\REPOSITOS\\ProyectoFinal1DamAlexLopez\\fondos\\General_VentanasApi.jpg"));
+		lblNewLabel.setIcon(new ImageIcon("./fondos/General_VentanasApi.jpg"));
 		add(lblNewLabel);
 		
 

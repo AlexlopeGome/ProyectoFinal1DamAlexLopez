@@ -126,7 +126,7 @@ public class PantallaGastos extends JPanel {
 		
 		
 		JLabel fondo = new JLabel("");
-		fondo.setIcon(new ImageIcon("B:\\Xamp\\htdocs\\REPOSITOS\\ProyectoFinal1DamAlexLopez\\fondos\\VentanaGastos_de_casa_API.jpg"));
+		fondo.setIcon(new ImageIcon("./fondos/VentanaGastos_de_casa_API.jpg"));
 		fondo.setBounds(-23, 11, 891, 499);
 		add(fondo);
 		

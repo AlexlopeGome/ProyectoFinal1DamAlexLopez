@@ -111,7 +111,7 @@ public class QueHacer extends JPanel {
 		
 		
 		JLabel Fondo = new JLabel("");
-		Fondo.setIcon(new ImageIcon("B:\\Xamp\\htdocs\\REPOSITOS\\ProyectoFinal1DamAlexLopez\\fondos\\Ventana_UsusarioAPI.jpg"));
+		Fondo.setIcon(new ImageIcon("./fondos/Ventana_UsusarioAPI.jpg"));
 		Fondo.setBounds(-23, 11, 891, 499);
 		add(Fondo);
 		
