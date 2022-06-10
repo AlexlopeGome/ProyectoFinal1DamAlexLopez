@@ -1,44 +1,30 @@
 package pantallas;
 
-
-import java.awt.BorderLayout;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import java.awt.Color;
 import java.awt.Font;
-
-import javax.swing.border.EmptyBorder;
-
-import clases.Usuario;
 import elementosVisuales.BotonAzul;
-import elementosVisuales.BotonRojo;
 import elementosVisuales.BotonVerde;
 import enums.Clases;
 import enums.DiasSemana;
-import enums.TipoCompra;
-import exepciones.ContraseniaIncorrectaException;
-import exepciones.UsuarioNoExisteException;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JPasswordField;
+import exepciones.NombreInvalidoExceptions;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
-
 import javax.swing.JRadioButton;
-import javax.swing.JList;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-
+/**
+ * Pantalla q nos crea un Gasto Extraescolar
+ * @author AlexLopez
+ *
+ */
 public class PantallaExtraescolar extends JPanel {
 	;
 	private Ventana ventana;
@@ -165,10 +151,18 @@ public class PantallaExtraescolar extends JPanel {
 		conboBox_Clases.setToolTipText("CIENCIA\r\nLETRAS\r\nIDIOMAS\r\nDEPORTE");
 		conboBox_Clases.setBounds(450, 374, 117, 22);
 		add(conboBox_Clases);
-		
+	
+	/**
+	 *con este boton se registra el gasto
+	 */
+	
 		JButton Rejistrar = new BotonVerde("Rejistrar");
 		Rejistrar.addMouseListener(new MouseAdapter() {
 			@Override
+			  
+            /**
+             * se rucupen los valos del gasto 
+             */
 			public void mouseClicked(MouseEvent e) {
 				try {
 				String nombre=campoNombre.getText();
@@ -182,6 +176,7 @@ public class PantallaExtraescolar extends JPanel {
 	            else if(noFijo.isSelected()) {
 	            	importeFijo =false;
 	            }
+	          
 				float importe=Float.parseFloat(campoImporte.getText());
 				String fechaEnTexto=campoFecha.getText();
 				String[] fechaPartida=fechaEnTexto.split("/");
@@ -195,15 +190,29 @@ public class PantallaExtraescolar extends JPanel {
 				int codigoMovimiento=Integer.parseInt(campoCodigoMovimiento.getText());
 				
 				
-					new clases.ExtraEscolar(nombre,importeFijo,importe,fecha,nombreProfesor,clase,dias,codigoMovimiento);
-					 JOptionPane.showMessageDialog(ventana,"Registro ok","Resgitro completado",JOptionPane.PLAIN_MESSAGE);
+					try {
+						/**
+						 * creamos una nueva Estrascolar y le pasamos los parmetros recurados si todo esta
+						 * correcto se introduria en base de datos si no salaran las exepciones
+						 * corepondientes
+						 */
+						
+						new clases.ExtraEscolar(nombre,importeFijo,importe,fecha,nombreProfesor,clase,dias,codigoMovimiento);
+						 JOptionPane.showMessageDialog(ventana,"Registro ok","Resgitro completado",JOptionPane.PLAIN_MESSAGE);
+					} catch (NombreInvalidoExceptions e1) {
+						JOptionPane.showMessageDialog(ventana,"Registro Fallido","Resgitro no completado",JOptionPane.PLAIN_MESSAGE);
+						System.err.println(e1);
+						e1.printStackTrace();
+					}
+					
 				} catch (SQLException e1) {
-					System.out.println(e1);
+					System.err.println(e1);
 					e1.printStackTrace();
 					JOptionPane.showMessageDialog(
 			                ventana,e1.getMessage(),"Error",
 			                JOptionPane.ERROR_MESSAGE);
 				} catch (ArrayIndexOutOfBoundsException e1) {
+					System.err.println(e1);
 	                JOptionPane.showMessageDialog(ventana, "Formato erroneo, debe ser dd/mm/yyyy","error",JOptionPane.ERROR_MESSAGE);
 					
 				}

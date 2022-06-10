@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import Utils.UtilsDB;
+import exepciones.NombreInvalidoExceptions;
 
 /**
  * 
@@ -22,18 +23,20 @@ public class Prestamo extends Gastos {
 
 	/**
 	 * 
-	 * @param nombre
-	 * @param importeFijo
-	 * @param importe
-	 * @param fecha
-	 * @param porcentajeInteres
-	 * @param fechaFin
-	 * @param codigoMovimiento
-	 * @throws SQLException
-	 */
-
+	 * @param nombre            del nuevo prestamo
+	 * @param importeFijo       nos indica con un boleano si es fijo o no
+	 * @param importe           impiorte del nuevo prestamo
+	 * @param fecha             nos indiva la fecha del pretamo q es sera un fue
+	 * @param porcentajeInteres no indica el porcentaje de interes del prestamo
+	 * @param fechaFin          no indicara la fecha de fin del prestamo
+	 * @param codigoMovimiento  nos indica el codigo movimiento del prestamo
+	 * @throws SQLException             saltara dicha exepcion si ahy algun problema
+	 *                                  trelacionado con base de datos
+	 * @throws NombreInvalidoExceptions nos salta la exepcion si el nobre no es
+	 *                                  valido
+	 **/
 	public Prestamo(String nombre, boolean importeFijo, float importe, LocalDate fecha, float porcentajeInteres,
-			LocalDate fechaFin, int codigoMovimiento) throws SQLException {
+			LocalDate fechaFin, int codigoMovimiento) throws SQLException, NombreInvalidoExceptions {
 		super(nombre, importeFijo, importe, fecha, codigoMovimiento);
 
 		Statement query = UtilsDB.conectarBD();
@@ -57,11 +60,17 @@ public class Prestamo extends Gastos {
 
 	Prestamo() {
 		/**
-		 * 
+		 * cobtructor vacio para poder contruir en cualquier clase con cualquier valor
 		 */
 	}
 
 	@SuppressWarnings("null")
+
+	/**
+	 * funvion utilizada para eliminar un pretamo
+	 * 
+	 * @return nosrfetornara todos los valores en NUll
+	 */
 	public boolean eliminarPrestamo() {
 		Statement smt = UtilsDB.conectarBD();
 		boolean ret;
@@ -87,8 +96,9 @@ public class Prestamo extends Gastos {
 	}
 
 	/**
+	 * array list de pretamos
 	 * 
-	 * @return
+	 * @return nos ira devolviendo tdod los prestamos que estan en base de datos
 	 */
 	public static ArrayList<Prestamo> getTodosprestamo() {
 		Statement smt = UtilsDB.conectarBD();
@@ -119,16 +129,14 @@ public class Prestamo extends Gastos {
 		}
 
 		UtilsDB.desconectarBD();
-		// Si no hay usuarios en la tabla, va a devolver un arraylist vacío
-		// Si la consulta fué erronea, se devuelve un ArrayList null, que son cosas
-		// distintas
+
 		return ret;
 
 	}
 
 	/**
-	 * 
-	 * @throws IOException
+	 * funcion que no escrive un informe de los pretams  en un archivo txt
+	 * @throws IOException nos inda si ahy algun problema con la base de datos
 	 */
 	public static void imprimeInforme() throws IOException {
 		File archivo = new File("./Informes/InformeCompras.txt");
@@ -153,32 +161,32 @@ public class Prestamo extends Gastos {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * getters de porcentaje interes muestra el valor del inters
+	 * @return devuelve el valor
 	 */
 	public Float getPorcentajeInteres() {
 		return porcentajeInteres;
 	}
 
 	/**
-	 * 
-	 * @param porcentajeInteres
+	 * setter de porcentaje da valor a la variable
+	 * @param porcentajeInteres es el valor de la variable
 	 */
 	public void setPorcentajeInteres(Float porcentajeInteres) {
 		this.porcentajeInteres = porcentajeInteres;
 	}
 
 	/**
-	 * 
-	 * @return
+	 * getrer de Fecha fin nos mustra el valor de la FechaFin
+	 * @return devuelve el valor
 	 */
 	public LocalDate getFechaFin() {
 		return fechaFin;
 	}
 
 	/**
-	 * 
-	 * @param fechaFin
+	 * setter da el valor a la variable
+	 * @param fechaFin es el valor de la variable
 	 */
 	public void setFechaFin(LocalDate fechaFin) {
 		this.fechaFin = fechaFin;

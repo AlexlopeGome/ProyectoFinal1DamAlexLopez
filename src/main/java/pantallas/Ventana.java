@@ -9,18 +9,30 @@ import javax.swing.JPanel;
 
 import clases.Usuario;
 import elementosVisuales.ElementoListaUsuarios;
-
+/**
+ * Esta ventana intacia a la ventana en si 
+ * esesta ventana se le hacen llegar llos argumnetos 
+ * @author AlexLopez
+ *
+ */
 public class Ventana extends JFrame{
 
 	private JPanel pantallaActual;
 	protected Object PantayaloginV2 ;
 	protected Usuario usuario;
-	
+	/**
+	 * contructor generico de la ventana
+	 */
 	public Ventana() {
 		this.pantallaActual=new PantallaInicio(this);
 		this.setContentPane(pantallaActual);
 		inicioPantallaPrincipal();
     }
+	
+	/**
+	 * este contructor se usa para generan la vemtana con sus parametrso
+	 * @param master es la clave y usuario procendente de la clase principal
+	 */
     public Ventana(Usuario master) {
     	this.usuario=master;
     	this.pantallaActual=new PantallaInicio(this);
@@ -43,6 +55,10 @@ public class Ventana extends JFrame{
         this.setResizable(false);
         this.setVisible(true);
     }
+    /**
+     * Esta funcion se utiliza para cambiar la ventanas
+     * @param nombrePantalla este es el parametro q indicara en cada casa el nombre de la pantallav
+     */
 	public  void cambiarPantalla(String nombrePantalla) {
 		if(this.pantallaActual!=null) {
 			 this.pantallaActual.setVisible(false);

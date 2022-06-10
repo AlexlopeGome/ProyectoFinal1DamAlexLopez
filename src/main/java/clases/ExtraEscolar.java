@@ -14,6 +14,7 @@ import Utils.UtilsDB;
 import enums.Clases;
 import enums.DiasSemana;
 import enums.TipoActividadDesenpeniada;
+import exepciones.NombreInvalidoExceptions;
 
 /**
  * clase Extraescolar :para creaar un gasto de tipo extraescolar
@@ -43,9 +44,10 @@ public class ExtraEscolar extends Gastos {
 	 * @param diasSemanaD      hace rederencia al nombre del enum
 	 * @param codigoMovimiento es el codigo q llavara esta nueba actividad
 	 * @throws SQLException salta si ahy algun problema con la base de datos
+	 * @throws NombreInvalidoExceptions nos salta la exepcion si el nobre no es valido
 	 */
 	public ExtraEscolar(String nombre, boolean importeFijo, float importe, LocalDate fecha, String nombreProfesor,
-			Clases claseC, DiasSemana diasSemanaD, int codigoMovimiento) throws SQLException {
+			Clases claseC, DiasSemana diasSemanaD, int codigoMovimiento) throws SQLException, NombreInvalidoExceptions {
 		super(nombre, importeFijo, importe, fecha, codigoMovimiento);
 
 		Statement query = UtilsDB.conectarBD();
@@ -71,13 +73,13 @@ public class ExtraEscolar extends Gastos {
 	}
 
 	/**
-	 * funcion q usaremos para poder cerar un objeto bacio como queramos
+	 * contrctuctor q usaremos para poder cerar un objeto bacio como queramos
 	 */
 	public ExtraEscolar() {
 	}
 
 	/**
-	 * la usaremos ara combro si esiset la actividad extraescolar
+	 * contructor la usaremos ara combro si esiset la actividad extraescolar
 	 * 
 	 * @param nombre es el nobre de la actividad
 	 * @throws SQLException no dara una exepcion si no esta la compra

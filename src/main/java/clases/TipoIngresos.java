@@ -13,6 +13,7 @@ import com.google.protobuf.Enum;
 
 import Utils.UtilsDB;
 import enums.TipoIngreso;
+import exepciones.NombreInvalidoExceptions;
 
 /**
  * 
@@ -26,16 +27,18 @@ public class TipoIngresos extends Ingresos {
 
 	/**
 	 * 
-	 * @param nombre
-	 * @param importeFijo
-	 * @param importe
-	 * @param fecha
-	 * @param ingresoT
-	 * @param codigoMovimiento
-	 * @throws SQLException
+	 * @param nombre nome del ingreso
+	 * @param importeFijo nos indica con un booleano si es fijo o no
+	 * @param importe es el importe del nuvo ingreso
+	 * @param fecha fecha del ingreso q sera q es o fue
+	 * @param ingresoT es el valor del tipo de ingreso
+	 * @param codigoMovimiento es el codigo de dicho ingreso
+	 * @throws SQLExceptionnos salta la exepcion si ahy algun problema con
+	 *                      insersion base de datos
+	 * @throws NombreInvalidoExceptions nos salta la exepcion si el nobre no es valido
 	 */
 	public TipoIngresos(String nombre, boolean importeFijo, float importe, LocalDate fecha, TipoIngreso ingresoT,
-			int codigoMovimiento) throws SQLException {
+			int codigoMovimiento) throws SQLException, NombreInvalidoExceptions {
 		super(nombre, importeFijo, importe, fecha, codigoMovimiento);
 
 		Statement query = UtilsDB.conectarBD();
@@ -64,47 +67,47 @@ public class TipoIngresos extends Ingresos {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * getter tipo de ingreso nos alluda a mostra rel tipo de ingreso
+	 * @return retorna el valor 
 	 */
 	public TipoIngreso getIngreso() {
 		return Ingreso;
 	}
 
 	/**
-	 * 
-	 * @param ingrerso
+	 * setter de ingreso nos alluda a dar el valor a tipo de ingreseo
+	 * @param ingrerso es el valor
 	 */
 	public void setIngrerso(TipoIngreso ingrerso) {
 		Ingreso = ingrerso;
 	}
 
 	/**
-	 * 
-	 * @return
+	 * getter ingreso t no alluda a dar el valor 
+	 * @return devuelve ek valor
 	 */
 	public String getIngresoT() {
 		return ingresoT;
 	}
 
 	/**
-	 * 
-	 * @param ingresoT
+	 * setter de ingreso nos alluda a dar el valor
+	 * @param ingresoT es el valor
 	 */
 	public void setIngresoT(String ingresoT) {
 		this.ingresoT = ingresoT;
 	}
 
 	/**
-	 * 
+	 * contructor vacio 
 	 */
 	public TipoIngresos() {
 
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Funcion q nos elimina un ingreso
+	 * @return nosdevuelve el ingreso en null
 	 */
 	public boolean eliminarIngreso() {
 		Statement smt = UtilsDB.conectarBD();
@@ -130,8 +133,8 @@ public class TipoIngresos extends Ingresos {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * array  de tos los ingresos exietntes en base de datos
+	 * @return debuel dicho ingresos
 	 */
 	public static ArrayList<TipoIngresos> getTodosIngresos() {
 		Statement smt = UtilsDB.conectarBD();
@@ -161,15 +164,13 @@ public class TipoIngresos extends Ingresos {
 		}
 
 		UtilsDB.desconectarBD();
-		// Si no hay usuarios en la tabla, va a devolver un arraylist vacío
-		// Si la consulta fué erronea, se devuelve un ArrayList null, que son cosas
-		// distintas
+	
 		return ret;
 
 	}
 
 	/**
-	 * 
+	 * funcion pra imprimir un infor de inf+gresos exitente en txt
 	 * @throws IOException
 	 */
 	public static void imprimeInforme() throws IOException {

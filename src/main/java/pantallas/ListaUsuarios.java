@@ -16,7 +16,11 @@ import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
+/**
+ * Pantalla q contieNe el elemento Visual Corespondiente a su Clase 
+ * @author AlexLopez
+ *
+ */
 public class ListaUsuarios extends JPanel {
 
     private Ventana ventana;

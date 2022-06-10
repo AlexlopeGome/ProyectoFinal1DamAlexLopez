@@ -22,13 +22,15 @@ import exepciones.ContraseniaVaciaException;
 import exepciones.CorreoInvalidoException;
 import exepciones.NickInvalidoExceptions;
 import pantallas.Ventana;
+
 /**
+ * Pantalla emergente q usamos para la modificacion del usuario
  * 
  * @author AlexLopez
  *
  */
 public class EmergenteEditarUsuario extends JDialog {
-	
+
 	private Ventana madre;
 	private Usuario usuarioAEditar;
 	private JTextField campoNombre;
@@ -38,10 +40,12 @@ public class EmergenteEditarUsuario extends JDialog {
 	private JTextField campoNumeroHijos;
 	private JTextField campoNick;
 	private JTextField campoDireccion;
-	/**ç
+
+	/**
+	 * contructor emertgente usuario para contruir la ventara
 	 * 
-	 * @param v
-	 * @param u
+	 * @param v variable de clase ventana
+	 * @param u variable de clase usuario
 	 */
 	public EmergenteEditarUsuario(Ventana v, Usuario u) {
 		madre = v;
@@ -67,6 +71,9 @@ public class EmergenteEditarUsuario extends JDialog {
 		JButton btnAceptar = new BotonVerde("Aceptar");
 		final EmergenteEditarUsuario thisRef = this;
 		btnAceptar.addMouseListener(new MouseAdapter() {
+			/**
+			 * evento q confirma los cambios
+			 */
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String nuevoNombre = campoNombre.getText();
@@ -88,7 +95,7 @@ public class EmergenteEditarUsuario extends JDialog {
 					usuarioAEditar.setContrasenia(nuevaContraseña);
 
 					dispose();
-				} catch (SQLException | CorreoInvalidoException | ContraseniaVaciaException  e3) {
+				} catch (SQLException | CorreoInvalidoException | ContraseniaVaciaException e3) {
 					// TODO Auto-generated catch block
 					JOptionPane.showMessageDialog(thisRef, e3.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 
@@ -96,7 +103,9 @@ public class EmergenteEditarUsuario extends JDialog {
 
 			}
 		});
-
+		/**
+		 * 
+		 */
 		JLabel lblNombre = new JLabel("Nombre");
 		GridBagConstraints gbc_lblNombre = new GridBagConstraints();
 		gbc_lblNombre.insets = new Insets(0, 0, 5, 5);
@@ -196,22 +205,22 @@ public class EmergenteEditarUsuario extends JDialog {
 		gbc_campoNick.gridx = 3;
 		gbc_campoNick.gridy = 8;
 		getContentPane().add(campoNick, gbc_campoNick);
-		
-				JLabel lblContraseña = new JLabel("Contrase\u00F1a");
-				GridBagConstraints gbc_lblContraseña = new GridBagConstraints();
-				gbc_lblContraseña.anchor = GridBagConstraints.EAST;
-				gbc_lblContraseña.insets = new Insets(0, 0, 5, 5);
-				gbc_lblContraseña.gridx = 1;
-				gbc_lblContraseña.gridy = 9;
-				getContentPane().add(lblContraseña, gbc_lblContraseña);
-		
-				campoContraseña = new JPasswordField(this.usuarioAEditar.getContrasenia().toString());
-				GridBagConstraints gbc_campoContraseña = new GridBagConstraints();
-				gbc_campoContraseña.insets = new Insets(0, 0, 5, 5);
-				gbc_campoContraseña.fill = GridBagConstraints.HORIZONTAL;
-				gbc_campoContraseña.gridx = 3;
-				gbc_campoContraseña.gridy = 9;
-				getContentPane().add(campoContraseña, gbc_campoContraseña);
+
+		JLabel lblContraseña = new JLabel("Contrase\u00F1a");
+		GridBagConstraints gbc_lblContraseña = new GridBagConstraints();
+		gbc_lblContraseña.anchor = GridBagConstraints.EAST;
+		gbc_lblContraseña.insets = new Insets(0, 0, 5, 5);
+		gbc_lblContraseña.gridx = 1;
+		gbc_lblContraseña.gridy = 9;
+		getContentPane().add(lblContraseña, gbc_lblContraseña);
+
+		campoContraseña = new JPasswordField(this.usuarioAEditar.getContrasenia().toString());
+		GridBagConstraints gbc_campoContraseña = new GridBagConstraints();
+		gbc_campoContraseña.insets = new Insets(0, 0, 5, 5);
+		gbc_campoContraseña.fill = GridBagConstraints.HORIZONTAL;
+		gbc_campoContraseña.gridx = 3;
+		gbc_campoContraseña.gridy = 9;
+		getContentPane().add(campoContraseña, gbc_campoContraseña);
 		GridBagConstraints gbc_btnAceptar = new GridBagConstraints();
 		gbc_btnAceptar.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnAceptar.gridwidth = 4;
@@ -223,6 +232,10 @@ public class EmergenteEditarUsuario extends JDialog {
 		JButton btnCancelar = new BotonRojo("Cancelar");
 		btnCancelar.addMouseListener(new MouseAdapter() {
 			@Override
+			/**
+			 * eveto para cancelar la modificacion
+			 * @param e valor
+			 */
 			public void mouseClicked(MouseEvent e) {
 				dispose();
 			}

@@ -5,7 +5,11 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
+/**
+ * Clase BotonAzul   da las carecteristicas es pecificas a el boton
+ * @author AlexLopez
+ *
+ */
 public class BotonAzul extends BotonVerde {
 	
 	public BotonAzul(String m) {
@@ -26,6 +30,9 @@ public class BotonAzul extends BotonVerde {
 	});
 }
 
+/*
+ * Da estilos por defecto al BotonAzul
+ */
 private void estiloPorDefectoAzul() {
 this.setForeground(new Color(0, 0, 0));
 this.setBackground(Color.BLUE);

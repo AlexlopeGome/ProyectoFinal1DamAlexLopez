@@ -9,6 +9,7 @@ import javax.swing.ComboBoxModel;
 
 import Utils.UtilsDB;
 import enums.TipoActividadDesenpeniada;
+import exepciones.NombreInvalidoExceptions;
 
 /**
  * 
@@ -19,19 +20,20 @@ public class Trabajador extends EntidadConNombre {
 
 	private int telefono;
 	private String activi;
-	private TipoActividadDesenpeniada actividadDesempeñada;
+	private TipoActividadDesenpeniada actividadDesempeniada;
 
 	/**
 	 * 
-	 * @param nombre
-	 * @param telefono
-	 * @param activi
-	 * @throws SQLException
+	 * @param nombre nobre del nuebo trabajador
+	 * @param telefono telefono del nuebo trabajador
+	 * @param activi avtividad q desempeña
+	 * @throws SQLException exencion pora los fallos de base de datos
+	 * @throws NombreInvalidoExceptions nos salta la exepcion si el nobre no es valido
 	 */
-	public Trabajador(String nombre, int telefono, TipoActividadDesenpeniada activi) throws SQLException {
+	public Trabajador(String nombre, int telefono, TipoActividadDesenpeniada activi) throws SQLException, NombreInvalidoExceptions {
 		super(nombre);
 		this.telefono = telefono;
-		this.actividadDesempeñada = actividadDesempeñada;
+		this.actividadDesempeniada = actividadDesempeniada;
 
 		Statement query = UtilsDB.conectarBD();
 
@@ -43,7 +45,7 @@ public class Trabajador extends EntidadConNombre {
 			// TambiÃ©n existen.
 			this.nombre = nombre;
 			this.telefono = telefono;
-			this.actividadDesempeñada = actividadDesempeñada;
+			this.actividadDesempeniada = actividadDesempeniada;
 			;
 		} else {
 			throw new SQLException("No se ha podido insertar el Trabajador");
@@ -55,9 +57,9 @@ public class Trabajador extends EntidadConNombre {
 	}
 
 	/**
-	 * 
-	 * @param telefono
-	 * @throws SQLException
+	 * contructor para buscar el trabajador
+	 * @param telefono es el telefono q tiene 
+	 * @throws SQLException nos da cualquyier erro con base de datos
 	 */
 	public Trabajador(int telefono) throws SQLException {
 		super();
@@ -78,47 +80,47 @@ public class Trabajador extends EntidadConNombre {
 	}
 
 	/**
-	 * 
+	 * contructor vacio
 	 */
 	public Trabajador() {
 		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * 
-	 * @return
+	 * getter telefono no alluda a motrar el telefono
+	 * @return nos retorna el valor
 	 */
 	public int getTelefono() {
 		return telefono;
 	}
 
 	/**
-	 * 
-	 * @param telefono
+	 * setter de telefomo  nos alluda a dart el valor
+	 * @param telefono es el valor
 	 */
 	public void setTelefono(int telefono) {
 		this.telefono = telefono;
 	}
 
 	/**
-	 * 
-	 * @return
+	 * getter de TipoactividadDeesempeniada nos mustra el valor 
+	 * @return nos retorna el valor
 	 */
 	public TipoActividadDesenpeniada getActividadDesempeñada() {
-		return actividadDesempeñada;
+		return actividadDesempeniada;
 	}
 
 	/**
-	 * 
-	 * @param actividadDesempeñada
+	 * setter de actividad nos alluda a dar el valor
+	 * @param actividadDesempeniada es el valor
 	 */
 	public void setActividadDesempeñada(TipoActividadDesenpeniada actividadDesempeñada) {
-		this.actividadDesempeñada = actividadDesempeñada;
+		this.actividadDesempeniada = actividadDesempeñada;
 	}
 
 	/**
-	 * 
-	 * @return
+	 * getter  activi nos alluda a mostrar el valor
+	 * @return nos retorna el valor
 	 */
 
 	public String getActivi() {
@@ -126,8 +128,8 @@ public class Trabajador extends EntidadConNombre {
 	}
 
 	/**
-	 * 
-	 * @param activi
+	 * setter de activi no alluda a dar el valo
+	 * @param activi es el valor
 	 */
 
 	public void setActivi(String activi) {
@@ -135,8 +137,8 @@ public class Trabajador extends EntidadConNombre {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Funcion que elimina el Trabajador
+	 * @return retorna el valor en null
 	 */
 
 	@SuppressWarnings("null")
@@ -161,8 +163,8 @@ public class Trabajador extends EntidadConNombre {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * array q nos da los valores en base de datos
+	 * @returnretorna el ararry
 	 */
 	public static ArrayList<Trabajador> getTodostrabajdores() {
 		Statement smt = UtilsDB.conectarBD();

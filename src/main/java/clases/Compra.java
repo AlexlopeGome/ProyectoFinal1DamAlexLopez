@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import Utils.UtilsDB;
 import enums.TipoCompra;
 import exepciones.ContraseniaVaciaException;
+import exepciones.NombreInvalidoExceptions;
 
 /**
  * Clase para crea una nueba Compra
@@ -52,10 +53,10 @@ public class Compra extends Gastos {
 	 *                         repetir dicho codigo en dicha compra
 	 * @throws SQLException nos salta la exepcion si ahy algun problema con
 	 *                      insersion base de datos
-	 */
-
+	 * @throws NombreInvalidoExceptions nos salta la exepcion si el nobre no es valido
+**/
 	public Compra(String nombre, boolean importeFijo, float importe, LocalDate fecha, String comentario,
-			TipoCompra tipoC, int codigoMovimiento) throws SQLException {
+			TipoCompra tipoC, int codigoMovimiento) throws SQLException, NombreInvalidoExceptions {
 		super(nombre, importeFijo, importe, fecha, codigoMovimiento);
 		this.comentario = comentario;
 

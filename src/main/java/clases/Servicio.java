@@ -27,14 +27,14 @@ public class Servicio extends Gastos {
 
 	/**
 	 * 
-	 * @param nombre
-	 * @param importeFijo
-	 * @param importe
-	 * @param fecha
-	 * @param codigoMovimiento
-	 * @param diasSemanaD
+	 * @param nombre nombre del nuevo servicio
+	 * @param importeFijo nos indica con un boleano sie s fijo o no
+	 * @param importe es el importe de dicho servicio
+	 * @param fecha es la fecha del servicio q es sera o fue
+	 * @param codigoMovimiento es el codigo de dicho servicio
+	 * @param diasSemanaD es el valor de el dia de la semana
 	 * @param nombreTrabajador
-	 * @param diasSemana
+	 * @param diasSemana coresponde al enumm dias semana
 	 */
 
 	public Servicio(String nombre, boolean importeFijo, float importe, LocalDate fecha, String nombreTrabajador,
@@ -61,8 +61,8 @@ public class Servicio extends Gastos {
 	}
 
 	/**
-	 * 
-	 * @param nombre
+	 * este contructor nos alluda a comprovar si exite el servicion en vase de datos
+	 * @param nombre es el nombe de servicio
 	 * @throws SQLException
 	 */
 	public Servicio(String nombre) throws SQLException {
@@ -94,56 +94,56 @@ public class Servicio extends Gastos {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * getters de DiasSemana nos muestra el valor
+	 * @return retorna el valor 
 	 */
 	public String getDiasSemanaD() {
 		return diasSemanaD;
 	}
 
 	/**
-	 * 
-	 * @param diasSemanaD
+	 * setter  de dias sermama no alluda a asignar el valor
+	 * @param diasSemanaD es el valor
 	 */
 	public void setDiasSemanaD(String diasSemanaD) {
 		this.diasSemanaD = diasSemanaD;
 	}
 
 	/**
-	 * 
-	 * @return
+	 * getter de nombrte trabajador nos alluda a mostrar el valor
+	 * @return nos devuelve el valor
 	 */
 	public String getNombreTrabajador() {
 		return nombreTrabajador;
 	}
 
 	/**
-	 * 
-	 * @param nombreTrabajador
+	 * setter de nombre de trabajador no alluda a asigna el valor
+	 * @param nombreTrabajador es el valar
 	 */
 	public void setNombreTrabajador(String nombreTrabajador) {
 		this.nombreTrabajador = nombreTrabajador;
 	}
 
 	/**
-	 * 
-	 * @return
+	 * getter de Dias Semana nos a mostrar el balor  
+	 * @return retorna el valor
 	 */
 	public DiasSemana getDiasSemana() {
 		return diasSemana;
 	}
 
 	/**
-	 * 
-	 * @param diasSemana
+	 * setter de dias semana no ayuda a signa r el valor 
+	 * @param diasSemana es el valor
 	 */
 	public void setDiasSemana(DiasSemana diasSemana) {
 		this.diasSemana = diasSemana;
 	}
 
 	/**
-	 * 
-	 * @return
+	 * funcion q elimina el servicio
+	 * @return devuelve todas la variables en null
 	 */
 	public boolean eliminarServicio() {
 		Statement smt = UtilsDB.conectarBD();
@@ -170,8 +170,8 @@ public class Servicio extends Gastos {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * array lis de todos los los servicios
+	 * @return retorna todos los servicion en base de datos
 	 */
 	public static ArrayList<Servicio> getTodosServicio() {
 		Statement smt = UtilsDB.conectarBD();
@@ -208,8 +208,8 @@ public class Servicio extends Gastos {
 	}
 
 	/**
-	 * 
-	 * @throws IOException
+	 * funcion q nos escribe un archivo txt con los servicios existentes
+	 * @throws IOException no  da si ahy algun problema de escritura
 	 */
 	public static void imprimeInforme() throws IOException {
 		File archivo = new File("./Informes/InformeServicio.txt");

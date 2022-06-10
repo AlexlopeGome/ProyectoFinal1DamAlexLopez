@@ -16,8 +16,7 @@ import java.awt.Font;
 import elementosVisuales.BotonAzul;
 
 import elementosVisuales.BotonVerde;
-
-
+import exepciones.NombreInvalidoExceptions;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -28,7 +27,12 @@ import java.time.LocalDate;
 import javax.swing.JRadioButton;
 
 import javax.swing.JComboBox;
-
+/**
+ * Pantalla para crear un nuevo prestamo
+ * 
+ * @author AlexLopez
+ *
+ */
 
 public class PantallaPrestamo extends JPanel {
 	;
@@ -160,9 +164,16 @@ public class PantallaPrestamo extends JPanel {
 		
 		JButton Rejistrar = new BotonVerde("Rejistrar");
 		Rejistrar.addMouseListener(new MouseAdapter() {
+			/**
+			 * Boton para registar el Prestamo introducido por los campos
+			 */
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
+					
+					/**
+					 * Recuperamos los datos del presyamo
+					 */
 					String nombre=campoNombre.getText();
 					boolean importeFijo=true;
 					
@@ -196,17 +207,34 @@ public class PantallaPrestamo extends JPanel {
 					int codigoMovimiento=Integer.parseInt(campoCodigoMovimiento.getText());
 				
 				
-						new clases.Prestamo(nombre,importeFijo,importe,fecha,porcentaje,fechaFin,codigoMovimiento);
-						 JOptionPane.showMessageDialog(ventana,"Registro ok","Resgitro completado",JOptionPane.PLAIN_MESSAGE);
+						try {
+							/**
+							 * creamos una nuevo prestamo y le pasamos los parmetros recurados si todo esta
+							 * correcto se introduria en base de datos si no salaran las exepciones
+							 * corepondientes
+							 */
+							
+							new clases.Prestamo(nombre,importeFijo,importe,fecha,porcentaje,fechaFin,codigoMovimiento);
+							JOptionPane.showMessageDialog(ventana,"Registro ok","Resgitro completado",JOptionPane.PLAIN_MESSAGE);
+						} catch (NombreInvalidoExceptions e1) {
+							JOptionPane.showMessageDialog(ventana,"Registro Fallido","Resgitro no completado",JOptionPane.PLAIN_MESSAGE);
+							JOptionPane.showMessageDialog(
+					                ventana,e1.getMessage(),"Error",
+					                JOptionPane.ERROR_MESSAGE);
+							e1.printStackTrace();
+							System.err.println(e1);
+						}
+						 
 					} catch (SQLException e1) {
 						System.out.println(e1);
 						e1.printStackTrace();
+						System.err.println(e1);
 						JOptionPane.showMessageDialog(
 				                ventana,e1.getMessage(),"Error",
 				                JOptionPane.ERROR_MESSAGE);
 					} catch (ArrayIndexOutOfBoundsException e1) {
 		                JOptionPane.showMessageDialog(ventana, "Formato erroneo, debe ser dd/mm/yyyy","error",JOptionPane.ERROR_MESSAGE);
-						
+						System.out.println(e1);
 					}
 					
 						}

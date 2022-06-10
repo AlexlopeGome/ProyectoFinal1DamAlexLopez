@@ -23,6 +23,7 @@ import elementosVisuales.BotonRojo;
 import elementosVisuales.BotonVerde;
 import enums.TipoCompra;
 import exepciones.ContraseniaIncorrectaException;
+import exepciones.NombreInvalidoExceptions;
 import exepciones.UsuarioNoExisteException;
 
 import java.awt.event.ActionListener;
@@ -39,7 +40,11 @@ import javax.swing.JList;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import enums.TipoIngreso;
-
+/**
+ * Patalla para crea un Ingreso
+ * @author AlexLopez
+ *
+ */
 public class PantallaIngreso extends JPanel {
 	;
 	private Ventana ventana;
@@ -148,11 +153,17 @@ public class PantallaIngreso extends JPanel {
 		
 		BotonVerde Rejistrar = new BotonVerde("Rejistrar");
 		Rejistrar.addMouseListener(new MouseAdapter() {
+			
+			/**
+			 * Boton para registar el ingreso introducido por los campos
+			 */
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
 				try {
-					
+					/**
+					 * Recuperamos los datos del usuario
+					 */		
 			String nombre= campoNombre.getText();
 			boolean importeFijo=true;
 	
@@ -163,6 +174,7 @@ public class PantallaIngreso extends JPanel {
             else if(noFijo.isSelected()) {
             	importeFijo =false;
             }
+            
 			float importe=Float.parseFloat(campoImporte.getText());
 			String fechaEnTexto=campoFecha.getText();
 			String[] fechaPartida=fechaEnTexto.split("/");
@@ -175,14 +187,31 @@ public class PantallaIngreso extends JPanel {
 			
 			int codigoMovimiento=Integer.parseInt(campoCodigoMovimiento.getText());
 		
-				new TipoIngresos(nombre,importeFijo,importe,fecha,tipo,codigoMovimiento);
+				try {
+					
+					/**
+					 * creamos un nuevo Ingreso y le pasamos los parmetros recurados si todo esta
+					 * correcto se introduria en base de datos si no salaran las exepciones
+					 * corepondientes
+					 */
+					new TipoIngresos(nombre,importeFijo,importe,fecha,tipo,codigoMovimiento);
+					JOptionPane.showMessageDialog(ventana,"Registro ok","Resgitro completado",JOptionPane.PLAIN_MESSAGE);
+				} catch (NombreInvalidoExceptions e1) {
+					JOptionPane.showMessageDialog(ventana,"Registro Fallido","Resgitro no completado",JOptionPane.PLAIN_MESSAGE);
+					System.err.println(e1);
+					JOptionPane.showMessageDialog(
+			                ventana,e1.getMessage(),"Error",
+			                JOptionPane.ERROR_MESSAGE);
+					e1.printStackTrace();
+				}
 				
-				JOptionPane.showMessageDialog(ventana,"Registro ok","Resgitro completado",JOptionPane.PLAIN_MESSAGE);
+				
 			} catch (ArrayIndexOutOfBoundsException e1) {
                 JOptionPane.showMessageDialog(ventana, "Formato erroneo, debe ser dd/mm/yyyy","error",JOptionPane.ERROR_MESSAGE);
-				
+                System.err.println(e1);
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
+				System.err.println(e1);
 				e1.printStackTrace();
 			}
 			

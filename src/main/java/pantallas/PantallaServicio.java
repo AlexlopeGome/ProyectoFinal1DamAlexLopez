@@ -9,38 +9,26 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import java.awt.Color;
+
 import java.awt.Font;
-
-import javax.swing.border.EmptyBorder;
-
 import clases.Servicio;
-import clases.Usuario;
 import elementosVisuales.BotonAzul;
-import elementosVisuales.BotonRojo;
 import elementosVisuales.BotonVerde;
-import exepciones.ContraseniaIncorrectaException;
-import exepciones.UsuarioNoExisteException;
-
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JPasswordField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
-
 import javax.swing.JRadioButton;
-import javax.swing.JList;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-import enums.TipoCompra;
-import enums.Clases;
 import enums.DiasSemana;
-
+/**
+ * Pantallla para crear un nuevo SErvicio
+ * 
+ * @author AlexLopez
+ *
+ */
 public class PantallaServicio extends JPanel {
 	;
 	private Ventana ventana;
@@ -164,10 +152,18 @@ public class PantallaServicio extends JPanel {
 		
 		JButton Rejistrar = new BotonVerde("Rejistrar");
 		Rejistrar.addMouseListener(new MouseAdapter() {
+			/**
+			 *con este boton se registra el servicio
+			 */
+			
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
 				try {
+					/*
+					 * recogemos los datos introducidos
+					 */
+					
 					String nombre=campoNombre.getText();
 					
 					boolean importeFijo=true;
@@ -192,6 +188,11 @@ public class PantallaServicio extends JPanel {
 					
 					
 						new Servicio(nombre,importeFijo,importe,fecha,nombreTrabajador,dias,codigoMovimiento);
+						/**
+						 * creamos una nuevo Servicio y le pasamos los parmetros recurados si todo esta
+						 * correcto se introduria en base de datos si no salaran las exepciones
+						 * corepondientes
+						 */
 						 JOptionPane.showMessageDialog(ventana,"Registro ok","Resgitro completado",JOptionPane.PLAIN_MESSAGE);	
 					} catch (SQLException e1) {
 						System.out.println(e1);

@@ -87,7 +87,7 @@ public class PantallaLogin extends JPanel {
 				
 							new Usuario(nick,contrasenia );
 						} catch (SQLException e1) {
-							System.out.println(e1);
+							System.err.println(e1);
 						} catch (ContraseniaIncorrectaException e1) {
 							JOptionPane.showMessageDialog(ventana,e1.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
 							

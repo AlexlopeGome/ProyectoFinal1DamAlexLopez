@@ -24,7 +24,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class PantallaListaIngresos extends JPanel {
-
+	/**
+	 * Pantalla q contieNe el elemento Visual Corespondiente a su Clase 
+	 * @author AlexLopez
+	 *
+	 */
     private Ventana ventana;
    
     public PantallaListaIngresos(Ventana v) {
@@ -62,6 +66,9 @@ public class PantallaListaIngresos extends JPanel {
            listaIngresos.add(new ElementoListaIngresos(ventana, todos.get(i)));
            precioTotal=precioTotal + todos.get(i).getImporte();
         }
+        /**
+         * Sumatoria de Ingreso
+         */
         JLabel lblTotal = new JLabel("Total "+precioTotal+"€");
         lblTotal.setFont(new Font("Tahoma", Font.BOLD, 13));
         lblTotal.setForeground(Color.BLUE);

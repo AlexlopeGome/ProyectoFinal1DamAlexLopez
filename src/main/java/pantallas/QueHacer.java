@@ -1,37 +1,24 @@
 package pantallas;
 
-
-import java.awt.BorderLayout;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import java.awt.Color;
 import java.awt.Font;
-
-import javax.swing.border.EmptyBorder;
-
-import clases.Usuario;
 import elementosVisuales.BotonAzul;
 import elementosVisuales.BotonRojo;
 import elementosVisuales.BotonVerde;
-import exepciones.ContraseniaIncorrectaException;
-import exepciones.UsuarioNoExisteException;
-
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JPasswordField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.SQLException;
 
+/**
+ * Esta pantalla nos indica que queros hacer con sus correspondientes botones
+ * @author AlexLopez
+ *
+ */
 public class QueHacer extends JPanel {
-	;
+	
 	private Ventana ventana;
 	private final JLabel label = new JLabel("");
 

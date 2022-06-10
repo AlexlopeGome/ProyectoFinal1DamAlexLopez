@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import Utils.UtilsDB;
+import exepciones.NombreInvalidoExceptions;
 
 /**
  * Clase a controlar los gastos extra
@@ -21,15 +22,17 @@ public class GastoExtra extends Gastos {
 
 	/**
 	 * 
-	 * @param nombre
-	 * @param importeFijo
-	 * @param importe
-	 * @param fecha
-	 * @param codigoMovimiento
-	 * @throws SQLException
+	 * @param nombre           de nuevo gasto extra
+	 * @param importeFijo      no indica con un bolleano si es fijo o no
+	 * @param importe          importe de dicho gasto
+	 * @param fecha            fecha dek gasto que sera que es y q fue
+	 * @param codigoMovimiento codigo de mimiento gasto extra nuebo
+	 * @throws SQLException controlo la exeocion de insersion de base detos por si
+	 *                      falla
+	 * @throws NombreInvalidoExceptions nos salta la exepcion si el nobre no es valido
 	 */
 	public GastoExtra(String nombre, boolean importeFijo, float importe, LocalDate fecha, int codigoMovimiento)
-			throws SQLException {
+			throws SQLException, NombreInvalidoExceptions {
 		super(nombre, importeFijo, importe, fecha, codigoMovimiento);
 		// TODO Auto-generated constructor stub
 
@@ -41,9 +44,6 @@ public class GastoExtra extends Gastos {
 						+ codigoMovimiento + ")") > 0) {
 			System.out.println("Gasto extra  inserado con exito");
 
-			// Si la inserción en BD ha colado, ya podemos modificar las
-			// Variables internas con la tranquilidad de que en BD
-			// También existen.
 			this.nombre = nombre;
 			this.importeFijo = importeFijo;
 			this.importe = importe;
@@ -58,7 +58,7 @@ public class GastoExtra extends Gastos {
 	}
 
 	/**
-	 * 
+	 * contructor vacio pra alludar nos a mosnta un gasyto como nos interese 
 	 */
 	public GastoExtra() {
 		super();
@@ -66,9 +66,9 @@ public class GastoExtra extends Gastos {
 	}
 
 	/**
-	 * 
-	 * @param fecha
-	 * @throws SQLException
+	 * contructor para buscar el gasto
+	 * @param fecha del gasto actual
+	 * @throws SQLException controla la exepcion de la busqueda
 	 */
 	public GastoExtra(LocalDate fecha) throws SQLException {
 		super();
@@ -90,6 +90,10 @@ public class GastoExtra extends Gastos {
 	}
 
 	@SuppressWarnings("null")
+	/**
+	 * funcion q usaremos pra eliminar un  Gasto Extra
+	 * @return retorna el valor de tdo en null
+	 */
 	public boolean eliminarGastoExtra() {
 		Statement smt = UtilsDB.conectarBD();
 		boolean ret;
@@ -112,8 +116,8 @@ public class GastoExtra extends Gastos {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * array lista de tos los gastos
+	 * @return retorna todos los gasto exixtentes en BD
 	 */
 	public static ArrayList<GastoExtra> getTodosGastosExtra() {
 		Statement smt = UtilsDB.conectarBD();
@@ -142,15 +146,13 @@ public class GastoExtra extends Gastos {
 		}
 
 		UtilsDB.desconectarBD();
-		// Si no hay usuarios en la tabla, va a devolver un arraylist vacío
-		// Si la consulta fué erronea, se devuelve un ArrayList null, que son cosas
-		// distintas
+		
 		return ret;
 
 	}
 
 	/**
-	 * 
+	 * funcion q nos escrive un archibo  txt con el informe de tos los gastos
 	 * @throws IOException
 	 */
 	public static void imprimeInforme() throws IOException {

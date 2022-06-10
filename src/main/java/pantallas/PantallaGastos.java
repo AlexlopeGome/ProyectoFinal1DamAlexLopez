@@ -28,7 +28,12 @@ import javax.swing.JPasswordField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
-
+/**
+ * Esta pantalla recoge todos los botonos de los tipos Gastos
+ * 
+ * @author AlexLopez
+ *
+ */
 public class PantallaGastos extends JPanel {
 	;
 	private Ventana ventana;

@@ -27,11 +27,13 @@ import java.awt.event.MouseEvent;
 import javax.swing.JTextField;
 
 public class PantallaListaCompras extends JPanel {
-
+	/**
+	 * Pantalla q contieNe el elemento Visual Corespondiente a su Clase 
+	 * @author AlexLopez
+	 *
+	 */
     private Ventana ventana;
-    /**
-     * @wbp.nonvisual location=-308,429
-     */
+ 
     private final JTextField textField = new JTextField();
     public PantallaListaCompras(Ventana v) {
     	textField.setColumns(10);
@@ -70,6 +72,9 @@ public class PantallaListaCompras extends JPanel {
         	listaCompra.add(new ElementoListaCompras(ventana, todos.get(i)));
             precioTotal=precioTotal + todos.get(i).getImporte();
         }
+        /**
+         * Sumatoria de compras
+         */
         JLabel campoTotal = new JLabel("Total "+precioTotal+"€");
         campoTotal.setFont(new Font("Tahoma", Font.BOLD, 15));
         campoTotal.setForeground(Color.BLUE);
