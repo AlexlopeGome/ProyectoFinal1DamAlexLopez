@@ -88,4 +88,5 @@ fecha date,
 codigoMovimiento  int(3)  primary key
 );
 
-
+insert into usuario values('Alejandro','Lopez Gomez',' 
+Alex@uno.com','1','1984-08-28','2','dasdfghjklqwe' ,'a');

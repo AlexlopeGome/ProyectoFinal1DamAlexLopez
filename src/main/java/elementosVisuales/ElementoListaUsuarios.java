@@ -65,13 +65,16 @@ public class ElementoListaUsuarios extends JPanel {
 		gbc_lblNick.gridx = 4;
 		gbc_lblNick.gridy = 2;
 		add(lblNick, gbc_lblNick);
-
+/*
+ * este boton elimilara el usuari y me llevara de nuebo a la patalla principal
+ */
 		JButton btnBorrarUsuario = new JButton("Borrar Usuario");
 		btnBorrarUsuario.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				setVisible(false);
 				usuario.eliminar();
+				ventana.cambiarPantalla("Principal");
 			}
 		});
 		btnBorrarUsuario.setIcon(new ImageIcon("./iconos/delete.png"));
