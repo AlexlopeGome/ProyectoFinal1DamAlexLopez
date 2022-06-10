@@ -14,144 +14,183 @@ import com.google.protobuf.Enum;
 import Utils.UtilsDB;
 import enums.TipoIngreso;
 
+/**
+ * 
+ * @author AlexLopez
+ *
+ */
 public class TipoIngresos extends Ingresos {
-	
+
 	private TipoIngreso Ingreso;
 	private String ingresoT;
 
+	/**
+	 * 
+	 * @param nombre
+	 * @param importeFijo
+	 * @param importe
+	 * @param fecha
+	 * @param ingresoT
+	 * @param codigoMovimiento
+	 * @throws SQLException
+	 */
 	public TipoIngresos(String nombre, boolean importeFijo, float importe, LocalDate fecha, TipoIngreso ingresoT,
 			int codigoMovimiento) throws SQLException {
-		super(nombre, importeFijo, importe, fecha,codigoMovimiento);
-		
+		super(nombre, importeFijo, importe, fecha, codigoMovimiento);
 
-		
-Statement query=UtilsDB.conectarBD();
-		
-		if(query.executeUpdate(
-				
-		"insert into tipoIngreso values('"+nombre+"',"+importeFijo+","+importe+",'"+ fecha + "','"+ingresoT+"',"+codigoMovimiento+")") > 0) {
+		Statement query = UtilsDB.conectarBD();
+
+		if (query.executeUpdate(
+
+				"insert into tipoIngreso values('" + nombre + "'," + importeFijo + "," + importe + ",'" + fecha + "','"
+						+ ingresoT + "'," + codigoMovimiento + ")") > 0) {
 			System.out.println("Ingreso inserado con exito");
-		
-			//Si la inserción en BD ha colado, ya podemos modificar las
-			//Variables internas con la tranquilidad de que en BD
-			//También existen.
-			this.nombre=nombre;
+
+			// Si la inserción en BD ha colado, ya podemos modificar las
+			// Variables internas con la tranquilidad de que en BD
+			// También existen.
+			this.nombre = nombre;
 			this.importeFijo = importeFijo;
 			this.importe = importe;
 			this.fecha = fecha;
-			this.Ingreso =Ingreso;
-			this.codigoMovimiento=codigoMovimiento;
-			
-		}else {
+			this.Ingreso = Ingreso;
+			this.codigoMovimiento = codigoMovimiento;
+
+		} else {
 			throw new SQLException("No se ha podido insertar el ingreso ");
 		}
-	UtilsDB.desconectarBD();
-		
-		
+		UtilsDB.desconectarBD();
+
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public TipoIngreso getIngreso() {
 		return Ingreso;
 	}
 
+	/**
+	 * 
+	 * @param ingrerso
+	 */
 	public void setIngrerso(TipoIngreso ingrerso) {
 		Ingreso = ingrerso;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getIngresoT() {
 		return ingresoT;
 	}
 
+	/**
+	 * 
+	 * @param ingresoT
+	 */
 	public void setIngresoT(String ingresoT) {
 		this.ingresoT = ingresoT;
 	}
-		public  TipoIngresos() {
-			
-		}
+
+	/**
+	 * 
+	 */
+	public TipoIngresos() {
+
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
 	public boolean eliminarIngreso() {
-	    Statement smt = UtilsDB.conectarBD();
-	    boolean ret;
-	 
-	    try {
-	        ret = smt.executeUpdate("delete from tipoIngreso where nombre='" + nombre + "'") > 0;
+		Statement smt = UtilsDB.conectarBD();
+		boolean ret;
 
-	        nombre=null;
-	        this.importeFijo = null != null;
-			this.importe =0;
+		try {
+			ret = smt.executeUpdate("delete from tipoIngreso where nombre='" + nombre + "'") > 0;
+
+			nombre = null;
+			this.importeFijo = null != null;
+			this.importe = 0;
 			this.fecha = null;
-			this.Ingreso =null;
-	        this.codigoMovimiento=0;
-	        
-	        
-	    } catch (SQLException e) {
-	        // e.printStackTrace();
-	        UtilsDB.desconectarBD();
-	        return false;
-	    }
-	    UtilsDB.desconectarBD();
-	    return ret;
-	}
-	public static ArrayList<TipoIngresos> getTodosIngresos(){
-		Statement smt=UtilsDB.conectarBD();
-	//Inicializamos un ArrayList para devolver
-			ArrayList<TipoIngresos> ret=new ArrayList<TipoIngresos>();
-			
-			try {
-				
-				ResultSet cursor=smt.executeQuery("select * from tipoIngreso");
-				while(cursor.next()) {
-			
-					TipoIngresos actual=new TipoIngresos();
-					
-					actual.nombre=cursor.getString("nombre");
-					actual.importeFijo = cursor.getBoolean("importeFijo");
-	    			actual.importe = cursor.getFloat("importe");
-	    			actual.fecha=cursor.getDate("fecha").toLocalDate();
-	    			actual.ingresoT=cursor.getNString("tipoIngreso");
-	    			actual.codigoMovimiento=cursor.getInt("codigoMovimiento");
-	                
-					 			
-	    			
-	    			
-	    			
-	    			
-					ret.add(actual);
-				}
-				
-				
-			} catch (SQLException e) {
-				e.printStackTrace();
-				return null;
-			}
-			
+			this.Ingreso = null;
+			this.codigoMovimiento = 0;
+
+		} catch (SQLException e) {
+			// e.printStackTrace();
 			UtilsDB.desconectarBD();
-			//Si no hay usuarios en la tabla, va a devolver un arraylist vacío
-			//Si la consulta fué erronea, se devuelve un ArrayList null, que son cosas distintas
-			return ret;
+			return false;
+		}
+		UtilsDB.desconectarBD();
+		return ret;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public static ArrayList<TipoIngresos> getTodosIngresos() {
+		Statement smt = UtilsDB.conectarBD();
+		// Inicializamos un ArrayList para devolver
+		ArrayList<TipoIngresos> ret = new ArrayList<TipoIngresos>();
+
+		try {
+
+			ResultSet cursor = smt.executeQuery("select * from tipoIngreso");
+			while (cursor.next()) {
+
+				TipoIngresos actual = new TipoIngresos();
+
+				actual.nombre = cursor.getString("nombre");
+				actual.importeFijo = cursor.getBoolean("importeFijo");
+				actual.importe = cursor.getFloat("importe");
+				actual.fecha = cursor.getDate("fecha").toLocalDate();
+				actual.ingresoT = cursor.getNString("tipoIngreso");
+				actual.codigoMovimiento = cursor.getInt("codigoMovimiento");
+
+				ret.add(actual);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+
+		UtilsDB.desconectarBD();
+		// Si no hay usuarios en la tabla, va a devolver un arraylist vacío
+		// Si la consulta fué erronea, se devuelve un ArrayList null, que son cosas
+		// distintas
+		return ret;
 
 	}
 
+	/**
+	 * 
+	 * @throws IOException
+	 */
 	public static void imprimeInforme() throws IOException {
 		File archivo = new File("./Informes/InformeIngresos.txt");
-	    if (archivo.exists()) {
-	        archivo.delete();
-	    }
-	    archivo.createNewFile();
-	    FileWriter escritor = new FileWriter(archivo,true);
-	    ArrayList<TipoIngresos> informe=getTodosIngresos();
-	    
-	    for (int i=0 ;i<informe.size();i++) {
-	    	escritor.write(" -- ");;
-	    	escritor.write("Nombre. "+informe.get(i).getNombre());
-	      	escritor.write(" Importe. "+ informe.get(i).getImporte());
-	      	escritor.write("Tipo Ingreso."+informe.get(i).getIngresoT()+"\n");
-	      	
-	    }
-	    escritor.flush();
-	    escritor.close();
+		if (archivo.exists()) {
+			archivo.delete();
+		}
+		archivo.createNewFile();
+		FileWriter escritor = new FileWriter(archivo, true);
+		ArrayList<TipoIngresos> informe = getTodosIngresos();
+
+		for (int i = 0; i < informe.size(); i++) {
+			escritor.write(" -- ");
+			;
+			escritor.write("Nombre. " + informe.get(i).getNombre());
+			escritor.write(" Importe. " + informe.get(i).getImporte());
+			escritor.write("Tipo Ingreso." + informe.get(i).getIngresoT() + "\n");
+
+		}
+		escritor.flush();
+		escritor.close();
 	}
 
-	
 }
-
-

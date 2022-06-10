@@ -124,11 +124,11 @@ public class PantallaPrincipal extends JPanel {
 		botonRegistroUsuario_1.setBounds(248, 204, 277, 37);
 		add(botonRegistroUsuario_1);
 		
-		
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setBounds(-23, 11, 891, 499);
 		lblNewLabel.setIcon(new ImageIcon("./fondos/General_VentanasApi.jpg"));
 		add(lblNewLabel);
+		
 		
 
 		

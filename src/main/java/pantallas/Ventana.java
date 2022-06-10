@@ -14,28 +14,43 @@ public class Ventana extends JFrame{
 
 	private JPanel pantallaActual;
 	protected Object PantayaloginV2 ;
-
-
+	protected Usuario usuario;
+	
 	public Ventana() {
-		
-		this.setSize(800,550);  
+		this.pantallaActual=new PantallaInicio(this);
+		this.setContentPane(pantallaActual);
+		inicioPantallaPrincipal();
+    }
+    public Ventana(Usuario master) {
+    	this.usuario=master;
+    	this.pantallaActual=new PantallaInicio(this);
+		this.setContentPane(pantallaActual);
+    	
+    	inicioPantallaPrincipal();
+	}
+    
+    private void inicioPantallaPrincipal() {
+    	this.setSize(800,550);  
 		this.setLocationRelativeTo(null); 
 		
 		this.setIconImage(new ImageIcon("./icono/cenec.png").getImage());
 		this.setTitle("Home Manager");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	
-		this.pantallaActual=new PantallaInicio(this);
-		this.setContentPane(pantallaActual);
+		
+		
 	
         this.setResizable(false);
         this.setVisible(true);
-  
-
     }
-    public  void cambiarPantalla(String nombrePantalla) {
-        this.pantallaActual.setVisible(false);
-        this.pantallaActual=null;
+	public  void cambiarPantalla(String nombrePantalla) {
+		if(this.pantallaActual!=null) {
+			 this.pantallaActual.setVisible(false);
+		}else{
+			  this.pantallaActual=null;
+		}
+       
+      
         switch(nombrePantalla){
 
         case "inicio":
@@ -113,6 +128,8 @@ public class Ventana extends JFrame{
     	case "prestamo":
         	this.pantallaActual=new PantallaPrestamo(this);
             break;
+            
+    
     	}
         this.pantallaActual.setVisible(true);
         this.setContentPane(pantallaActual);

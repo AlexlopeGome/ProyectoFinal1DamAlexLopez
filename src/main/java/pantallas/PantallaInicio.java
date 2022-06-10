@@ -14,6 +14,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -28,47 +29,35 @@ import java.nio.file.FileSystems;
 
 public class PantallaInicio extends JPanel {
 	private Ventana ventana;
-	private Ventana ventanaPrincipal;
-	private final JLabel label = new JLabel("");
-	private JTextField txtNumber;
+	
+
 	private File musica;
 	private Clip clip;
 	private AudioInputStream audioInputStream;
 
 	public PantallaInicio(Ventana v) {
-		this.ventana=v;
+		this.ventana = v;
 		setToolTipText("");
 		setBorder(new EmptyBorder(1, 1, 1, 1));
 		setBackground(Color.WHITE);
 		setLayout(null);
-		
-		
-	 JButton btnbotonVerde = new BotonVerde("Vamos....");
-	 btnbotonVerde.addActionListener(new ActionListener() {
-	 	public void actionPerformed(ActionEvent e) {
-	 	}
-	 
-	 	
-	 });
-		btnbotonVerde.addMouseListener(new MouseAdapter() {
-		
-			
-		});
-		add(btnbotonVerde);
-		label.setBounds(544, 17, 0, 0);
-		add(label);
-		label.setVerticalAlignment(SwingConstants.TOP);
+
+	
 		JLabel lblIniciarSesion = new JLabel("Home Manager");
 		lblIniciarSesion.setForeground(Color.WHITE);
 		lblIniciarSesion.setBounds(269, 27, 243, 37);
 		lblIniciarSesion.setFont(new Font("Tahoma", Font.BOLD, 30));
 		add(lblIniciarSesion);
-		musica = new File(FileSystems.getDefault().getPath("").toAbsolutePath() + "./sonidos/simpsong.wav");
+	musica = new File(FileSystems.getDefault().getPath("").toAbsolutePath() + "./sonidos/simpsong.wav");
 		JButton btnbtnbotonVerde = new BotonVerde("Vamoss....");
 		btnbtnbotonVerde.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				ventana.cambiarPantalla("Principal");
-				
+			if(ventana.usuario!=null) {
+				ventana.cambiarPantalla("queHacer");
+				JOptionPane.showMessageDialog(ventana, "Bienvenido, "+ventana.usuario, "Login correcto", JOptionPane.PLAIN_MESSAGE);
+			}else {
+			ventana.cambiarPantalla("Principal");
+			}
 				play();
 				setEnabled(false);
 
@@ -80,16 +69,14 @@ public class PantallaInicio extends JPanel {
 		btnbtnbotonVerde.setToolTipText("Vamos....");
 		btnbtnbotonVerde.setBounds(253, 241, 277, 27);
 		add(btnbtnbotonVerde);
-		
+
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon("./fondos/inicioApi.jpg"));
 		lblNewLabel.setBounds(-23, 11, 891, 499);
 		add(lblNewLabel);
-		
 
+	}
 
-}
-	
 	public void play() {
 		try {
 			audioInputStream = AudioSystem.getAudioInputStream(musica);
@@ -102,8 +89,4 @@ public class PantallaInicio extends JPanel {
 		}
 	}
 
-
-
 }
-
-

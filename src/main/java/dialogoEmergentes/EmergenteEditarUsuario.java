@@ -22,9 +22,13 @@ import exepciones.ContraseniaVaciaException;
 import exepciones.CorreoInvalidoException;
 import exepciones.NickInvalidoExceptions;
 import pantallas.Ventana;
-
+/**
+ * 
+ * @author AlexLopez
+ *
+ */
 public class EmergenteEditarUsuario extends JDialog {
-
+	
 	private Ventana madre;
 	private Usuario usuarioAEditar;
 	private JTextField campoNombre;
@@ -34,7 +38,11 @@ public class EmergenteEditarUsuario extends JDialog {
 	private JTextField campoNumeroHijos;
 	private JTextField campoNick;
 	private JTextField campoDireccion;
-
+	/**ç
+	 * 
+	 * @param v
+	 * @param u
+	 */
 	public EmergenteEditarUsuario(Ventana v, Usuario u) {
 		madre = v;
 		usuarioAEditar = u;
@@ -80,7 +88,7 @@ public class EmergenteEditarUsuario extends JDialog {
 					usuarioAEditar.setContrasenia(nuevaContraseña);
 
 					dispose();
-				} catch (SQLException | CorreoInvalidoException | ContraseniaVaciaException | NickInvalidoExceptions e3) {
+				} catch (SQLException | CorreoInvalidoException | ContraseniaVaciaException  e3) {
 					// TODO Auto-generated catch block
 					JOptionPane.showMessageDialog(thisRef, e3.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 

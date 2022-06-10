@@ -1,8 +1,5 @@
 package pantallas;
 
-
-import java.awt.BorderLayout;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -21,8 +18,7 @@ import elementosVisuales.BotonVerde;
 import exepciones.ContraseniaIncorrectaException;
 import exepciones.UsuarioNoExisteException;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
 import javax.swing.JPasswordField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

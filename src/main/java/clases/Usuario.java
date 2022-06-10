@@ -10,12 +10,14 @@ import Utils.UtilsDB;
 import exepciones.ContraseniaIncorrectaException;
 import exepciones.ContraseniaVaciaException;
 import exepciones.CorreoInvalidoException;
-import exepciones.FechaInvalidoNacimientoException;
-import exepciones.NickInvalidoExceptions;
 import exepciones.UsuarioNoExisteException;
-
+/**
+ * 
+ * @author AlexLopez
+ *
+ */
 public class Usuario extends EntidadConNombre {
-	
+
 	private String apellidos;
 	private String correo;
 	private String contrasenia;
@@ -23,301 +25,374 @@ public class Usuario extends EntidadConNombre {
 	private String numeroHijos;
 	private String direccion;
 	private String nick;
-
+	/**
+	 * 
+	 * @param contrasenia
+	 * @return
+	 */
 	private boolean contraseniaValida(String contrasenia) {
 		return !contrasenia.isBlank();
 	}
-	
-	
+	/**
+	 * 
+	 * @param correo
+	 * @return
+	 */
 	private boolean correoValido(String correo) {
 		return correo.contains("@");
 	}
-	
-	public Usuario(String nombre, String apellidos,String correo,String contrasenia, LocalDate fechaNacimiento,String numeroHijos,String direccion,
-			String nick) throws ContraseniaVaciaException, CorreoInvalidoException, SQLException {
+	/**
+	 * 
+	 * @param nombre
+	 * @param apellidos
+	 * @param correo
+	 * @param contrasenia
+	 * @param fechaNacimiento
+	 * @param numeroHijos
+	 * @param direccion
+	 * @param nick
+	 * @throws ContraseniaVaciaException
+	 * @throws CorreoInvalidoException
+	 * @throws SQLException
+	 */
+	public Usuario(String nombre, String apellidos, String correo, String contrasenia, LocalDate fechaNacimiento,
+			String numeroHijos, String direccion, String nick)
+			throws ContraseniaVaciaException, CorreoInvalidoException, SQLException {
 		super(nombre);
-	
-		
-		if(!this.contraseniaValida(contrasenia)) {
+
+		if (!this.contraseniaValida(contrasenia)) {
 			throw new ContraseniaVaciaException("La contrase�a no puede estar vac�a");
 		}
-		
-		if(!this.correoValido(correo)) {
+
+		if (!this.correoValido(correo)) {
 			throw new CorreoInvalidoException("El mail no es valido");
 		}
-		
-		Statement query=UtilsDB.conectarBD();
-		
 
-		if(query.executeUpdate(
-		"insert into usuario values('"+nombre+"','"+apellidos+"','"+correo+"','"+
-		contrasenia+"','"+ fechaNacimiento + "','"+numeroHijos+"','"+direccion+"','"+nick+"')") > 0) {
+		Statement query = UtilsDB.conectarBD();
+
+		if (query.executeUpdate("insert into usuario values('" + nombre + "','" + apellidos + "','" + correo + "','"
+				+ contrasenia + "','" + fechaNacimiento + "','" + numeroHijos + "','" + direccion + "','" + nick
+				+ "')") > 0) {
 			System.out.println("Usuario inserado con exito");
-			//Si la inserción en BD ha colado, ya podemos modificar las
-			//Variables internas con la tranquilidad de que en BD
-			//También existen.
-			this.nombre=nombre;
+			// Si la inserción en BD ha colado, ya podemos modificar las
+			// Variables internas con la tranquilidad de que en BD
+			// También existen.
+			this.nombre = nombre;
 			this.apellidos = apellidos;
 			this.numeroHijos = numeroHijos;
 			this.fechaNacimiento = fechaNacimiento;
 			this.contrasenia = contrasenia;
 			this.direccion = direccion;
 			this.correo = correo;
-			this.nick=nick;
-		}else {
+			this.nick = nick;
+		} else {
 			throw new SQLException("No se ha podido insertar el usuario");
 		}
-		
-		UtilsDB.desconectarBD();
-		
-		
-	}
 
+		UtilsDB.desconectarBD();
+
+	}
+	/**
+	 * 
+	 * @param nick
+	 * @throws SQLException
+	 */
 	public Usuario(String nick) throws SQLException {
 		super();
-		
-		
-		Statement query=UtilsDB.conectarBD();
-		ResultSet datosDevueltos=query.executeQuery("select * from usuario where nick='"+nick+"'");
-		if(datosDevueltos.next()) {
-			
-			
-			this.nombre=datosDevueltos.getString("nombre");
+
+		Statement query = UtilsDB.conectarBD();
+		ResultSet datosDevueltos = query.executeQuery("select * from usuario where nick='" + nick + "'");
+		if (datosDevueltos.next()) {
+
+			this.nombre = datosDevueltos.getString("nombre");
 			this.apellidos = datosDevueltos.getString("apellidos");
 			this.fechaNacimiento = datosDevueltos.getDate("fechaNacimiento").toLocalDate();
-			this.contrasenia=datosDevueltos.getString("contrasenia");
+			this.contrasenia = datosDevueltos.getString("contrasenia");
 			this.direccion = datosDevueltos.getString("direccion");
 			this.correo = datosDevueltos.getString("correo");
-			this.numeroHijos = datosDevueltos.getString("numehijos"); 
-			this.nick= datosDevueltos.getString("nick");
-			
-			
-		}else {
+			this.numeroHijos = datosDevueltos.getString("numehijos");
+			this.nick = datosDevueltos.getString("nick");
+
+		} else {
 			throw new SQLException("El usuario no existe");
 		}
 	}
-	public Usuario(String nick, String contrasenia) throws ContraseniaIncorrectaException, UsuarioNoExisteException, SQLException {
+	/**
+	 * 
+	 * @param nick
+	 * @param contrasenia
+	 * @throws ContraseniaIncorrectaException
+	 * @throws UsuarioNoExisteException
+	 * @throws SQLException
+	 */
+	public Usuario(String nick, String contrasenia)
+			throws ContraseniaIncorrectaException, UsuarioNoExisteException, SQLException {
 		super();
-		
-		  Statement smt=UtilsDB.conectarBD();
 
-	        ResultSet cursor=smt.executeQuery("select * from usuario where nick='"+nick+"'");
+		Statement smt = UtilsDB.conectarBD();
 
-	        //Aquí podemos usar if en vez de while porque si el nombre está, solo va a estar
+		ResultSet cursor = smt.executeQuery("select * from usuario where nick='" + nick + "'");
 
-	        //una vez, porque es la PK
+		// Aquí podemos usar if en vez de while porque si el nombre está, solo va a
+		// estar
 
-	        if(cursor.next()) {
-	        	
-	  
+		// una vez, porque es la PK
 
-	                this.contrasenia=cursor.getString("contrasenia");
+		if (cursor.next()) {
 
-	                if(!this.contrasenia.equals(contrasenia)) {
-	                	
-	                
-	                        UtilsDB.desconectarBD();
+			this.contrasenia = cursor.getString("contrasenia");
 
-	                        throw new ContraseniaIncorrectaException("La contrase�a no es correcta");
+			if (!this.contrasenia.equals(contrasenia)) {
 
-	                }
+				UtilsDB.desconectarBD();
 
-	            	nombre=cursor.getString("nombre");
-	    			this.apellidos = cursor.getString("apellidos");
-	    			this.correo = cursor.getString("correo");
-	    			this.contrasenia=cursor.getString("contrasenia");
-	    			this.fechaNacimiento = cursor.getDate("fechaNacimiento").toLocalDate();
-	    			this.contrasenia=cursor.getString("contrasenia");
-	    			this.numeroHijos = cursor.getString("numerohijos"); 
-	    			this.direccion = cursor.getString("direccion");
-	    			this.nick= cursor.getString("nick");
-	    			
-	    			
-	        }else {
+				throw new ContraseniaIncorrectaException("La contrase�a no es correcta");
 
-	        	  UtilsDB.desconectarBD();
+			}
 
-	                throw new UsuarioNoExisteException("El usuario no existe");
+			nombre = cursor.getString("nombre");
+			this.apellidos = cursor.getString("apellidos");
+			this.correo = cursor.getString("correo");
+			this.contrasenia = cursor.getString("contrasenia");
+			this.fechaNacimiento = cursor.getDate("fechaNacimiento").toLocalDate();
+			this.contrasenia = cursor.getString("contrasenia");
+			this.numeroHijos = cursor.getString("numerohijos");
+			this.direccion = cursor.getString("direccion");
+			this.nick = cursor.getString("nick");
 
-	        }
+		} else {
 
-	        UtilsDB.desconectarBD();
+			UtilsDB.desconectarBD();
+
+			throw new UsuarioNoExisteException("El usuario no existe");
+
+		}
+
+		UtilsDB.desconectarBD();
 	}
-	
-	
-
+	/**
+	 * 
+	 */
 	public Usuario() {
 		super();
 	}
+	/**
+	 * 
+	 * @return
+	 */
 	public String getApellidos() {
 		return apellidos;
 	}
+	/**
+	 * 
+	 * @param apellidos
+	 */
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
 	}
+	/**
+	 * 
+	 * @return
+	 */
 	public LocalDate getFechaNacimiento() {
 		return fechaNacimiento;
 	}
-	public void setFechaNacimiento(LocalDate fechaNacimiento) throws FechaInvalidoNacimientoException, SQLException {
-		Statement smt=UtilsDB.conectarBD();
-		if(smt.executeUpdate(
-                "update usuario set fechaNacimiento='" + fechaNacimiento + "' where nick='" + nick + "'") > 0) {
-            this.fechaNacimiento = fechaNacimiento;
-        }
+	/**
+	 * 
+	 * @param fechaNacimiento
+	 * @throws SQLException
+	 */
+	public void setFechaNacimiento(LocalDate fechaNacimiento) throws SQLException {
+		Statement smt = UtilsDB.conectarBD();
+		if (smt.executeUpdate(
+				"update usuario set fechaNacimiento='" + fechaNacimiento + "' where nick='" + nick + "'") > 0) {
+			this.fechaNacimiento = fechaNacimiento;
+		}
 		UtilsDB.desconectarBD();
-		
+
 	}
+	/**
+	 * 
+	 * @return
+	 */
 	public String getContrasenia() {
 		return contrasenia;
 	}
+	/**
+	 * 
+	 * @param contrasenia
+	 * @throws ContraseniaVaciaException
+	 * @throws SQLException
+	 */
 	public void setContrasenia(String contrasenia) throws ContraseniaVaciaException, SQLException {
-			if(!this.contraseniaValida(contrasenia)) {
-				throw new ContraseniaVaciaException("La contrase�a no puede estar vac�a");
-			}
-			Statement smt2=UtilsDB.conectarBD();
-			if(smt2.executeUpdate("update usuario set contrasenia='"+contrasenia+
-				"' where nick='"+this.nick+"'")>0){
-				this.contrasenia = contrasenia;
-			}
-			UtilsDB.desconectarBD();
-			
+		if (!this.contraseniaValida(contrasenia)) {
+			throw new ContraseniaVaciaException("La contrase�a no puede estar vac�a");
 		}
-		
-		
-		
-		
+		Statement smt2 = UtilsDB.conectarBD();
+		if (smt2.executeUpdate(
+				"update usuario set contrasenia='" + contrasenia + "' where nick='" + this.nick + "'") > 0) {
+			this.contrasenia = contrasenia;
+		}
+		UtilsDB.desconectarBD();
+
+	}
+	/**
+	 * 
+	 * @return
+	 */
 	public String getDireccion() {
 		return direccion;
 	}
+	/**
+	 * 
+	 * @param direccion
+	 */
 	public void setDireccion(String direccion) {
-	this.direccion = direccion;
+		this.direccion = direccion;
 
 	}
+	/**
+	 * 
+	 * @return
+	 */
 	public String getCorreo() {
 		return correo;
 	}
+	/**
+	 * 
+	 * @param correo
+	 * @throws CorreoInvalidoException
+	 * @throws SQLException
+	 */
 	public void setCorreo(String correo) throws CorreoInvalidoException, SQLException {
-		
-			if(!this.correoValido(correo)) {
-				throw new CorreoInvalidoException("El mail no es valido");
-		}
-			Statement smt1=UtilsDB.conectarBD();
-			
-		if(	smt1.executeUpdate("update usuario set correo='"+correo+
-				"' where nick='"+this.nick+"'")>0){
-			this.correo = correo;
-				}
-			UtilsDB.desconectarBD();
-			///aquiiiir cambIANDO
-		}
 
-		
-	
+		if (!this.correoValido(correo)) {
+			throw new CorreoInvalidoException("El mail no es valido");
+		}
+		Statement smt1 = UtilsDB.conectarBD();
+
+		if (smt1.executeUpdate("update usuario set correo='" + correo + "' where nick='" + this.nick + "'") > 0) {
+			this.correo = correo;
+		}
+		UtilsDB.desconectarBD();
+		/// aquiiiir cambIANDO
+	}
+	/**
+	 * 
+	 * @return
+	 */
 	public String getNumehijos() {
 		return numeroHijos;
 	}
-	public void setNumehijos(String numehijos) throws SQLException {
+	/**
+	 * 
+	 * @param numehijos
+	 */
+	public void setNumehijos(String numehijos)  {
 
-			this.numeroHijos = numehijos;
-	  
+		this.numeroHijos = numehijos;
+
 	}
-
+	/**
+	 * 
+	 * @return
+	 */
 	public String getNick() {
-		
-		
+
 		return nick;
 	}
+	/**
+	 * 
+	 * @param nick
+	 * @throws SQLException
+	 */
+	public void setNick(String nick) throws SQLException {
 
-	public void setNick(String nick) throws SQLException,NickInvalidoExceptions {
-		
-		
-			
-			Statement smt=UtilsDB.conectarBD();
-			if (smt.executeUpdate("update usuario set nick='" + nick + "' where nick='" + this.nick + "'") > 0) {
-				this.nick = nick;
-		    }
-				
-			
-				UtilsDB.desconectarBD();
-	
-		
+		Statement smt = UtilsDB.conectarBD();
+		if (smt.executeUpdate("update usuario set nick='" + nick + "' where nick='" + this.nick + "'") > 0) {
+			this.nick = nick;
+		}
+
+		UtilsDB.desconectarBD();
+
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public boolean eliminar() {
-        Statement smt = UtilsDB.conectarBD();
-        boolean ret;
-        // El borrado lo hacemos con la PK para no equivocarnos y borrar lo que no es
-        try {
-            ret = smt.executeUpdate("delete from usuario where nombre='" + nombre + "'") > 0;
-            // no nos queda más remedio que borrar todas las variables internas
-            // porque aqui el objeto no se puede poner a null, no tendría efecto en el main
-            
-            nombre=null;
+		Statement smt = UtilsDB.conectarBD();
+		boolean ret;
+		// El borrado lo hacemos con la PK para no equivocarnos y borrar lo que no es
+		try {
+			ret = smt.executeUpdate("delete from usuario where nombre='" + nombre + "'") > 0;
+			// no nos queda más remedio que borrar todas las variables internas
+			// porque aqui el objeto no se puede poner a null, no tendría efecto en el main
+
+			nombre = null;
 			this.apellidos = null;
 			this.fechaNacimiento = null;
-			this.contrasenia=null;
+			this.contrasenia = null;
 			this.direccion = null;
 			this.correo = null;
-			this.numeroHijos = null; 
-			this.nick= null;
-            
-            
-            
-        } catch (SQLException e) {
-            // e.printStackTrace();
-            UtilsDB.desconectarBD();
-            return false;
-        }
-        UtilsDB.desconectarBD();
-        return ret;
-    }
-	
-	
-	public static ArrayList<Usuario> getTodos(){
-		Statement smt=UtilsDB.conectarBD();
-	//Inicializamos un ArrayList para devolver
-			ArrayList<Usuario> ret=new ArrayList<Usuario>();
-			
-			try {
-				
-				ResultSet cursor=smt.executeQuery("select * from usuario");
-				while(cursor.next()) {
-			
-					Usuario actual=new Usuario();
-					
-					actual.nombre=cursor.getString("nombre");
-	    			actual.apellidos = cursor.getString("apellidos");
-	    			actual.correo = cursor.getString("correo");
-	    			actual.contrasenia=cursor.getString("contrasenia");
-	    			actual.fechaNacimiento = cursor.getDate("fechaNacimiento").toLocalDate();
-	    			actual.contrasenia=cursor.getString("contrasenia");
-	    			actual.numeroHijos = cursor.getString("numeroHijos");
-	    			actual.direccion=cursor.getNString("direccion");
-	    			actual.nick= cursor.getString("nick");
-	                
-					
-					ret.add(actual);
-				}
-				
-				
-			} catch (SQLException e) {
-				e.printStackTrace();
-				return null;
-			}
-			
+			this.numeroHijos = null;
+			this.nick = null;
+
+		} catch (SQLException e) {
+			// e.printStackTrace();
 			UtilsDB.desconectarBD();
-			//Si no hay usuarios en la tabla, va a devolver un arraylist vacío
-			//Si la consulta fué erronea, se devuelve un ArrayList null, que son cosas distintas
-			return ret;
+			return false;
 		}
+		UtilsDB.desconectarBD();
+		return ret;
+	}
+	/**
+	 * 
+	 * @return
+	 */
+	public static ArrayList<Usuario> getTodos() {
+		Statement smt = UtilsDB.conectarBD();
+		// Inicializamos un ArrayList para devolver
+		ArrayList<Usuario> ret = new ArrayList<Usuario>();
+
+		try {
+
+			ResultSet cursor = smt.executeQuery("select * from usuario");
+			while (cursor.next()) {
+
+				Usuario actual = new Usuario();
+
+				actual.nombre = cursor.getString("nombre");
+				actual.apellidos = cursor.getString("apellidos");
+				actual.correo = cursor.getString("correo");
+				actual.contrasenia = cursor.getString("contrasenia");
+				actual.fechaNacimiento = cursor.getDate("fechaNacimiento").toLocalDate();
+				actual.contrasenia = cursor.getString("contrasenia");
+				actual.numeroHijos = cursor.getString("numeroHijos");
+				actual.direccion = cursor.getNString("direccion");
+				actual.nick = cursor.getString("nick");
+
+				ret.add(actual);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+
+		UtilsDB.desconectarBD();
+		// Si no hay usuarios en la tabla, va a devolver un arraylist vacío
+		// Si la consulta fué erronea, se devuelve un ArrayList null, que son cosas
+		// distintas
+		return ret;
+	}
+	/**
+	 * 
+	 */
 	@Override
 	public String toString() {
-		return " "+ nombre +"" + apellidos + ", con correo:" + correo + " con fechaNacimiento:" + fechaNacimiento + " numeroHijos: " + numeroHijos + ", con direccion :" + direccion
-				+ ".";
+		return " " + nombre + " " + apellidos + ", con correo:" + correo + " con fechaNacimiento:" + fechaNacimiento
+				+ " numeroHijos: " + numeroHijos + ", con direccion :" + direccion + ".";
 	}
-	
-	
-	
-	
-	
+
 }
