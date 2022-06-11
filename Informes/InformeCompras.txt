@@ -1,2 +1,3 @@
  -- Nombre. Mercadona Importe. 200.0 Tipo Compra. SUPERMERCADOEs Fijo. falseCometario. muy caro todo
  -- Nombre. Mercadona Importe. 50.0 Tipo Compra. SUPERMERCADOEs Fijo. falseCometario. me a cundido mas
+ -- Nombre. qwer Importe. 12.0 Tipo Compra. SUPERMERCADOEs Fijo. trueCometario. asdfghjkl

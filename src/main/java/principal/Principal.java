@@ -11,7 +11,11 @@ import clases.Usuario;
 import exepciones.ContraseniaIncorrectaException;
 import exepciones.UsuarioNoExisteException;
 import pantallas.Ventana;
-
+/**
+ * Clase principal que contiene el main del programa
+ * @author AlexLopez
+ *
+ */
 public class Principal {
 /**
  * este es el main princimal del programa 
