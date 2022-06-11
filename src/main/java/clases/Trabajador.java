@@ -4,9 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
-import javax.swing.ComboBoxModel;
-
 import Utils.UtilsDB;
 import enums.TipoActividadDesenpeniada;
 import exepciones.NombreInvalidoExceptions;
@@ -24,13 +21,15 @@ public class Trabajador extends EntidadConNombre {
 
 	/**
 	 * 
-	 * @param nombre nobre del nuebo trabajador
+	 * @param nombre   nobre del nuebo trabajador
 	 * @param telefono telefono del nuebo trabajador
-	 * @param activi avtividad q desempeña
-	 * @throws SQLException exencion pora los fallos de base de datos
-	 * @throws NombreInvalidoExceptions nos salta la exepcion si el nobre no es valido
+	 * @param activi   avtividad q desempeña
+	 * @throws SQLException             exencion pora los fallos de base de datos
+	 * @throws NombreInvalidoExceptions nos salta la exepcion si el nobre no es
+	 *                                  valido
 	 */
-	public Trabajador(String nombre, int telefono, TipoActividadDesenpeniada activi) throws SQLException, NombreInvalidoExceptions {
+	public Trabajador(String nombre, int telefono, TipoActividadDesenpeniada activi)
+			throws SQLException, NombreInvalidoExceptions {
 		super(nombre);
 		this.telefono = telefono;
 		this.actividadDesempeniada = actividadDesempeniada;
@@ -58,7 +57,8 @@ public class Trabajador extends EntidadConNombre {
 
 	/**
 	 * contructor para buscar el trabajador
-	 * @param telefono es el telefono q tiene 
+	 * 
+	 * @param telefono es el telefono q tiene
 	 * @throws SQLException nos da cualquyier erro con base de datos
 	 */
 	public Trabajador(int telefono) throws SQLException {
@@ -88,6 +88,7 @@ public class Trabajador extends EntidadConNombre {
 
 	/**
 	 * getter telefono no alluda a motrar el telefono
+	 * 
 	 * @return nos retorna el valor
 	 */
 	public int getTelefono() {
@@ -95,7 +96,8 @@ public class Trabajador extends EntidadConNombre {
 	}
 
 	/**
-	 * setter de telefomo  nos alluda a dart el valor
+	 * setter de telefomo nos alluda a dart el valor
+	 * 
 	 * @param telefono es el valor
 	 */
 	public void setTelefono(int telefono) {
@@ -103,7 +105,8 @@ public class Trabajador extends EntidadConNombre {
 	}
 
 	/**
-	 * getter de TipoactividadDeesempeniada nos mustra el valor 
+	 * getter de TipoactividadDeesempeniada nos mustra el valor
+	 * 
 	 * @return nos retorna el valor
 	 */
 	public TipoActividadDesenpeniada getActividadDesempeñada() {
@@ -112,6 +115,7 @@ public class Trabajador extends EntidadConNombre {
 
 	/**
 	 * setter de actividad nos alluda a dar el valor
+	 * 
 	 * @param actividadDesempeniada es el valor
 	 */
 	public void setActividadDesempeñada(TipoActividadDesenpeniada actividadDesempeñada) {
@@ -119,7 +123,8 @@ public class Trabajador extends EntidadConNombre {
 	}
 
 	/**
-	 * getter  activi nos alluda a mostrar el valor
+	 * getter activi nos alluda a mostrar el valor
+	 * 
 	 * @return nos retorna el valor
 	 */
 
@@ -129,6 +134,7 @@ public class Trabajador extends EntidadConNombre {
 
 	/**
 	 * setter de activi no alluda a dar el valo
+	 * 
 	 * @param activi es el valor
 	 */
 
@@ -138,6 +144,7 @@ public class Trabajador extends EntidadConNombre {
 
 	/**
 	 * Funcion que elimina el Trabajador
+	 * 
 	 * @return retorna el valor en null
 	 */
 
@@ -164,6 +171,7 @@ public class Trabajador extends EntidadConNombre {
 
 	/**
 	 * array q nos da los valores en base de datos
+	 * 
 	 * @returnretorna el ararry
 	 */
 	public static ArrayList<Trabajador> getTodostrabajdores() {

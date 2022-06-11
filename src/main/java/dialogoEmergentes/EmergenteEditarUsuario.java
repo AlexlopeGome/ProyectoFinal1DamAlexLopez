@@ -20,7 +20,6 @@ import elementosVisuales.BotonRojo;
 import elementosVisuales.BotonVerde;
 import exepciones.ContraseniaVaciaException;
 import exepciones.CorreoInvalidoException;
-import exepciones.NickInvalidoExceptions;
 import pantallas.Ventana;
 
 /**
@@ -234,6 +233,7 @@ public class EmergenteEditarUsuario extends JDialog {
 			@Override
 			/**
 			 * eveto para cancelar la modificacion
+			 * 
 			 * @param e valor
 			 */
 			public void mouseClicked(MouseEvent e) {

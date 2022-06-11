@@ -7,25 +7,14 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import java.time.format.DateTimeFormatter;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
-
 import clases.Compra;
-import clases.EntidadConNombre;
-import clases.Trabajador;
-import clases.Usuario;
-
-import dialogoEmergentes.EmergenteEditarUsuario;
 import pantallas.Ventana;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 /**
  * Patalla q nops muestra toda la lista de compras

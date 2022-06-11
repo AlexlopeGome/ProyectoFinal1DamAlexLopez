@@ -3,23 +3,12 @@ package pantallas;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.util.ArrayList;
-
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
-import clases.Compra;
-import clases.GastoExtra;
 import clases.Servicio;
-import clases.Trabajador;
-import clases.Usuario;
-import elementosVisuales.ElementoListaCompras;
-import elementosVisuales.ElementoListaGastosExtra;
 import elementosVisuales.ElementoListaServicios;
-import elementosVisuales.ElementoListaTrabajadores;
-import elementosVisuales.ElementoListaUsuarios;
-
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;

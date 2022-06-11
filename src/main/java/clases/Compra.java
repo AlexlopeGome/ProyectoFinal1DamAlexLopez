@@ -3,16 +3,13 @@ package clases;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
 import Utils.UtilsDB;
 import enums.TipoCompra;
-import exepciones.ContraseniaVaciaException;
 import exepciones.NombreInvalidoExceptions;
 
 /**
@@ -51,10 +48,11 @@ public class Compra extends Gastos {
 	 *                         creada
 	 * @param codigoMovimiento nel el codido de la compra creada ( no se puede
 	 *                         repetir dicho codigo en dicha compra
-	 * @throws SQLException nos salta la exepcion si ahy algun problema con
-	 *                      insersion base de datos
-	 * @throws NombreInvalidoExceptions nos salta la exepcion si el nobre no es valido
-**/
+	 * @throws SQLException             nos salta la exepcion si ahy algun problema
+	 *                                  con insersion base de datos
+	 * @throws NombreInvalidoExceptions nos salta la exepcion si el nobre no es
+	 *                                  valido
+	 **/
 	public Compra(String nombre, boolean importeFijo, float importe, LocalDate fecha, String comentario,
 			TipoCompra tipoC, int codigoMovimiento) throws SQLException, NombreInvalidoExceptions {
 		super(nombre, importeFijo, importe, fecha, codigoMovimiento);

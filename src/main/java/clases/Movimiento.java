@@ -18,15 +18,16 @@ public class Movimiento extends EntidadConNombre {
 
 	/**
 	 * 
-	 * @param nombre del nuevo movimiento
-	 * @param importeFijo no s indica con un booleano si el importe es fijo no
-	 * @param importe es el importe del nuebo movimiento
-	 * @param fecha fecha del movimiento que  sera es o fue.
-	 * @param codigoMovimiento condigo del nuevo movimiento 
+	 * @param nombre           del nuevo movimiento
+	 * @param importeFijo      no s indica con un booleano si el importe es fijo no
+	 * @param importe          es el importe del nuebo movimiento
+	 * @param fecha            fecha del movimiento que sera es o fue.
+	 * @param codigoMovimiento condigo del nuevo movimiento
 	 * @throws NombreInvalidoExceptions no indica si ahy algun problema con en nobre
 	 */
 
-	public Movimiento(String nombre, boolean importeFijo, float importe, LocalDate fecha, int codigoMovimiento) throws NombreInvalidoExceptions {
+	public Movimiento(String nombre, boolean importeFijo, float importe, LocalDate fecha, int codigoMovimiento)
+			throws NombreInvalidoExceptions {
 		super(nombre);
 		this.importeFijo = importeFijo;
 		this.importe = importe;
@@ -44,6 +45,7 @@ public class Movimiento extends EntidadConNombre {
 
 	/**
 	 * is de importeFijo muesra el balor
+	 * 
 	 * @return retorna el boleano
 	 */
 	public boolean isImporteFijo() {
@@ -51,8 +53,9 @@ public class Movimiento extends EntidadConNombre {
 	}
 
 	/**
-	 * setter de importew fijo le da el  valor
-	 * @param importeFijo  es el valor que tendra 
+	 * setter de importew fijo le da el valor
+	 * 
+	 * @param importeFijo es el valor que tendra
 	 */
 
 	public void setImporteFijo(boolean importeFijo) {
@@ -61,6 +64,7 @@ public class Movimiento extends EntidadConNombre {
 
 	/**
 	 * getter de importe Se encarga de mostrar EL VALOR
+	 * 
 	 * @return debuelve el valor
 	 */
 	public float getImporte() {
@@ -68,7 +72,8 @@ public class Movimiento extends EntidadConNombre {
 	}
 
 	/**
-	 * setter de importe da el valo al importe 
+	 * setter de importe da el valo al importe
+	 * 
 	 * @param importe es el valor que tendra
 	 */
 	public void setImporte(float importe) {
@@ -77,14 +82,16 @@ public class Movimiento extends EntidadConNombre {
 
 	/**
 	 * getter de fecha devuelve el valor
-	 * @return retorna el valor 
+	 * 
+	 * @return retorna el valor
 	 */
 	public LocalDate getFecha() {
 		return fecha;
 	}
 
 	/**
-	 * setter de fecha  da el valor a la fecha
+	 * setter de fecha da el valor a la fecha
+	 * 
 	 * @param fecha es el velor que tendra
 	 */
 	public void setFecha(LocalDate fecha) {
@@ -93,6 +100,7 @@ public class Movimiento extends EntidadConNombre {
 
 	/**
 	 * getter de codigo de movimeto muetra el valor q tendra movimiento
+	 * 
 	 * @return retorna el valor
 	 */
 	public int getCodigoMovimiento() {
@@ -101,6 +109,7 @@ public class Movimiento extends EntidadConNombre {
 
 	/**
 	 * setter de miviento se encarga de dar el valor
+	 * 
 	 * @param codigoMovimiento es el valor en si
 	 */
 	public void setCodigoMovimiento(int codigoMovimiento) {

@@ -25,7 +25,7 @@ public class Prestamo extends Gastos {
 	 * 
 	 * @param nombre            del nuevo prestamo
 	 * @param importeFijo       nos indica con un boleano si es fijo o no
-	 * @param importe           impiorte del nuevo prestamo
+	 * @param importe           importe del nuevo prestamo
 	 * @param fecha             nos indiva la fecha del pretamo q es sera un fue
 	 * @param porcentajeInteres no indica el porcentaje de interes del prestamo
 	 * @param fechaFin          no indicara la fecha de fin del prestamo
@@ -135,7 +135,8 @@ public class Prestamo extends Gastos {
 	}
 
 	/**
-	 * funcion que no escrive un informe de los pretams  en un archivo txt
+	 * funcion que no escrive un informe de los pretams en un archivo txt
+	 * 
 	 * @throws IOException nos inda si ahy algun problema con la base de datos
 	 */
 	public static void imprimeInforme() throws IOException {
@@ -162,6 +163,7 @@ public class Prestamo extends Gastos {
 
 	/**
 	 * getters de porcentaje interes muestra el valor del inters
+	 * 
 	 * @return devuelve el valor
 	 */
 	public Float getPorcentajeInteres() {
@@ -170,6 +172,7 @@ public class Prestamo extends Gastos {
 
 	/**
 	 * setter de porcentaje da valor a la variable
+	 * 
 	 * @param porcentajeInteres es el valor de la variable
 	 */
 	public void setPorcentajeInteres(Float porcentajeInteres) {
@@ -178,6 +181,7 @@ public class Prestamo extends Gastos {
 
 	/**
 	 * getrer de Fecha fin nos mustra el valor de la FechaFin
+	 * 
 	 * @return devuelve el valor
 	 */
 	public LocalDate getFechaFin() {
@@ -186,6 +190,7 @@ public class Prestamo extends Gastos {
 
 	/**
 	 * setter da el valor a la variable
+	 * 
 	 * @param fechaFin es el valor de la variable
 	 */
 	public void setFechaFin(LocalDate fechaFin) {

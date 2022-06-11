@@ -27,9 +27,10 @@ public class GastoExtra extends Gastos {
 	 * @param importe          importe de dicho gasto
 	 * @param fecha            fecha dek gasto que sera que es y q fue
 	 * @param codigoMovimiento codigo de mimiento gasto extra nuebo
-	 * @throws SQLException controlo la exeocion de insersion de base detos por si
-	 *                      falla
-	 * @throws NombreInvalidoExceptions nos salta la exepcion si el nobre no es valido
+	 * @throws SQLException             controlo la exeocion de insersion de base
+	 *                                  detos por si falla
+	 * @throws NombreInvalidoExceptions nos salta la exepcion si el nobre no es
+	 *                                  valido
 	 */
 	public GastoExtra(String nombre, boolean importeFijo, float importe, LocalDate fecha, int codigoMovimiento)
 			throws SQLException, NombreInvalidoExceptions {
@@ -58,7 +59,7 @@ public class GastoExtra extends Gastos {
 	}
 
 	/**
-	 * contructor vacio pra alludar nos a mosnta un gasyto como nos interese 
+	 * contructor vacio pra alludar nos a mosnta un gasyto como nos interese
 	 */
 	public GastoExtra() {
 		super();
@@ -67,6 +68,7 @@ public class GastoExtra extends Gastos {
 
 	/**
 	 * contructor para buscar el gasto
+	 * 
 	 * @param fecha del gasto actual
 	 * @throws SQLException controla la exepcion de la busqueda
 	 */
@@ -91,7 +93,8 @@ public class GastoExtra extends Gastos {
 
 	@SuppressWarnings("null")
 	/**
-	 * funcion q usaremos pra eliminar un  Gasto Extra
+	 * funcion q usaremos pra eliminar un Gasto Extra
+	 * 
 	 * @return retorna el valor de tdo en null
 	 */
 	public boolean eliminarGastoExtra() {
@@ -117,6 +120,7 @@ public class GastoExtra extends Gastos {
 
 	/**
 	 * array lista de tos los gastos
+	 * 
 	 * @return retorna todos los gasto exixtentes en BD
 	 */
 	public static ArrayList<GastoExtra> getTodosGastosExtra() {
@@ -146,13 +150,14 @@ public class GastoExtra extends Gastos {
 		}
 
 		UtilsDB.desconectarBD();
-		
+
 		return ret;
 
 	}
 
 	/**
-	 * funcion q nos escrive un archibo  txt con el informe de tos los gastos
+	 * funcion q nos escrive un archibo txt con el informe de tos los gastos
+	 * 
 	 * @throws IOException
 	 */
 	public static void imprimeInforme() throws IOException {

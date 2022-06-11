@@ -8,11 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
 import Utils.UtilsDB;
-import enums.Clases;
 import enums.DiasSemana;
-import enums.TipoActividadDesenpeniada;
 
 /**
  * 
@@ -27,14 +24,14 @@ public class Servicio extends Gastos {
 
 	/**
 	 * 
-	 * @param nombre nombre del nuevo servicio
-	 * @param importeFijo nos indica con un boleano sie s fijo o no
-	 * @param importe es el importe de dicho servicio
-	 * @param fecha es la fecha del servicio q es sera o fue
+	 * @param nombre           nombre del nuevo servicio
+	 * @param importeFijo      nos indica con un boleano sie s fijo o no
+	 * @param importe          es el importe de dicho servicio
+	 * @param fecha            es la fecha del servicio q es sera o fue
 	 * @param codigoMovimiento es el codigo de dicho servicio
-	 * @param diasSemanaD es el valor de el dia de la semana
+	 * @param diasSemanaD      es el valor de el dia de la semana
 	 * @param nombreTrabajador
-	 * @param diasSemana coresponde al enumm dias semana
+	 * @param diasSemana       coresponde al enumm dias semana
 	 */
 
 	public Servicio(String nombre, boolean importeFijo, float importe, LocalDate fecha, String nombreTrabajador,
@@ -62,6 +59,7 @@ public class Servicio extends Gastos {
 
 	/**
 	 * este contructor nos alluda a comprovar si exite el servicion en vase de datos
+	 * 
 	 * @param nombre es el nombe de servicio
 	 * @throws SQLException
 	 */
@@ -95,14 +93,16 @@ public class Servicio extends Gastos {
 
 	/**
 	 * getters de DiasSemana nos muestra el valor
-	 * @return retorna el valor 
+	 * 
+	 * @return retorna el valor
 	 */
 	public String getDiasSemanaD() {
 		return diasSemanaD;
 	}
 
 	/**
-	 * setter  de dias sermama no alluda a asignar el valor
+	 * setter de dias sermama no alluda a asignar el valor
+	 * 
 	 * @param diasSemanaD es el valor
 	 */
 	public void setDiasSemanaD(String diasSemanaD) {
@@ -111,6 +111,7 @@ public class Servicio extends Gastos {
 
 	/**
 	 * getter de nombrte trabajador nos alluda a mostrar el valor
+	 * 
 	 * @return nos devuelve el valor
 	 */
 	public String getNombreTrabajador() {
@@ -119,6 +120,7 @@ public class Servicio extends Gastos {
 
 	/**
 	 * setter de nombre de trabajador no alluda a asigna el valor
+	 * 
 	 * @param nombreTrabajador es el valar
 	 */
 	public void setNombreTrabajador(String nombreTrabajador) {
@@ -126,7 +128,8 @@ public class Servicio extends Gastos {
 	}
 
 	/**
-	 * getter de Dias Semana nos a mostrar el balor  
+	 * getter de Dias Semana nos a mostrar el balor
+	 * 
 	 * @return retorna el valor
 	 */
 	public DiasSemana getDiasSemana() {
@@ -134,7 +137,8 @@ public class Servicio extends Gastos {
 	}
 
 	/**
-	 * setter de dias semana no ayuda a signa r el valor 
+	 * setter de dias semana no ayuda a signa r el valor
+	 * 
 	 * @param diasSemana es el valor
 	 */
 	public void setDiasSemana(DiasSemana diasSemana) {
@@ -143,6 +147,7 @@ public class Servicio extends Gastos {
 
 	/**
 	 * funcion q elimina el servicio
+	 * 
 	 * @return devuelve todas la variables en null
 	 */
 	public boolean eliminarServicio() {
@@ -171,6 +176,7 @@ public class Servicio extends Gastos {
 
 	/**
 	 * array lis de todos los los servicios
+	 * 
 	 * @return retorna todos los servicion en base de datos
 	 */
 	public static ArrayList<Servicio> getTodosServicio() {
@@ -209,7 +215,8 @@ public class Servicio extends Gastos {
 
 	/**
 	 * funcion q nos escribe un archivo txt con los servicios existentes
-	 * @throws IOException no  da si ahy algun problema de escritura
+	 * 
+	 * @throws IOException no da si ahy algun problema de escritura
 	 */
 	public static void imprimeInforme() throws IOException {
 		File archivo = new File("./Informes/InformeServicio.txt");

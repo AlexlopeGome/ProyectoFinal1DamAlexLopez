@@ -8,9 +8,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
-import com.google.protobuf.Enum;
-
 import Utils.UtilsDB;
 import enums.TipoIngreso;
 import exepciones.NombreInvalidoExceptions;
@@ -27,15 +24,16 @@ public class TipoIngresos extends Ingresos {
 
 	/**
 	 * 
-	 * @param nombre nome del ingreso
-	 * @param importeFijo nos indica con un booleano si es fijo o no
-	 * @param importe es el importe del nuvo ingreso
-	 * @param fecha fecha del ingreso q sera q es o fue
-	 * @param ingresoT es el valor del tipo de ingreso
+	 * @param nombre           nome del ingreso
+	 * @param importeFijo      nos indica con un booleano si es fijo o no
+	 * @param importe          es el importe del nuvo ingreso
+	 * @param fecha            fecha del ingreso q sera q es o fue
+	 * @param ingresoT         es el valor del tipo de ingreso
 	 * @param codigoMovimiento es el codigo de dicho ingreso
-	 * @throws SQLExceptionnos salta la exepcion si ahy algun problema con
-	 *                      insersion base de datos
-	 * @throws NombreInvalidoExceptions nos salta la exepcion si el nobre no es valido
+	 * @throws SQLExceptionnos          salta la exepcion si ahy algun problema con
+	 *                                  insersion base de datos
+	 * @throws NombreInvalidoExceptions nos salta la exepcion si el nobre no es
+	 *                                  valido
 	 */
 	public TipoIngresos(String nombre, boolean importeFijo, float importe, LocalDate fecha, TipoIngreso ingresoT,
 			int codigoMovimiento) throws SQLException, NombreInvalidoExceptions {
@@ -68,7 +66,8 @@ public class TipoIngresos extends Ingresos {
 
 	/**
 	 * getter tipo de ingreso nos alluda a mostra rel tipo de ingreso
-	 * @return retorna el valor 
+	 * 
+	 * @return retorna el valor
 	 */
 	public TipoIngreso getIngreso() {
 		return Ingreso;
@@ -76,6 +75,7 @@ public class TipoIngresos extends Ingresos {
 
 	/**
 	 * setter de ingreso nos alluda a dar el valor a tipo de ingreseo
+	 * 
 	 * @param ingrerso es el valor
 	 */
 	public void setIngrerso(TipoIngreso ingrerso) {
@@ -83,7 +83,8 @@ public class TipoIngresos extends Ingresos {
 	}
 
 	/**
-	 * getter ingreso t no alluda a dar el valor 
+	 * getter ingreso t no alluda a dar el valor
+	 * 
 	 * @return devuelve ek valor
 	 */
 	public String getIngresoT() {
@@ -92,6 +93,7 @@ public class TipoIngresos extends Ingresos {
 
 	/**
 	 * setter de ingreso nos alluda a dar el valor
+	 * 
 	 * @param ingresoT es el valor
 	 */
 	public void setIngresoT(String ingresoT) {
@@ -99,7 +101,7 @@ public class TipoIngresos extends Ingresos {
 	}
 
 	/**
-	 * contructor vacio 
+	 * contructor vacio
 	 */
 	public TipoIngresos() {
 
@@ -107,6 +109,7 @@ public class TipoIngresos extends Ingresos {
 
 	/**
 	 * Funcion q nos elimina un ingreso
+	 * 
 	 * @return nosdevuelve el ingreso en null
 	 */
 	public boolean eliminarIngreso() {
@@ -133,7 +136,8 @@ public class TipoIngresos extends Ingresos {
 	}
 
 	/**
-	 * array  de tos los ingresos exietntes en base de datos
+	 * array de tos los ingresos exietntes en base de datos
+	 * 
 	 * @return debuel dicho ingresos
 	 */
 	public static ArrayList<TipoIngresos> getTodosIngresos() {
@@ -164,13 +168,14 @@ public class TipoIngresos extends Ingresos {
 		}
 
 		UtilsDB.desconectarBD();
-	
+
 		return ret;
 
 	}
 
 	/**
 	 * funcion pra imprimir un infor de inf+gresos exitente en txt
+	 * 
 	 * @throws IOException
 	 */
 	public static void imprimeInforme() throws IOException {

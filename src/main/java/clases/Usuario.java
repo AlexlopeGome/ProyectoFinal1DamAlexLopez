@@ -13,8 +13,10 @@ import exepciones.ContraseniaVaciaException;
 import exepciones.CorreoInvalidoException;
 import exepciones.NombreInvalidoExceptions;
 import exepciones.UsuarioNoExisteException;
+
 /**
  * Clase usuario la usuarimo para crear un nuevo usuario
+ * 
  * @author AlexLopez
  *
  */
@@ -27,43 +29,49 @@ public class Usuario extends EntidadConNombre {
 	private String numeroHijos;
 	private String direccion;
 	private String nick;
-	
+
 	/**
 	 * fincion boleana q nos debuelve un false si la contrseña esta Vacia
+	 * 
 	 * @param contrasenia corespode a la contrseña
 	 * @return
 	 */
 	private boolean contraseniaValida(String contrasenia) {
 		return !contrasenia.isBlank();
 	}
+
 	/**
-	 *funcion boleanoa q nos debuelve tre si contiemne un a @ el correo   
+	 * funcion boleanoa q nos debuelve tre si contiemne un a @ el correo
+	 * 
 	 * @param correo es el valos de correo
 	 * @return
 	 */
 	private boolean correoValido(String correo) {
 		return correo.contains("@");
 	}
+
 	/**
 	 * 
-	 * @param nombre nombre del nuevo usuario
-	 * @param apellidos apeelido del nuevo usuario
-	 * @param correo correo del nuevo usuario	
-	 * @param contrasenia contraseña del nuevo usuario
-	 * @param fechaNacimiento fecha de nacimiento del nuevo usuario	
-	 * @param numeroHijos numero de hijop del usuario
-	 * @param direccion direccion del usuaro
-	 * @param nick nick del usuario
-	 * @throws ContraseniaVaciaException verificacion contraepor exepcion
+	 * @param nombre          nombre del nuevo usuario
+	 * @param apellidos       apeelido del nuevo usuario
+	 * @param correo          correo del nuevo usuario
+	 * @param contrasenia     contraseña del nuevo usuario
+	 * @param fechaNacimiento fecha de nacimiento del nuevo usuario
+	 * @param numeroHijos     numero de hijop del usuario
+	 * @param direccion       direccion del usuaro
+	 * @param nick            nick del usuario
+	 * @throws ContraseniaVaciaException           verificacion contraepor exepcion
 	 * @throws CorreoInvalidoExceptionverificacion por exepcion
-	 * @throws SQLExceptionverificacion por exepcion
-	 * @throws NombreInvalidoExceptions nos salta la exepcion si el nombre no es valido
+	 * @throws SQLExceptionverificacion            por exepcion
+	 * @throws NombreInvalidoExceptions            nos salta la exepcion si el
+	 *                                             nombre no es valido
 	 * 
-	 * @throws ApellidoInvalidoException  nos salta la exepcion si el Apellido no es valido
+	 * @throws ApellidoInvalidoException           nos salta la exepcion si el
+	 *                                             Apellido no es valido
 	 */
 	public Usuario(String nombre, String apellidos, String correo, String contrasenia, LocalDate fechaNacimiento,
-			String numeroHijos, String direccion, String nick)
-			throws ContraseniaVaciaException, CorreoInvalidoException, SQLException, NombreInvalidoExceptions, ApellidoInvalidoException {
+			String numeroHijos, String direccion, String nick) throws ContraseniaVaciaException,
+			CorreoInvalidoException, SQLException, NombreInvalidoExceptions, ApellidoInvalidoException {
 		super(nombre);
 
 		if (!this.contraseniaValida(contrasenia)) {
@@ -73,12 +81,11 @@ public class Usuario extends EntidadConNombre {
 		if (!this.correoValido(correo)) {
 			throw new CorreoInvalidoException("El mail no es valido");
 		}
-		
-		if(apellidos.contains("0")||apellidos.contains("1")||apellidos.contains("2")||
-				apellidos.contains("3")||apellidos.contains("4")||apellidos.contains("5")||
-				apellidos.contains("6")||apellidos.contains("7")||apellidos.contains("8")||
-				apellidos.contains("9")) {
-			throw new ApellidoInvalidoException("El nombre "+nombre+" no puede tener nï¿½meros");
+
+		if (apellidos.contains("0") || apellidos.contains("1") || apellidos.contains("2") || apellidos.contains("3")
+				|| apellidos.contains("4") || apellidos.contains("5") || apellidos.contains("6")
+				|| apellidos.contains("7") || apellidos.contains("8") || apellidos.contains("9")) {
+			throw new ApellidoInvalidoException("El nombre " + nombre + " no puede tener nï¿½meros");
 
 		}
 		Statement query = UtilsDB.conectarBD();
@@ -105,9 +112,10 @@ public class Usuario extends EntidadConNombre {
 		UtilsDB.desconectarBD();
 
 	}
-	
+
 	/**
 	 * contruscto que se usa pra buusca si el usuario esiste
+	 * 
 	 * @param nick es el nick de dicho usuario
 	 * @throws SQLException
 	 */
@@ -131,13 +139,19 @@ public class Usuario extends EntidadConNombre {
 			throw new SQLException("El usuario no existe");
 		}
 	}
+
 	/**
-	 * constructor utilizado para comprar mediante los campos nick y contrsaeña si es o no el usuario
-	 * @param nick nick de dicho usuario
+	 * constructor utilizado para comprar mediante los campos nick y contrsaeña si
+	 * es o no el usuario
+	 * 
+	 * @param nick        nick de dicho usuario
 	 * @param contrasenia contraseña de dicho usuario
-	 * @throws ContraseniaIncorrectaException exepcion  que salta si la contrseña no existe
-	 * @throws UsuarioNoExisteException exepcion que salta si el usuari no essite
-	 * @throws SQLException exepcion q sañltara si ahy algun problema de base de datos
+	 * @throws ContraseniaIncorrectaException exepcion que salta si la contrseña no
+	 *                                        existe
+	 * @throws UsuarioNoExisteException       exepcion que salta si el usuari no
+	 *                                        essite
+	 * @throws SQLException                   exepcion q sañltara si ahy algun
+	 *                                        problema de base de datos
 	 */
 	public Usuario(String nick, String contrasenia)
 			throws ContraseniaIncorrectaException, UsuarioNoExisteException, SQLException {
@@ -146,7 +160,6 @@ public class Usuario extends EntidadConNombre {
 		Statement smt = UtilsDB.conectarBD();
 
 		ResultSet cursor = smt.executeQuery("select * from usuario where nick='" + nick + "'");
-
 
 		if (cursor.next()) {
 
@@ -180,35 +193,44 @@ public class Usuario extends EntidadConNombre {
 
 		UtilsDB.desconectarBD();
 	}
+
 	/**
 	 * contructor vacio
 	 */
 	public Usuario() {
 		super();
 	}
+
 	/**
-	 * getter de apellido  no alluda a moostrar el appelido
+	 * getter de apellido no alluda a moostrar el appelido
+	 * 
 	 * @return debuelve el valor
 	 */
 	public String getApellidos() {
 		return apellidos;
 	}
+
 	/**
 	 * setter de apellido no alluda a la insersion del valor
+	 * 
 	 * @param apellidos es el valor
 	 */
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
 	}
+
 	/**
 	 * getter Facha nacimiento nos alluda a mostrar la fecha de nacimiento
+	 * 
 	 * @return no retorna el valor
 	 */
 	public LocalDate getFechaNacimiento() {
 		return fechaNacimiento;
 	}
+
 	/**
-	 * setter de fecha de nacimiento nos alluda a dar valor 
+	 * setter de fecha de nacimiento nos alluda a dar valor
+	 * 
 	 * @param fechaNacimiento es el valor
 	 * @throws SQLException esepcion que saltara si ese usuario no tie l afecha
 	 */
@@ -221,18 +243,23 @@ public class Usuario extends EntidadConNombre {
 		UtilsDB.desconectarBD();
 
 	}
+
 	/**
 	 * get contrasenia nois mostrara el valor de contrasenia
+	 * 
 	 * @returnretorna el valor
 	 */
 	public String getContrasenia() {
 		return contrasenia;
 	}
+
 	/**
 	 * setter de contrasenia nos alluda a dar el valer a la variable
+	 * 
 	 * @param contrasenia es el valor
 	 * @throws ContraseniaVaciaException
-	 * @throws SQLException saltara la exepcion si la contraseña esta vacia
+	 * @throws SQLException              saltara la exepcion si la contraseña esta
+	 *                                   vacia
 	 */
 	public void setContrasenia(String contrasenia) throws ContraseniaVaciaException, SQLException {
 		if (!this.contraseniaValida(contrasenia)) {
@@ -246,33 +273,41 @@ public class Usuario extends EntidadConNombre {
 		UtilsDB.desconectarBD();
 
 	}
+
 	/**
 	 * getter direccion nos alluda amostrar la contraseña
-	 * @return retorna el valor	 
-	 * */
+	 * 
+	 * @return retorna el valor
+	 */
 	public String getDireccion() {
 		return direccion;
 	}
+
 	/**
 	 * setter de direccion nos alluda a dar valor a la variable
+	 * 
 	 * @param direccion es el valor
 	 */
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 
 	}
+
 	/**
-	 * getter de coreeo alluda a mostrar el valor 
+	 * getter de coreeo alluda a mostrar el valor
+	 * 
 	 * @return retorna el valor
 	 */
 	public String getCorreo() {
 		return correo;
 	}
+
 	/**
-	 * setter de correo alluda a daar el valor 
+	 * setter de correo alluda a daar el valor
+	 * 
 	 * @param correo es el valor
 	 * @throws CorreoInvalidoException es la exepcion q verifica el coreo
-	 * @throws SQLException comprueva en base de datos
+	 * @throws SQLException            comprueva en base de datos
 	 */
 	public void setCorreo(String correo) throws CorreoInvalidoException, SQLException {
 
@@ -285,34 +320,42 @@ public class Usuario extends EntidadConNombre {
 			this.correo = correo;
 		}
 		UtilsDB.desconectarBD();
-		
+
 	}
+
 	/**
 	 * getter de numero de hijo muestra el valor
+	 * 
 	 * @return retorna el valor
 	 */
 	public String getNumehijos() {
 		return numeroHijos;
 	}
+
 	/**
 	 * setter de numero de hijo alluda a insertar el valor
+	 * 
 	 * @param numehijos es el valor
 	 */
-	public void setNumehijos(String numehijos)  {
+	public void setNumehijos(String numehijos) {
 
 		this.numeroHijos = numehijos;
 
 	}
+
 	/**
 	 * getter de nick alluda a mostrar el nick
+	 * 
 	 * @returnretorna el valor
 	 */
 	public String getNick() {
 
 		return nick;
 	}
+
 	/**
 	 * setter de nick alluda a dar valor
+	 * 
 	 * @param nick es el valor
 	 * @throws SQLException
 	 */
@@ -326,8 +369,10 @@ public class Usuario extends EntidadConNombre {
 		UtilsDB.desconectarBD();
 
 	}
+
 	/**
 	 * funcion quer eliminara al usuari
+	 * 
 	 * @return retorna null
 	 */
 	public boolean eliminar() {
@@ -356,9 +401,11 @@ public class Usuario extends EntidadConNombre {
 		UtilsDB.desconectarBD();
 		return ret;
 	}
+
 	/**
 	 * aary de todos lo usuarios
-	 * @return retorna el valor 
+	 * 
+	 * @return retorna el valor
 	 */
 	public static ArrayList<Usuario> getTodos() {
 		Statement smt = UtilsDB.conectarBD();
@@ -396,6 +443,7 @@ public class Usuario extends EntidadConNombre {
 		// distintas
 		return ret;
 	}
+
 	/**
 	 * to estrin nos alluda a mostrar el usuario con los valores q tiene
 	 */

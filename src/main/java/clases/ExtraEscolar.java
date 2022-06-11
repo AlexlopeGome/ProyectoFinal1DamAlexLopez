@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import Utils.UtilsDB;
 import enums.Clases;
 import enums.DiasSemana;
-import enums.TipoActividadDesenpeniada;
 import exepciones.NombreInvalidoExceptions;
 
 /**
@@ -43,8 +42,10 @@ public class ExtraEscolar extends Gastos {
 	 * @param claseC           se refiere al tipo de activa q se realiza
 	 * @param diasSemanaD      hace rederencia al nombre del enum
 	 * @param codigoMovimiento es el codigo q llavara esta nueba actividad
-	 * @throws SQLException salta si ahy algun problema con la base de datos
-	 * @throws NombreInvalidoExceptions nos salta la exepcion si el nobre no es valido
+	 * @throws SQLException             salta si ahy algun problema con la base de
+	 *                                  datos
+	 * @throws NombreInvalidoExceptions nos salta la exepcion si el nobre no es
+	 *                                  valido
 	 */
 	public ExtraEscolar(String nombre, boolean importeFijo, float importe, LocalDate fecha, String nombreProfesor,
 			Clases claseC, DiasSemana diasSemanaD, int codigoMovimiento) throws SQLException, NombreInvalidoExceptions {
