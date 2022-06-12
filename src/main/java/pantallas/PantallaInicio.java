@@ -1,6 +1,7 @@
 package pantallas;
 
 import java.awt.Color;
+
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import javax.sound.sampled.AudioInputStream;
@@ -19,15 +20,22 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
-
+/**
+ * pantana de in icio de mi aprograma
+ * @author AlexLopez
+ *
+ */
 public class PantallaInicio extends JPanel {
 	private Ventana ventana;
 	
-
 	private File musica;
 	private Clip clip;
 	private AudioInputStream audioInputStream;
-
+	
+/**contructor para contruir la ventana
+ * 
+ * @param v de tipo ventana 
+ */
 	public PantallaInicio(Ventana v) {
 		this.ventana = v;
 		setToolTipText("");
@@ -69,7 +77,9 @@ public class PantallaInicio extends JPanel {
 		add(lblNewLabel);
 
 	}
-
+/*
+ * Funcion que llama un arichibo play para reproduccion
+ */
 	public void play() {
 		try {
 			audioInputStream = AudioSystem.getAudioInputStream(musica);
